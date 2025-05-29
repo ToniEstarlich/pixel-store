@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PIXEL - Online Clothing Store</title>
+    <link rel="stylesheet" href="{% static 'home/css/logo.css' %}">
+    <link rel="stylesheet" href="{% static 'home/css/index.css' %}">
+</head>
+
+<body>
+
+    <main class="intro-section">
+        <a href="{% url 'home' %}" class="logo-container" aria-label="PIXEL Clothing Store Home">
+            <span class="logo-text">PI</span>
+            <span class="pixel-logo">X</span>
+            <span class="logo-text">EL</span>
+        </a>
+        <h1 class="welcome-title">Welcome</h1>
+        <p class="description">
+            A modern and stylish clothing store crafted with creativity and code.<br>
+            Discover the future of fashion, one pixel at a time.
+        </p>
+        <a href="#" class="cta-button">Start Shopping</a>
+    </main>
+
+</body>
+
+</html>
