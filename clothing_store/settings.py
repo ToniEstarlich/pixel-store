@@ -38,7 +38,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',   # need this for allauth
 
+    # allauth apps
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    
+    # my apps
     'products',
     'users',
     'bag',
@@ -134,3 +141,25 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Django-allauth
+
+SITE_ID = 1
+
+AUTHENTICATION_BACKENDS = [
+   
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by email
+    'allauth.account.auth_backends.AuthenticationBackend',
+
+    'allauth.account.middleware.AccountMiddleware',
+   
+]
+
+# Opcional: configuración básica de cuentas
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
