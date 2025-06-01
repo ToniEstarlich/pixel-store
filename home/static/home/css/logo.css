@@ -3,13 +3,16 @@ body {
 }
 
 .logo-container {
-  margin-top: -5%;
+  margin-top: -15%;
   display: flex;
   align-items: center;
-  text-decoration: none;
-  color: white;
-  cursor: pointer;
-  gap: 5px;
+  text-decoration: none !important;
+  color: white; 
+  gap: 5px; 
+  color: inherit !important;
+  outline: none;
+  all: unset;
+  display: inline-block;
 }
 
 /*  PI and EL */
@@ -20,12 +23,14 @@ body {
   text-transform: uppercase;
   color: #fff;
   transition: color 0.3s ease;
+  font-weight: 900;
+  font-size: clamp(3rem, 10vw, 18.8rem);
 }
 
 /*the X */
 .pixel-logo {
-  font-weight: 900;
-  font-size: 30rem;
+ /* font-weight: 900;
+  font-size: 30rem;*/
   position: relative;
   color: #ffe9fa;
   text-transform: uppercase;
@@ -36,6 +41,8 @@ body {
     0 4px #00eaff,
     0 -4px #ff0055;
   margin: 0 5px;
+  will-change: transform, opacity;
+  font-size: clamp(4rem, 15vw, 30rem);
 }
 
 /* animation for X, zoom + rebote */
@@ -128,5 +135,16 @@ body {
     -1px 0 #ff0055,
     0 1px #00eaff,
     0 -1px #ff0055;
+}
+
+/* changes in logo-container */
+
+
+.logo-container:hover,
+.logo-container:focus,
+.logo-container:active {
+  text-decoration: none !important;
+  color: inherit !important;
+  outline: none;
 }
 
