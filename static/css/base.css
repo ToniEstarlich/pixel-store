@@ -1,6 +1,6 @@
 body {
   background: #43074a;
-  background: radial-gradient(circle, rgba(67, 7, 74, 1) 0%, rgba(122, 32, 118, 1) 100%);
+  background: radial-gradient(circle, rgba(67, 7, 74, 1) 0%, rgb(65, 38, 17) 100%);
   color: #a07e7e;
   font-family: 'Urbanist', sans-serif;
   margin-top: 80px;
@@ -52,3 +52,14 @@ body {
   background: #d35ee0;
  
 }
+
+/* Cards items */
+
+.card-img-top {
+  width: 100% !important;
+  height: 350px !important;
+  object-fit: cover !important;
+}
+
+
+

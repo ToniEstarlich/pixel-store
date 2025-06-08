@@ -15,8 +15,21 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ product.name }}</h5>
                     <p class="card-text">{{ product.description|truncatewords:20 }}</p>
-                    <p class="card-text">Size: {{ product.size }}</p>
                     <p class="card-text font-weight-bold">€{{ product.price }}</p>
+                    <form method="post" action="">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="size">Choose size:</label>
+                            <select class="form-control" name="size" id="size" required>
+                                <option value="" disabled selected>Select size</option>
+                                <option value="S">Small</option>
+                                <option value="M">Medium</option>
+                                <option value="L">Large</option>
+                                <option value="XL">Extra Large</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Add to bag</button>
+                    </form>
                 </div>
             </div>
         </div>

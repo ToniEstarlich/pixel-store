@@ -1,9 +1,10 @@
 from django.shortcuts import render
+from django.utils.timezone import now
 from .models import Product
-# Create your views here.
 
 def product_list(request):
     products = Product.objects.all()
-    return render(request, 'products/products_list.html', {'products': products})
-
-
+    return render(request, 'products/products_list.html', {
+        'products': products,
+        'timestamp': now().timestamp()
+    })
