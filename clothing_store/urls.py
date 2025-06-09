@@ -24,6 +24,7 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')), # routes of login/signup
     path('', include('home.urls')),
     path('products/', include('products.urls')),
+    path('bag/', include('bag.urls')),
 ]
 
 if settings.DEBUG:
