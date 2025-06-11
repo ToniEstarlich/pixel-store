@@ -16,7 +16,7 @@
                     <h5 class="card-title">{{ product.name }}</h5>
                     <p class="card-text">{{ product.description|truncatewords:20 }}</p>
                     <p class="card-text font-weight-bold">€{{ product.price }}</p>
-                    <form method="post" action="{% url 'add_to_bag' product.id %}">
+                    <form method="post" action="">
                         {% csrf_token %}
                         <div class="form-group">
                             <label for="size">Choose size:</label>

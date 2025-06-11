@@ -23,7 +23,7 @@
     <a class="nav-link text-white" href="{% url 'view_bag' %}">
       <i class="fas fa-shopping-bag"></i>
       {% if grand_total %}
-        <span>${{ grand_total|floatformat:2 }}</span>
+        <span>£{{ grand_total|floatformat:2 }}</span>
       {% else %}
         <span>$0.00</span>
       {% endif %}
