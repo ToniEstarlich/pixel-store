@@ -2,6 +2,11 @@
 
 from django.db import migrations, models
 
+def set_unique_custom_id(apps, schema_editor):
+    Product = apps.get_model('products', 'Product')
+    for i, product in enumerate(Product.objects.all(), start=1):
+        product.custom_id = str(i) 
+        product.save(update_fields=['custom_id'])
 
 class Migration(migrations.Migration):
 
@@ -10,9 +15,10 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
+        migrations.RunPython(set_unique_custom_id),
         migrations.AlterField(
             model_name='product',
             name='custom_id',
-            field=models.CharField(default='TEMP', max_length=10, unique=True),
+            field=models.CharField(max_length=10, unique=True, null=False),
         ),
     ]

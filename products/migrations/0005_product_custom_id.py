@@ -13,7 +13,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='product',
             name='custom_id',
-            field=models.CharField(default=0, max_length=10, unique=True),
+            field=models.CharField(max_length=10, null=True),
             preserve_default=False,
         ),
     ]

@@ -1,6 +1,6 @@
 body {
   background: #43074a;
-  background: radial-gradient(circle, rgba(67, 7, 74, 1) 0%, rgb(65, 38, 17) 100%);
+  background: radial-gradient(circle, rgb(255, 28, 255) 0%, rgb(218, 255, 53) 100%) !important;
   color: #a07e7e;
   font-family: 'Urbanist', sans-serif;
   margin-top: 80px;
@@ -55,11 +55,19 @@ body {
 
 /* Cards items */
 
-.card-body {
-   background-color: rgba(255, 255, 255, 0.3);
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
-    border-radius: 10px;
+.glass-card {
+  background: rgba(255, 255, 255, 0.15) !important; 
+  border-radius: 16px !important;
+  backdrop-filter: blur(10px)!important ; 
+  -webkit-backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37) !important; 
+  color: white !important; 
+  transition: transform 0.3s ease !important;
+}
+
+.glass-card:hover {
+  transform: scale(1.02) !important;
 }
 
 .card-img-top {
