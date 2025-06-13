@@ -1,7 +1,7 @@
 body {
   background: #43074a;
   background: radial-gradient(circle, rgb(255, 28, 255) 0%, rgb(218, 255, 53) 100%) !important;
-  color: #a07e7e;
+  color: #9c24b1 !important;
   font-family: 'Urbanist', sans-serif;
   margin-top: 80px;
 }
@@ -19,7 +19,7 @@ body {
 }
 
 .nav-link:hover {
-  color: rgb(255, 134, 223) !important;
+  color:  #80095c!important;
   transition: color 0.2s;
 }
 
@@ -35,7 +35,7 @@ body {
 }
 
 .fas  {
-  color: #ff97c9;
+  color: #de1274;
 }
 
 .dropdown-menu {
@@ -74,6 +74,40 @@ body {
   width: 100% !important;
   height: 350px !important;
   object-fit: cover !important;
+  border-radius: 16px
 }
+
+/* btn card */
+
+.btn, .btn_search {
+  margin-top: 5%;
+  background: rgba(255, 255, 255, 0.15) !important; 
+  border-radius: 16px !important;
+  backdrop-filter: blur(10px)!important ; 
+  -webkit-backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37) !important; 
+  color: white !important; 
+  transition: transform 0.3s ease !important;
+}
+
+.btn:hover {
+  transform: scale(1.30) !important;
+  border-radius: 100px !important;
+  margin-right: 10%;
+  z-index: +1;
+}
+
+/* text gradient */
+
+.text-gradient {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  background: radial-gradient(circle, #390171, #bf008f, #ff459f); 
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 
 

@@ -3,4 +3,6 @@ from . import views
 
 urlpatterns = [
     path('', views.view_bag, name='view_bag'),
+    path('add/<int:item_id>/', views.add_to_bag, name='add_to_bag'),
+    path('clear/', views.clear_bag, name='clear_bag'),
 ]

@@ -16,10 +16,13 @@
                     <h5 class="card-title">{{ product.name }}</h5>
                     <p class="card-text">{{ product.description|truncatewords:20 }}</p>
                     <p class="card-text font-weight-bold">€{{ product.price }}</p>
-                    <form method="post" action="">
+
+                    <form method="post" action="{% url 'add_to_bag' product.id %}">
                         {% csrf_token %}
+
+                        <!-- SIZE SELECTOR -->
                         <div class="form-group">
-                            <label for="size">Choose size:</label>
+                            <label for="size--{{ product.id }}">Choose size:</label>
                             <select class="form-control" name="size" id="size--{{ products.id }}" required>
                                 <option value="" disabled selected>Select size</option>
                                 <option value="S">Small</option>
@@ -28,24 +31,30 @@
                                 <option value="XL">Extra Large</option>
                             </select>
                         </div>
-                        <div class="form-group d-flex align-items-center">
-                            <label for="quantity" class="mr-2 mb-0">Qty:</label>
-                            <div class="input-group w-50">
+
+                        <!-- QUANTITY SELECTOR -->
+                        <div class="form-group">
+                            <label for="quantity--{{ product.id }}">Qty:</label>
+                            <div class="input-group">
                                 <div class="input-group-prepend">
                                     <button type="button" class="btn btn-outline-secondary"
                                         onclick="decreaseQty(this)">−</button>
                                 </div>
-                                <input type="number" name="quantity" id="quantity" value="1" min="1"
-                                    class="form-control mb-2 text-center">
+                                <input type="number" name="quantity" id="quantity--{{ product.id }}" value="1" min="1"
+                                    class="form-control text-center">
                                 <div class="input-group-append">
                                     <button type="button" class="btn btn-outline-secondary"
                                         onclick="increaseQty(this)">+</button>
                                 </div>
-                                 <input type="number" name="quantity" min="1" value="1" class="form-control mb-2">
-                                 <button type="submit" class="btn btn-primary btn-block">Add to bag</button>
                             </div>
                         </div>
+
+                        <!-- SUBMIT BUTTON -->
+                        <div class="form-group mt-3">
+                            <button type="submit" class="btn btn-primary btn-block">Add to bag</button>
+                        </div>
                     </form>
+
                 </div>
             </div>
         </div>
