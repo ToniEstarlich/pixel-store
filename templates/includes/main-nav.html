@@ -19,15 +19,24 @@
       {% endif %}
     </div>
   </li>
+
   <li class="nav-item">
+  <a class="nav-link text-white" href="{% url 'view_bag' %}">
+    <i class="fas fa-shopping-bag"></i>
+    <span id="bag-total">
+      £{% if grand_total %}{{ grand_total|floatformat:2 }}{% else %}0.00{% endif %}
+    </span>
+  </a>
+  </li>
+ <!--- <li class="nav-item">
     <a class="nav-link text-white" href="{% url 'view_bag' %}">
       <i class="fas fa-shopping-bag"></i>
       {% if grand_total %}
         <span>£{{ grand_total|floatformat:2 }}</span>
       {% else %}
-        <span>$0.00</span>
+        <span id="bag-total">£0.00</span>
       {% endif %}
     </a>
-  </li>
+  </li> -->
 </ul>
 

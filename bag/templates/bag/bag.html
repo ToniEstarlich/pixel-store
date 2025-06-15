@@ -1,35 +1,40 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'bag/css/bag.css' %}?v=2">
+{% endblock %}
+
 {% block content %}
-<div class="container mt-5 pt-5">
-  <h2>Your Shopping Bag</h2>
-  {% if bag_items %}
-    <ul class="list-group">
-      {% for item in bag_items %}
+
+{% if bag_items %}
+  <ul class="list-group">
+    {% for item in bag_items %}
       <li class="list-group-item d-flex align-items-center">
-        <!-- Imagen del producto -->
         {% if item.product.image %}
           <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" width="60" height="60" class="mr-3">
         {% else %}
           <img src="{% static 'images/no-image.png' %}" alt="No image" width="60" height="60" class="mr-3">
         {% endif %}
 
-        <!-- Detalles del producto -->
         <div class="flex-grow-1">
           <strong>{{ item.product.name }}</strong> ({{ item.size }}) x{{ item.quantity }}
         </div>
-        <span>€{{ item.subtotal|floatformat:2 }}</span>
+
+        <span class="mr-3">£{{ item.subtotal|floatformat:2 }}</span>
+
+        <form action="{% url 'remove_from_bag' item.item_id %}" method="POST">
+          {% csrf_token %}
+          <input type="hidden" name="size" value="{{ item.size }}">
+          <button type="submit">Remove</button>
+        </form>
       </li>
-      {% endfor %}
-    </ul>
-    <div class="text-right mt-3">
-      <strong>Total: £{{ grand_total|floatformat:2 }}</strong>
-    </div>
-    <a href="{% url 'clear_bag' %}">Empty bag</a>
-  {% else %}
-    <p>Your bag is empty.</p>
-  {% endif %}
-</div>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>Your bag is empty.</p>
+{% endif %}
+
 {% endblock %}
+
 

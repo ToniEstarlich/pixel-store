@@ -1,10 +1,4 @@
 
-# def bag_contents(request):
-   
-#    return {
-#       'some_data': 'value',
-#    }
-
 from decimal import Decimal
 from django.conf import settings
 from products.models import Product
@@ -42,3 +36,14 @@ def bag_contents(request):
         'product_count': product_count,
         'grand_total': grand_total,
     }
+
+def calculate_bag_total(bag):
+    total = 0
+    for item_key, quantity in bag.items():
+        try:
+            item_id, size = item_key.split('_')
+            product = Product.objects.get(pk=int(item_id))
+        except (Product.DoesNotExist, ValueError):
+            continue
+        total += product.price * quantity
+    return total
