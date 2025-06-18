@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% load static %} 
+
+{% block content %}
+  <h2>Search Results for "{{ query }}"</h2>
+
+  {% if results %}
+    <div class="container mt-5 pt-5">
+      <div class="row">
+        {% for product in results %}
+          <div class="col-md-4 mb-4">
+            <div class="card h-100 glass-card">
+              {% if product.image %}
+                <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+              {% else %}
+                <img src="{% static 'images/no-image.png' %}" class="card-img-top" alt="No image">
+              {% endif %}
+
+              <div class="card-body">
+                <h5 class="card-title">{{ product.name }}</h5>
+                <p class="card-text">{{ product.description|truncatewords:20 }}</p>
+                <p class="card-text font-weight-bold">€{{ product.price }}</p>
+
+                <form method="post" action="{% url 'add_to_bag' product.id %}" class="add-to-bag-form">
+                  {% csrf_token %}
+
+                  <!-- SIZE SELECTOR -->
+                  <div class="form-group">
+                    <label for="size--{{ product.id }}">Choose size:</label>
+                    <select class="form-control" name="size" id="size--{{ product.id }}" required>
+                      <option value="" disabled selected>Select size</option>
+                      <option value="S">Small</option>
+                      <option value="M">Medium</option>
+                      <option value="L">Large</option>
+                      <option value="XL">Extra Large</option>
+                    </select>
+                  </div>
+
+                  <!-- QUANTITY SELECTOR -->
+                  <div class="form-group">
+                    <label for="quantity--{{ product.id }}">Qty:</label>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <button type="button" class="btn btn-outline-secondary" onclick="decreaseQty(this)">−</button>
+                      </div>
+                      <input type="number" name="quantity" id="quantity--{{ product.id }}" value="1" min="1"
+                        class="form-control text-center">
+                      <div class="input-group-append">
+                        <button type="button" class="btn btn-outline-secondary" onclick="increaseQty(this)">+</button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- SUBMIT BUTTON -->
+                  <div class="form-group mt-3">
+                    <button type="submit" class="btn btn-primary btn-block">Add to bag</button>
+                  </div>
+                </form>
+
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  {% else %}
+    <p>No results found.</p>
+  {% endif %}
+
+{% endblock %}
