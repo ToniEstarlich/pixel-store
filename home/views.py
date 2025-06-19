@@ -6,3 +6,6 @@ def index(request):
     return render(request, 'home/index.html', {
         'timestamp': now().timestamp()
     })
+
+def faqs(request):
+    return render(request, 'home/faqs.html')
