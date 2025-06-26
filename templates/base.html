@@ -18,6 +18,10 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato&display=swap">
     <!--<link rel="stylesheet" href="{% static 'css/base.css' %}?v={{ timestamp }}">-->
 
+    <!-- Bootstrap 4 CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+     
+    <!-- css style-->
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
   {% endblock %}
 
@@ -74,5 +78,7 @@
   {% block content %}{% endblock %}
   {% include 'includes/footer.html' %}
   {% block postloadjs %}{% endblock %}
+
+  
 </body>
 </html>

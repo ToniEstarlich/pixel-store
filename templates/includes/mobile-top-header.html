@@ -15,7 +15,7 @@
     <a class="nav-link text-white dropdown-toggle" href="#" id="userMenu" role="button" data-toggle="dropdown">
       <h6 class="">Products</h6>
     </a>
-    <div class="dropdown-menu dropdown-menu-right bg-dark border-0">
+    <div class="dropdown-menu dropdown-menu-right  border-0">
        {% for category in categories %}
     <a class="nav-link" href="{% url 'products_list' %}?category={{ category.name }}">{{ category.name }}</a>
        {% endfor %}

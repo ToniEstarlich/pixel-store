@@ -1,23 +1,120 @@
  {% extends "base.html" %}
  {% load static %}
+
+ {% block extra_css %}
+  <link rel="stylesheet" href="{% static 'home/css/about.css' %}">
+{% endblock %}
  
  {% block content %}
-    <div class="container mt-5">
-        <h1 class="mb-4">Frequently Asked Questions (FAQs)</h1>
+    <!-- Our Story -->
+    <section class="py-5 ">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <h1>Our Story</h1>
+                    <p class="lead">Founded in 2022, Pixel Textile Store began with a simple vision: to blend modern design with sustainable fabric solutions. Inspired by art, fashion, and technology, we create textiles that stand out for their uniqueness and quality.</p>
+                    <p>Over the years, we've grown from a small studio into a trusted name in the world of textile design. Our team works tirelessly to innovate, while never losing sight of the artisanal roots that define who we are.</p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <i class="fa fa-anchor fa-10x"></i>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        <h3>How can I return a product?</h3>
-        <p>You can return any item within 30 days of purchase. Please ensure the product is in its original condition with all tags attached. Contact our customer service for further instructions.</p>
+    <!-- Our Mission -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-4 text-center">
+                    <i class="fa fa-leaf fa-10x "></i>
+                </div>
+                <div class="col-md-8">
+                    <h1>Our Mission</h1>
+                    <p class="lead">At Pixel Textile Store, our mission is to empower creators and brands by providing exceptional, eco-conscious fabrics.</p>
+                    <p>We believe that beautiful design shouldn’t come at the cost of the planet. That’s why all our materials are ethically sourced and produced with minimal environmental impact.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        <h3>How long does shipping take?</h3>
-        <p>Standard shipping usually takes 3-5 business days. Expedited shipping options are available at checkout.</p>
+    <!-- Our Values -->
+    <section class="py-5  text-center">
+        <div class="container">
+            <h1 class="mb-4">Our Values</h1>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card p-4">
+                        <i class="fa fa-globe fa-5x  mb-3"></i>
+                        <h3>Sustainability</h3>
+                        <p>We lead with eco-friendly practices and transparency across our entire supply chain.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card p-4">
+                        <i class="fa fa-heart fa-5x  mb-3"></i>
+                        <h3>Passion</h3>
+                        <p>Every thread we produce is a reflection of our deep love for creativity and craftsmanship.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card p-4">
+                        <i class="fa fa-lightbulb-o fa-5x  mb-3"></i>
+                        <h3>Innovation</h3>
+                        <p>From digital printing to smart fabrics, we embrace the future of textiles.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        <h3>What payment methods do you accept?</h3>
-        <p>We accept Visa, MasterCard, American Express, and PayPal.</p>
+    <!-- Meet the Team -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Meet the Team</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="https://via.placeholder.com/400x300" class="card-img-top" alt="Team Member">
+                        <div class="card-body">
+                            <h5 class="card-title">John Doe</h5>
+                            <p class="card-text">CEO & Founder</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="https://via.placeholder.com/400x300" class="card-img-top" alt="Team Member">
+                        <div class="card-body">
+                            <h5 class="card-title">Jane Smith</h5>
+                            <p class="card-text">Lead Designer</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="https://via.placeholder.com/400x300" class="card-img-top" alt="Team Member">
+                        <div class="card-body">
+                            <h5 class="card-title">Mike Lee</h5>
+                            <p class="card-text">Operations Manager</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        <h3>How do I contact customer support?</h3>
-        <p>You can contact us via email at support@pixelclothingshop.com or call us at +44 123 456 789.</p>
-
-        <h3>Do you offer international shipping?</h3>
-        <p>Yes, we offer international shipping. Delivery times and fees will vary depending on your location.</p>
-    </div>
-  {% endblock %}
+    <!-- Why Pixel? -->
+    <section class="py-5 ">
+        <div class="container">
+            <h1 class="text-center mb-4">Why Pixel?</h1>
+            <p class="text-center mb-4">We combine technology and textiles to create beautiful, durable, and sustainable fabric designs that elevate brands and inspire confidence.</p>
+            <ul class="list-unstyled text-center">
+                <li><strong>✔</strong> Tailored to modern aesthetics</li>
+                <li><strong>✔</strong> Smart materials and digital printing</li>
+                <li><strong>✔</strong> Ethical and eco-responsible production</li>
+                <li><strong>✔</strong> Designed for fashion, interiors, and beyond</li>
+            </ul>
+        </div>
+    </section>
+{% endblock %}

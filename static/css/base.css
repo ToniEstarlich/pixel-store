@@ -1,7 +1,7 @@
 body {
   background: #43074a;
-  background: radial-gradient(circle, rgb(255, 28, 255) 0%, rgb(218, 255, 53) 100%) !important;
-  color: #9c24b1 !important;
+  background: radial-gradient(circle, rgb(181, 23, 158) 0%, rgb(86, 11, 173)  100%) !important;
+  color:  #ff97c9!important;
   font-family: 'Urbanist', sans-serif;
   margin-top: 80px;
 }
@@ -19,7 +19,7 @@ body {
 }
 
 .nav-link:hover {
-  color:  #80095c!important;
+  color:  #ecbcfd!important;
   transition: color 0.2s;
 }
 
@@ -35,22 +35,29 @@ body {
 }
 
 .fas  {
-  color: #de1274;
-}
-
-.dropdown-menu {
-  background: #43074a;
   color: #ff97c9;
 }
 
-.dropdown-item {
-  background: #43074a;
- 
+/* Dropdown menu*/
+
+.dropdown-menu {
+  color: #ff97c9;
+  background: rgba(255, 255, 255, 0.15) !important; 
+  border-radius: 16px !important;
+  backdrop-filter: blur(10px)!important ; 
+  -webkit-backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37) !important; 
 }
 
 .dropdown-item:hover {
-  background: #d35ee0;
- 
+  color: #ff97c9;
+  background: rgba(255, 255, 255, 0.15) !important; 
+  border-radius: 16px !important;
+  backdrop-filter: blur(10px)!important ; 
+  -webkit-backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37) !important; 
 }
 
 /* Cards items */
@@ -95,7 +102,7 @@ body {
   transform: scale(1.30) !important;
   border-radius: 100px !important;
   margin-right: 10%;
-  z-index: +1;
+  z-index: +2;
 }
 
 /* text gradient */
@@ -104,7 +111,7 @@ body {
   font-size: 2rem;
   font-weight: bold;
   text-align: center;
-  background: radial-gradient(circle, #390171, #bf008f, #ff459f); 
+  background: radial-gradient(circle, #ecbcfd, #f3c4fb, #ffcbf2); 
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }

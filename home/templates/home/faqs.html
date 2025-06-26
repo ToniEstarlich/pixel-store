@@ -1,23 +1,100 @@
  {% extends "base.html" %}
  {% load static %}
+
+ {% block extra_css %}
+  <link rel="stylesheet" href="{% static 'home/css/faqs.css' %}">
+{% endblock %}
  
  {% block content %}
-    <div class="container mt-5">
-        <h1 class="mb-4">Frequently Asked Questions (FAQs)</h1>
+ <!-- FAQs Section -->
+<section class="container my-5">
+  <h1 class="text-center mb-4">Frequently Asked Questions</h1>
 
-        <h3>How can I return a product?</h3>
-        <p>You can return any item within 30 days of purchase. Please ensure the product is in its original condition with all tags attached. Contact our customer service for further instructions.</p>
+  <div id="faqAccordion" class="accordion">
 
-        <h3>How long does shipping take?</h3>
-        <p>Standard shipping usually takes 3-5 business days. Expedited shipping options are available at checkout.</p>
-
-        <h3>What payment methods do you accept?</h3>
-        <p>We accept Visa, MasterCard, American Express, and PayPal.</p>
-
-        <h3>How do I contact customer support?</h3>
-        <p>You can contact us via email at support@pixelclothingshop.com or call us at +44 123 456 789.</p>
-
-        <h3>Do you offer international shipping?</h3>
-        <p>Yes, we offer international shipping. Delivery times and fees will vary depending on your location.</p>
+    <!-- FAQ 1 -->
+    <div class="card">
+      <div class="card-header" id="faq1-heading">
+        <h5 class="mb-0">
+          <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#faq1" aria-expanded="false" aria-controls="faq1">
+           <h3>How can I return a product?</h3> 
+          </button>
+        </h5>
+      </div>
+      <div id="faq1" class="collapse" aria-labelledby="faq1-heading" data-parent="#faqAccordion">
+        <div class="card-body">
+          <p>You can return your product within 30 days of purchase. Make sure the item is in its original condition with all packaging. Visit our Returns page to print your label and follow the instructions.</p>
+        </div>
+      </div>
     </div>
+
+    <!-- FAQ 2 -->
+    <div class="card">
+      <div class="card-header" id="faq2-heading">
+        <h5 class="mb-0">
+          <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#faq2" aria-expanded="false" aria-controls="faq2">
+           <h3>How long does shipping take?</h3> 
+          </button>
+        </h5>
+      </div>
+      <div id="faq2" class="collapse" aria-labelledby="faq2-heading" data-parent="#faqAccordion">
+        <div class="card-body">
+         <p>Shipping typically takes 3-5 business days for domestic orders. International orders may take between 7-14 days depending on the destination.</p> 
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ 3 -->
+    <div class="card">
+      <div class="card-header" id="faq3-heading">
+        <h5 class="mb-0">
+          <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#faq3" aria-expanded="false" aria-controls="faq3">
+           <h3> What payment methods do you accept?</h3>
+          </button>
+        </h5>
+      </div>
+      <div id="faq3" class="collapse" aria-labelledby="faq3-heading" data-parent="#faqAccordion">
+        <div class="card-body">
+         <p> We accept Visa, MasterCard, American Express, PayPal, Apple Pay, and Google Pay. All payments are secured with SSL encryption.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ 4 -->
+    <div class="card">
+      <div class="card-header" id="faq4-heading">
+        <h5 class="mb-0">
+          <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#faq4" aria-expanded="false" aria-controls="faq4">
+           <h3> How do I contact customer support?</h3>
+          </button>
+        </h5>
+      </div>
+      <div id="faq4" class="collapse" aria-labelledby="faq4-heading" data-parent="#faqAccordion">
+        <div class="card-body">
+          <p>You can reach our support team via our contact form, email us at support@example.com, or call us at (123) 456-7890 from 9 AM to 5 PM (GMT).</p>
+      </div>
+    </div>
+  </div>
+
+    <!-- FAQ 5 -->
+    <div class="card">
+      <div class="card-header" id="faq5-heading">
+        <h3 class="mb-0">
+          <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#faq5" aria-expanded="false" aria-controls="faq5">
+           <h3>Do you offer international shipping?</h3> 
+          </button>
+        </h3>
+      </div>
+      <div id="faq5" class="collapse" aria-labelledby="faq5-heading" data-parent="#faqAccordion">
+        <div class="card-body">
+          <p>Yes! We ship worldwide. Shipping fees and delivery times vary based on your location and chosen shipping method.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
   {% endblock %}
