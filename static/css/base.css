@@ -3,7 +3,6 @@ body {
   background: radial-gradient(circle, rgb(181, 23, 158) 0%, rgb(86, 11, 173)  100%) !important;
   color:  #ff97c9!important;
   font-family: 'Urbanist', sans-serif;
-  margin-top: 80px;
 }
 
 .px-navbar {
@@ -124,12 +123,27 @@ body {
 
 footer {
 background: rgba(255, 255, 255, 0.27);
-border-radius: 16px;
 box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 backdrop-filter: blur(5.1px);
 -webkit-backdrop-filter: blur(5.1px);
 border: 1px solid rgba(255, 255, 255, 0.3);
 }
+
+/* social icons */
+
+.social-icons a {
+  display: inline-block;
+  margin-right: 15px;
+  font-size: 20px;
+  color: #c0c7cf; /* Color claro para fondo oscuro */
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: #ffc107; /* Amarillo brillante en hover */
+  transform: scale(1.2);
+}
+
 
 
 
