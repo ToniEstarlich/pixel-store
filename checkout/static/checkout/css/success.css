@@ -1,0 +1,47 @@
+.success-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  padding: 30px;
+}
+
+.success-card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 40px;
+  max-width: 500px;
+  width: 100%;
+  font-family: 'Urbanist', sans-serif;
+  color: #ff97c9;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  text-align: center;
+}
+
+.success-card h2 {
+  color: #ffffff;
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.success-card p {
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+.continue-btn {
+  display: inline-block;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #b5179e, #560bad);
+  color: white;
+  border-radius: 10px;
+  text-decoration: none;
+  font-size: 16px;
+  transition: background 0.3s ease;
+}
+
+.continue-btn:hover {
+  background: linear-gradient(135deg, #e056b0, #6a00f4);
+}

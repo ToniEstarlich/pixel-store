@@ -1,0 +1,71 @@
+.checkout-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  padding: 30px;
+  background: transparent;
+}
+
+.checkout-card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 40px;
+  width: 100%;
+  max-width: 500px;
+  font-family: 'Urbanist', sans-serif;
+  color: #ff97c9;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+}
+
+.checkout-title {
+  text-align: center;
+  font-size: 28px;
+  color: #ffffff;
+  margin-bottom: 30px;
+}
+
+form.checkout-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Corrige los inputs y selects generados por crispy */
+form.checkout-form input,
+form.checkout-form select,
+form.checkout-form textarea {
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  background: #ffffff;
+  color: #000;
+  width: 100%;
+}
+
+/* Ajusta los labels */
+form.checkout-form label {
+  color: #fff;
+  font-weight: 600;
+}
+
+/* Botón de enviar */
+.checkout-button {
+  width: 100%;
+  padding: 12px 20px;
+  background: linear-gradient(135deg, #b5179e, #560bad);
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 18px;
+  margin-top: 20px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.checkout-button:hover {
+  background: linear-gradient(135deg, #e056b0, #6a00f4);
+}

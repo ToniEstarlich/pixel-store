@@ -18,6 +18,12 @@ body {
   text-transform: uppercase;
 }
 
+/* nav-link */
+
+.nav-link {
+  color: #ff97c9;
+}
+
 .nav-link:hover {
   color:  #ecbcfd!important;
   transition: color 0.2s;
