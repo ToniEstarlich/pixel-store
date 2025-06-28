@@ -2,7 +2,11 @@
 
 Pixel Store is a fictional textile company that sells creative and modern fashion products online.
 
-![Website Preview](./static/screenshots/responsive.jpg)
+
+![Website Preview](./screenshots/responsive.jpg)
+With features such as user authentication, product management, a shopping bag system, and secure checkout integration.
+
+The project focuses on combining aesthetic design with functional usability, aiming to reflect the values of a brand that is both bold and innovative. It supports various screen sizes and provides a seamless experience across desktop, tablet, and mobile devices.
 
 ## Table of Contents
 1. [Tech Stack](#tech-stack)
@@ -13,9 +17,8 @@ Pixel Store is a fictional textile company that sells creative and modern fashio
 6. [Installation](#installation)
 7. [Database](#database)
 8. [Backend and Testing](#backend-and-testing)
-9. [Problems & Solutions](#problems-and-solutions)
+9. [Problems & Solutions](#problems--solutions)
 10. [Example of Algorithm / Code](#example-of-algorithm--code)
-[Comeback Index](#pixel-store)
 
 ---
 
@@ -84,12 +87,27 @@ The goal of Pixel Store is to create an interactive online shop where customers 
 
 ##  The Logo
 
-The logo was created to reflect a young, fresh, and modern textile company. Designed with Adobe Illustrator.
+![Website Preview](./wireframes/scketch.jpg)
+
+The Pixel Store logo was designed to represent a young, fresh, and modern textile brand. It combines clean lines with a playful aesthetic to appeal to a fashion-conscious, digital-savvy audience.
+
+The initial concept was hand-sketched using Procreate, capturing the creative spirit of the brand. This sketch was then translated into code using HTML and CSS, ensuring scalability, responsiveness, and seamless integration into the website design.
 
 ---
 
 ##  Colors
 # 🎨
+The Pixel Store design uses a vibrant, modern color palette to reflect the brand’s creative and fashion-forward identity. The color choices aim to create contrast, visual interest, and a memorable user experience.
+
+![Website Preview](./screenshots/colors_pallets.jpg)
+
+| Purpose                         | Color Code                                          | Description                                                                                                      |
+| ------------------------------- | --------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| **Background Gradient**         | `radial-gradient(circle, #b5179e 0%, #560bad 100%)` | A bold, eye-catching gradient with purple and magenta tones that gives the site a futuristic and trendy vibe.    |
+| **Primary Text Highlights**     | `#ff97c9`                                           | A soft neon pink used for accent text elements and headings to enhance readability and style.                    |
+| **Icons (default color)**       | `#c0c7cf`                                           | A clean light-gray tone used for neutral icons (like the shopping cart or nav icons).                            |
+| **Hover Color (icons & links)** | `#ffc107`                                           | A vibrant yellow/gold tone applied on hover for logo and social media icons, helping to highlight interactivity. |
+
 
 ```css
 body {

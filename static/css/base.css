@@ -1,8 +1,16 @@
-body {
+body, html {
   background: #43074a;
   background: radial-gradient(circle, rgb(181, 23, 158) 0%, rgb(86, 11, 173)  100%) !important;
   color:  #ff97c9!important;
   font-family: 'Urbanist', sans-serif;
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+main.flex-fill {
+  flex: 1;
 }
 
 .px-navbar {
