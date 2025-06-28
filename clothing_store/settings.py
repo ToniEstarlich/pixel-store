@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+import dj_database_url
 import os 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -26,7 +27,7 @@ SECRET_KEY = 'django-insecure-mk&8hcar(v0%8l6e%dm((g($oa0+a1g8pf!0aq@bys+n3&8y-$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['clothing_store.herokuapp.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -102,19 +103,28 @@ WSGI_APPLICATION = 'clothing_store.wsgi.application'
 
 
 # Database
+#---------------------------HEROKU----------------------------------
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'clothingdb',
-        'USER': 'postgres',
-        'PASSWORD': 'Toni2207',  
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
+    'default': dj_database_url.config(
+        default='postgres://postgres:Toni2207@localhost:5432/clothingdb',
+        conn_max_age=600
+    )
 }
 
+# for static files run in HEROKU
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = '/static/'
+
+# WhiteNoise
+
+MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+#-----------------------------------------------------------------------------------
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
