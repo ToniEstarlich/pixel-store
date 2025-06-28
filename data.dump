@@ -1,0 +1,79 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 17.2
+-- Dumped by pg_dump version 17.2
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET transaction_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- Data for Name: products_category; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.products_category (id, name) FROM stdin;
+1	T-Shirts
+3	Hoodies
+4	Jackets
+5	Accessories
+6	Trousers
+\.
+
+
+--
+-- Data for Name: products_product; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.products_product (id, name, description, price, stock, size, color, image, category_id) FROM stdin;
+8	Cotton Beanie	Warm cotton beanie for winter	11.99	30	One Size	Grey	product_images/Cotton-Beanie.jpg	5
+7	Pixel Cap	Cap with embroidered Pixel logo	14.99	40	One Size	Black	product_images/Cap.jpg	5
+2	Slim Fit Chinos	Comfortable and stylish chinos for everyday wear	35.99	30	S, M, L, XL	Beige	product_images/Fit_Chinos.jpg	6
+34	Eco Cotton Tee	Eco-friendly cotton t-shirt	17.99	20	S, M, L, XL	Beige	product_images/cotton-t-shirt.jpg	1
+10	Phone Case	Stylish phone case with Pixel design	9.99	50	none size	Mixed	product_images/Phone-Case.jpg	5
+3	Classic Denim Jeans	Durable blue jeans with a modern cut	39.99	25	S, M, L, XL	Blue	product_images/Classic-Jeans.jpg	6
+5	Cargo Pants	Utility trousers with multiple pockets	42.99	20	S, M, L, XL	Khaki	product_images/cargo_pants.jpg	6
+33	Oversized Graphic Tee	Modern oversized tee with graphic print	22.99	30	S, M, L, XL	Mixed	product_images/stamp-t-shirt.jpg	1
+6	Formal Trousers	Elegant trousers for office or events	49.99	15	S, M, L, XL	Grey	product_images/Formal-Trousers.jpg	6
+32	Black Pixel Logo Tee	Black t-shirt with Pixel logo on chest	19.99	40	S, M, L, XL	Black	product_images/back-t-shirt.jpg	1
+4	Jogger Pants	Casual joggers, perfect for relaxed days	29.99	40	S, M, L, XL	Black	product_images/Jogger-Pants.jpg	6
+31	Classic White T-Shirt	Basic white cotton t-shirt	15.99	50	S, M, L, XL	White	product_images/White-T-Shirt_QXf0yAv.jpg	1
+25	Puffer Winter Jacket	Warm padded winter jacket	59.99	15	S, M, L, XL	Black	product_images/Puffer-Winter-Jacket.jpg	4
+23	Windbreaker Jacket	Modern lightweight windbreaker	39.99	25	S, M, L, XL	Blue	product_images/Windbreaker-Jacket.jpg	4
+24	Pixel Denim Jacket	Stylish denim jacket with Pixel logo	44.99	20	S, M, L, XL	Denim Blue	product_images/Denim-Jacket.jpg	4
+9	Canvas Tote Bag	Reusable canvas tote bag	16.99	25	One Size	Natural	product_images/Tote-Bag.jpg	5
+26	Lightweight Bomber	Light bomber jacket for spring	42.99	18	S, M, L, XL	Green	product_images/Lightweight-Bomber.jpg	4
+46	Pastel Color Hoodie	Soft hoodie in pastel tones	31.99	25	S, M, L, XL	Pastel Pink	product_images/Pastel-Hoodie.jpg	3
+45	Heavyweight Hoodie	Winter-ready heavyweight hoodie	34.99	20	S, M, L, XL	Navy	product_images/Heavyweight-Hoodie.jpg	3
+44	Minimalist Grey Hoodie	Basic grey hoodie with clean design	27.99	30	S, M, L, XL	Grey	product_images/Grey-Hoodie.jpg	3
+43	Pixel Zip Hoodie	Zipper hoodie with Pixel branding	29.99	35	S, M, L, XL	Black	product_images/Zip-Hoodie.jpg	3
+\.
+
+
+--
+-- Name: products_category_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.products_category_id_seq', 6, true);
+
+
+--
+-- Name: products_product_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.products_product_id_seq', 46, true);
+
+
+--
+-- PostgreSQL database dump complete
+--
+
