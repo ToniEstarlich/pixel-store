@@ -4,6 +4,7 @@ Pixel Store is a fictional textile company that sells creative and modern fashio
 
 
 ![Website Preview](./screenshots/responsive.jpg)
+You can check the live application here: [Pixel Store](https://pixel-store-6fb82487a320.herokuapp.com/)
 With features such as user authentication, product management, a shopping bag system, and secure checkout integration.
 
 The project focuses on combining aesthetic design with functional usability, aiming to reflect the values of a brand that is both bold and innovative. It supports various screen sizes and provides a seamless experience across desktop, tablet, and mobile devices.
