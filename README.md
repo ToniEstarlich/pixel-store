@@ -211,18 +211,6 @@ class Product(models.Model):
 
 ---
 
-##  Problems & Solutions
-# ❗
-
-### Problem:
-- Database `makemigrations` failed due to wrong plural naming.
-
-### Solution:
-- Added `verbose_name_plural = "Categories"` inside Meta class.
-
-[Comeback Index](#pixel-store)
----
-
 ##  Example of Algorithm / Code
 # 🧠
 
@@ -242,6 +230,51 @@ def add_to_bag(request, item_id):
     request.session['bag'] = bag
     return redirect(redirect_url)
 ```
+
+[Comeback Index](#pixel-store)
+---
+##  Problems & Solutions
+# ❗
+
+## HTML Validation
+The HTML code was validated using the W3C Markup Validation Service.  
+[https://validator.w3.org/](https://validator.w3.org/)
+
+### Problem:
+- The validator showed some warnings and minor errors.
+- Most issues come from external libraries (e.g. Font Awesome, Bootstrap).
+- Use of `<i>` tags for icons and dynamic attributes like `aria-*`.
+
+### Solutions:
+- No changes were made because:
+  - These issues are not critical.
+  - They do not affect accessibility or functionality.
+  - They originate from trusted third-party libraries.
+
+---
+
+## CSS Validation
+The CSS was validated using the W3C CSS Validator.  
+[https://jigsaw.w3.org/css-validator/](https://jigsaw.w3.org/css-validator/)
+
+### Problem:
+- One error from Font Awesome CDN:
+  - `rotate(var(--fa-rotate-angle, none))` is not a valid transform value.
+- 1400+ warnings due to:
+  - Vendor extensions like `-webkit-` and `-moz-`.
+  - Use of CSS variables in the external stylesheet.
+
+### Solutions:
+- No changes were made because:
+  - All issues come from an external CDN (Font Awesome).
+  - Modifying CDN files is not recommended.
+  - The website displays correctly with the current styles.
+
+### Problem:
+- Database `makemigrations` failed due to wrong plural naming.
+
+### Solution:
+- Added `verbose_name_plural = "Categories"` inside Meta class.
 
 [Comeback Index](#pixel-store)
 ---
