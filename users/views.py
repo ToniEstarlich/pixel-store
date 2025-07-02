@@ -20,7 +20,7 @@ def register(request):
 
 @login_required
 def profile_view(request):
-    profile = request.user.userprofile
+    profile = created = UserProfile.objects.get_or_create(user=request.user)
 
     if request.method == 'POST':
         form = UserProfileForm(request.POST, instance=profile)
