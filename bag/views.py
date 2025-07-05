@@ -3,6 +3,7 @@ from django.http import JsonResponse
 from .context_processors import bag_contents, calculate_bag_total
 from django.views.decorators.http import require_POST
 from products.models import Product
+from .models import BagItem
 
 def view_bag(request):
     bag = request.session.get('bag', {})
@@ -45,6 +46,19 @@ def add_to_bag(request, item_id):
         bag[key] = quantity
 
     request.session['bag'] = bag
+
+    if request.user.is_authenticated:
+        product = Product.objects.get(pk=item_id)
+        bag_item, created = BagItem.objects.get_or_create(
+            user=request.user,
+            product=product,
+            size=size,
+            defaults={'quantity': quantity}
+        )
+        if not created:
+            bag_item.quantity += quantity
+            bag_item.save()
+
     grand_total = calculate_bag_total(bag)
 
     return JsonResponse({
@@ -62,10 +76,21 @@ def remove_from_bag(request, item_id):
         del bag[key]
         request.session['bag'] = bag
 
+    if request.user.is_authenticated:
+       BagItem.objects.filter(
+         user=request.user,
+         product_id=item_id,
+         size=size
+       ).delete()
+
     return redirect('view_bag')
 
 
 def clear_bag(request):
     request.session['bag'] = {}
+
+    if request.user.is_authenticated:
+        BagItem.objects.filter(user=request.user).delete()
+        
     return redirect('view_bag')
 
