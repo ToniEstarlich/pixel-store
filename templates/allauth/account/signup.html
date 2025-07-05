@@ -15,14 +15,14 @@
     <h1>{% trans "Sign Up" %}</h1>
 
     <p class="signup-text">
-      {% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}
+      {% blocktrans %}Already have an account? Then please <a class="text-warning" href="{{ login_url }}">sign in</a>.{% endblocktrans %}
     </p>
 
     <form class="signup-form" id="signup_form" method="post" action="{% url 'account_signup' %}">
       {% csrf_token %}
       {{ form.as_p }}
       {% if redirect_field_value %}
-        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+        <input class="custom-input" type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
       {% endif %}
       <button class="primary-action" type="submit">{% trans "Sign Up" %} &raquo;</button>
     </form>
