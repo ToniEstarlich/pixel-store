@@ -71,3 +71,16 @@
   text-decoration: underline;
   font-size: 14px;
 }
+
+a {
+  color: yellow;;
+}
+
+a:hover {
+  color: #e86cb0;
+}
+
+input::placeholder {
+  color: rgb(249, 255, 71);
+  opacity: 4;
+}

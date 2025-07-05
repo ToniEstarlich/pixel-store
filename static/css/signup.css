@@ -4,6 +4,7 @@
   align-items: center;
   min-height: 70vh;
   margin: 5%;
+  margin-top: 6%;
 }
 
 .signup-card {
@@ -58,4 +59,17 @@
 
 .primary-action:hover {
   background: #e86cb0;
+}
+
+a {
+  color: yellow;;
+}
+
+a:hover {
+  color: #e86cb0;
+}
+
+input::placeholder {
+  color: rgb(249, 255, 71);
+  opacity: 4;
 }
