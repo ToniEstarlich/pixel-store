@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %} 
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'users/css/my_orders.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="orders-container">
+  <div class="orders-card glass-card">
+    <h2 class="orders-title">My Orders</h2>
+    {% if orders %}
+      <ul class="orders-list">
+        {% for order in orders %}
+          <li class="orders-item">
+            <div>
+              <strong>Order #:</strong> {{ order.order_number }}<br>
+              <strong>Date:</strong> {{ order.date|date:"SHORT_DATETIME_FORMAT" }}<br>
+              <strong>Total:</strong> £{{ order.grand_total }}
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
+      <a href="{% url 'products_list' %}" class="continue-btn">Continue shopping</a>
+    {% else %}
+      <p class="no-orders-msg">You haven't placed any orders yet.</p>
+      <a href="{% url 'products_list' %}" class="continue-btn">Start shopping</a>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

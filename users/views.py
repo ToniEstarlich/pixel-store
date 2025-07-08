@@ -4,6 +4,7 @@ from .models import UserProfile
 from .forms import UserProfileForm
 from .forms import CustomRegisterForm
 from django.contrib.auth import login
+from checkout.models import Order
 
 def register(request):
     if request.method == 'POST':
@@ -31,3 +32,13 @@ def profile_view(request):
         form = UserProfileForm(instance=profile)
 
     return render(request, 'users/profile.html', {'form': form})
+
+@login_required
+def my_orders(request):
+
+    user_profile = UserProfile.objects.get(user=request.user)
+
+    orders = Order.objects.filter(user_profile=user_profile).order_by('-date')
+
+    return render(request, 'users/my_orders.html',{'orders': orders})
+
