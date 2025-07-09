@@ -2,45 +2,62 @@
 {% load static %}
 
 {% block extra_css %}
-  <link rel="stylesheet" href="{% static 'bag/css/bag.css' %}?v=2">
+<link rel="stylesheet" href="{% static 'bag/css/bag.css' %}?v=2">
 {% endblock %}
 
 {% block content %}
 
 {% if bag_items %}
-  <ul class="list-group">
-    {% for item in bag_items %}
-      <li class="list-group-item d-flex align-items-center">
-        {% if item.product.image %}
-          <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" width="60" height="60" class="mr-3">
-        {% else %}
-          <img src="{% static 'images/no-image.png' %}" alt="No image" width="60" height="60" class="mr-3">
-        {% endif %}
+<ul class="list-group">
+  {% for item in bag_items %}
+  <li class="list-group-item d-flex align-items-center">
+    {% if item.product.image %}
+    <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" width="60" height="60" class="mr-3">
+    {% else %}
+    <img src="{% static 'images/no-image.png' %}" alt="No image" width="60" height="60" class="mr-3">
+    {% endif %}
 
-        <div class="flex-grow-1">
-          <strong>{{ item.product.name }}</strong> ({{ item.size }}) x{{ item.quantity }}
-        </div>
+    <div class="flex-grow-1">
+      <strong>{{ item.product.name }}</strong> ({{ item.size }}) x{{ item.quantity }}
+    </div>
 
-        <span class="mr-3">£{{ item.subtotal|floatformat:2 }}</span>
+    <span class="mr-3">£{{ item.subtotal|floatformat:2 }}</span>
 
-        <form action="{% url 'remove_from_bag' item.item_id %}" method="POST">
-          {% csrf_token %}
-          <input type="hidden" name="size" value="{{ item.size }}">
-          <button type="submit">Remove</button>
-        </form>
-      </li>
-    {% endfor %}
-    <div class="mt-3 text-right"></div>
-    <a href="{% url 'checkout' %}" class="btn btn-success btn-lg">
-      Proceed to Checkout
-    </a>
-  </div>
+    <form action="{% url 'remove_from_bag' item.item_id %}" method="POST">
+      {% csrf_token %}
+      <input type="hidden" name="size" value="{{ item.size }}">
+      <button type="submit">Remove</button>
+    </form>
+  </li>
+  {% endfor %}
+
+  <!-- the total cost -->
+  <div class="mt-4 text-center text-white">
+  <p><strong>Subtotal:</strong> £{{ total|floatformat:2 }}</p>
+  <p><strong>Delivery cost:</strong>
+    {% if delivery_cost > 0 %}
+    £{{ delivery_cost|floatformat:2 }}
+    {% else %}
+    Free
+    {% endif %}
+  </p>
+  <p><strong>Total:</strong> £{{ grand_total|floatformat:2 }}</p>
+
+  <a href="{% url 'checkout' %}" class="btn btn-success btn-lg">
+    Proceed to Checkout
+  </a>
+
+   {% if total < 50 %}
+    <h5 class="mt-2 text-white">Spend £{{ 50|floatformat:2 }} or more to get free delivery!</h5>
   {% else %}
-  <p>Your bag is empty.</p>
-{% endif %}
-  </ul>
+    <h3 class="mt-2 text-white">Congratulations! You’ve qualified for free delivery.</h3>
+  {% endif %}
+</div>
 
+</ul>
+
+{% else %}
+<p>Your bag is empty.</p>
+{% endif %}
 
 {% endblock %}
-
-

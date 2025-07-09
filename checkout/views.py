@@ -31,7 +31,7 @@ class CheckoutView(View):
 
         if form.is_valid():
             order = form.save(commit=False)
-            profile = UserProfile.objects.get(user=request.user)
+            profile, _ = UserProfile.objects.get_or_create(user=request.user)
             order.user_profile = profile
             order.original_cart = bag
             order.save()
@@ -58,6 +58,28 @@ class CheckoutView(View):
                 })
 
             order.update_total()
+
+            # calculate subtotal to bag
+            total = sum(
+                item['product'].price * item['quantity']
+                for item in bag_contents(request)['bag_items']
+            )
+            delivery_cost = 500 if total < 50 else 0 
+            grand_total = int(total * 100) + delivery_cost
+
+            if delivery_cost > 0:
+                 line_items.append({
+                     'price_data': {
+                         'currency': 'gbp',
+                         'product_data': {
+                             'name': 'Delivery Cost',
+                        },
+                      'unit_amount': delivery_cost,
+                     },
+                     'quantity': 1,
+                })
+
+
 
             # Create Stripe Checkout:
             session = stripe.checkout.Session.create(

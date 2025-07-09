@@ -26,9 +26,16 @@ def view_bag(request):
             'subtotal': subtotal,
         })
 
+    # calculate the cost of send
+    total = calculate_bag_total(bag)
+    delivery_cost = 5  if total <50 else 0
+    grand_total = total + delivery_cost
+
     context = {
         'bag_items': bag_items,
         'grand_total': calculate_bag_total(bag),
+        'delivery_cost': delivery_cost,
+        'grand_total': grand_total,
     }
 
     return render(request, 'bag/bag.html', context)

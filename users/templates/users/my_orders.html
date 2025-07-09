@@ -1,4 +1,6 @@
+
 {% extends "base.html" %}
+{% load tz %}
 {% load static %} 
 
 {% block extra_css %}
@@ -15,8 +17,8 @@
           <li class="orders-item">
             <div>
               <strong>Order #:</strong> {{ order.order_number }}<br>
-              <strong>Date:</strong> {{ order.date|date:"SHORT_DATETIME_FORMAT" }}<br>
-              <strong>Total:</strong> £{{ order.grand_total }}
+              <strong>Date:</strong> {{ order.date|localtime|date:"SHORT_DATETIME_FORMAT" }}<br>
+              <strong>Total (raw):</strong> £{{ order.grand_total }}
             </div>
           </li>
         {% endfor %}
