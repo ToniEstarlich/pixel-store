@@ -10,8 +10,8 @@
   <div class="success-card glass-card">
     <h2>Thank you!</h2>
     <p>Your order number is: <strong>{{ order.order_number }}</strong></p>
-    <a href="{% url 'products_list' %}" class="continue-btn">Continue shopping</a><br>
-    <a href="{% url 'my_orders' %}" class="continue-btn">View My Orders</a>
+    <a href="{% url 'my_orders' %}" class="checkout-button continue-btn mb-2">View My Orders</a><br>
+    <a href="{% url 'products_list' %}" class="checkout-button continue-btn ">Continue shopping</a>
   </div>
 </div>
 {% endblock %}

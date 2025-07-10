@@ -7,6 +7,8 @@ from products.models import Product
 from users.models import UserProfile
 from .forms import OrderForm
 from bag.context_processors import bag_contents
+from django.contrib.auth.decorators import login_required
+from bag.models import BagItem
 
 
 # Stripe
@@ -100,13 +102,16 @@ class CheckoutView(View):
         return render(request, 'checkout/checkout.html', {'form' : form})
     
 def checkout_success(request, order_number):
-     
-     order = get_object_or_404(Order, order_number=order_number)
+    order = get_object_or_404(Order, order_number=order_number)
 
-      # we leave empy the bag 
-     if 'bag' in request.session:
-       del request.session['bag']
+    # Empty the bag after successful checkout
+    if 'bag' in request.session:
+        del request.session['bag']
+        request.session.modified = True
 
-     messages.success(request, f'Order successfully processe! Your order number is {order_number}. A confirmation email will sent to you')
-     return render(request, 'checkout/checkout_success.html', {'order': order})
+    # clean the BagItems of basedate users
+    BagItem.objects.filter(user=request.user).delete()
 
+    messages.success(request, f'Order successfully processed! Your order number is {order_number}. A confirmation email will be sent to you.')
+
+    return render(request, 'checkout/checkout_success.html', {'order': order})

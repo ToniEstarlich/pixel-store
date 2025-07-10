@@ -70,7 +70,7 @@
   {% if messages %}
   <div class="message-container text-center" style="margin-top: 10%; color: greenyellow;">
     {% for message in messages %}
-    <div class="alert alert-{{ message.tags }}"><h1>{{ message }}</h1></div>
+    <div class=" text-white {{ message.tags }}"><h5>{{ message }}</h5></div>
     {% endfor %}
   </div>
   {% endif %}

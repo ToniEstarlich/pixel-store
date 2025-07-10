@@ -44,4 +44,5 @@
 
 .continue-btn:hover {
   background: linear-gradient(135deg, #e056b0, #6a00f4);
+  color:#ff97c9;
 }

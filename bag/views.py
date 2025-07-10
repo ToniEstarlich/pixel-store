@@ -6,7 +6,19 @@ from products.models import Product
 from .models import BagItem
 
 def view_bag(request):
-    bag = request.session.get('bag', {})
+    if request.user.is_authenticated:
+        if 'bag' not in request.session or not request.session['bag']:
+           bag = {}
+           bag_items_db = BagItem.objects.filter(user=request.user)
+           for item in bag_items_db:
+               key = f'{item.product.id}_{item.size}'
+               bag[key] = item.quantity
+               request.session['bag'] = bag
+        else:
+           bag = request.session.get('bag', {})
+    else:
+       bag =request.session.get('bag', {})
+
     bag_items = []
 
     for item_key, quantity in bag.items():

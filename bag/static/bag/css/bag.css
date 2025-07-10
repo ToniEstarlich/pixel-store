@@ -81,4 +81,11 @@ form button:hover {
   font-size: 1.1rem;
   font-style: italic;
   margin-top: 3rem;
+}*/
+
+.empty-bag {
+  text-align: center;
+  color: floralwhite;
+  font-style: italic;
+  margin-top: 10rem;
 }

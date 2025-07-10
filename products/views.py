@@ -2,7 +2,9 @@ from django.shortcuts import render
 from django.utils.timezone import now
 from .models import Product
 from .models import Product, Category
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def product_list(request):
     category_name = request.GET.get('category')
 
