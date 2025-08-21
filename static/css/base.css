@@ -122,11 +122,27 @@ main.flex-fill {
 
 .text-gradient {
   font-size: 2rem;
+
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
   font-weight: bold;
+  text-transform: uppercase;
   text-align: center;
-  background: radial-gradient(circle, #ecbcfd, #f3c4fb, #ffcbf2); 
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+
+  
+  color: #fff;
+  padding: 15px 30px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(255,0,150,0.6), rgba(0,200,255,0.6));
+  backdrop-filter: blur(8px);
+ 
+
+
+  opacity: 0;
+  animation: fadeInUp 1s forwards;
+  animation-delay: 0.5s;     
 }
 
 footer {

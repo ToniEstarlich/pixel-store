@@ -3,9 +3,14 @@
 
 {% block extra_css %}
   <link rel="stylesheet" href="{% static 'users/css/profile.css' %}">
+  <script src="{% static 'js/slide-AD-2.js' %}?v=2"></script>
 {% endblock %}
 
 {% block content %}
+
+<!-- Slide AD -->
+{% include 'includes/slide-AD-2.html' %}
+
 <div class="profile-container">
   <div class="profile-card glass-card">
     <h2 class="profile-title">Account Details</h2>

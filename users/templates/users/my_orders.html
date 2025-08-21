@@ -5,9 +5,14 @@
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'users/css/my_orders.css' %}">
+<link rel="stylesheet" href="{% static 'css/slide-AD.css' %}?v=2">
 {% endblock %}
 
 {% block content %}
+
+<!-- Slide AD -->
+{% include 'includes/slide-AD.html' %}
+
 <div class="orders-container">
   <div class="orders-card glass-card">
     <h2 class="orders-title">My Orders</h2>

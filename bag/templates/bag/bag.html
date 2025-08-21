@@ -3,9 +3,18 @@
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'bag/css/bag.css' %}?v=2">
+<link rel="stylesheet" href="{% static 'css/slide-AD.css' %}?v=2">
 {% endblock %}
 
+{% block extra_js %}
+<script src="{% static 'js/slide-AD.js' %}?v=2"></script>
+{% endblock %}
+
+
 {% block content %}
+
+<!-- Slide AD -->
+{% include 'includes/slide-AD.html' %}
 
 {% if bag_items %}
 <ul class="list-group">

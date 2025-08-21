@@ -3,6 +3,7 @@
 
  {% block extra_css %}
   <link rel="stylesheet" href="{% static 'home/css/about.css' %}">
+  <link rel="stylesheet" href="{% static 'css/slide-AD-2.css' %}?v=2">
  {% endblock %}
  
  {% block content %}
@@ -71,6 +72,8 @@
     <!-- Meet the Team -->
     <section class="py-5">
         <div class="container">
+            <!-- Slide AD -->
+        {% include 'includes/slide-AD-2.html' %}
             <h2 class="text-center mb-5">Meet the Team</h2>
             <div class="row">
                 <div class="col-md-4">

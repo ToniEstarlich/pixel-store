@@ -1,0 +1,115 @@
+
+.adverts-slider {
+      position: relative;
+      width: 99%;
+      height: 30vh;
+      overflow: hidden;
+      border-radius: 12px;
+      margin: 1% auto;
+      margin-top: 5%;
+    }
+
+    .adverts-track {
+      display: flex;
+      transition: transform 1s ease-in-out;
+      height: 100%;
+    }
+
+    .adverts-slide {
+      position: relative;
+      min-width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .adverts-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .adverts-slide::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 1;
+    }
+
+    .adverts-text {
+      position: absolute;
+      z-index: 2;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 2rem;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+      opacity: 0;
+    }
+
+    /* Logo PIXEL */
+    .adverts-logo {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.2rem;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
+    .adverts-logo .logo-text {
+      color: #fff;
+      letter-spacing: 2px;
+    }
+
+    .adverts-logo .logo-x {
+      color: #ff3366;
+      font-size: 4.5rem;
+      margin: 0 1px;
+      transform: rotate(-10deg);
+    }
+
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translate(-50%, calc(-50% + 20px)); }
+      100% { opacity: 1; transform: translate(-50%, -50%); }
+    }
+
+    @keyframes zoomIn {
+      0% { opacity: 0; transform: scale(0.8) translate(-50%, -50%); }
+      100% { opacity: 1; transform: scale(1) translate(-50%, -50%); }
+    }
+
+    @keyframes fadeInLeft {
+      0% { opacity: 0; transform: translate(calc(-50% - 30px), -50%); }
+      100% { opacity: 1; transform: translate(-50%, -50%); }
+    }
+
+    @keyframes fadeInRight {
+      0% { opacity: 0; transform: translate(calc(-50% + 30px), -50%); }
+      100% { opacity: 1; transform: translate(-50%, -50%); }
+    }
+
+    @media (max-width: 768px) {
+      .adverts-text {
+        font-size: 1.3rem;
+        padding: 10px;
+      }
+
+      .adverts-logo {
+        font-size: 2.3rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .adverts-text {
+        font-size: 1rem;
+      }
+
+      .adverts-logo {
+        font-size: 1.8rem;
+      }
+    }

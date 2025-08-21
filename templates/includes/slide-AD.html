@@ -1,0 +1,77 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/slide-AD.css' %}">
+<script src="{% static 'js/slide-AD.js' %}"></script>
+
+
+<div class="adverts-slider">
+    <div class="adverts-track" id="advertsTrack"> 
+        
+        <!-- Slide 1 -->
+        
+        <div class="adverts-slide" onclick="window.open('https://pixel-store-6fb82487a320.herokuapp.com/', '_blank')"> <img
+                src="https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?auto=format&fit=crop&w=1600&q=80"
+                alt="Runway fashion"
+                onerror="this.onerror=null;this.src='https://picsum.photos/seed/pixel-fashion1/1600/900';" />
+            <div class="adverts-text">
+                <div class="adverts-logo"> <span class="logo-text">PI</span><span class="logo-x">X</span><span
+                        class="logo-text">EL</span> <h1>{% if request.user.is_authenticated %}{{ request.user.username }}{% else %} invitado {% endif %}</h1></div> Discover the New Season Collection
+            </div>
+        </div>
+    
+        <!-- Slide 2 -->
+
+        <div class="adverts-slide" onclick="window.open('https://pixel-store-6fb82487a320.herokuapp.com/', '_blank')"> <img
+                src="https://images.unsplash.com/photo-1521336575822-6da63fb45455?auto=format&fit=crop&w=1200&q=80"
+                alt="Street fashion woman"
+                onerror="this.onerror=null;this.src='https://picsum.photos/seed/pixel-fashion2/1600/900';" />
+            <div class="adverts-text">
+                <div class="adverts-logo"> <span class="logo-text">PI</span><span class="logo-x">X</span><span
+                        class="logo-text">EL</span> </div> Adventure. Elegant. Fashion Forward.
+            </div>
+        </div>
+        
+        
+        <!-- Slide 3 -->
+
+        <div class="adverts-slide" onclick="window.open('https://pixel-store-6fb82487a320.herokuapp.com/', '_blank')"> <img
+                src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&w=1200&q=80"
+                alt="Urban style duo"
+                onerror="this.onerror=null;this.src='https://picsum.photos/seed/pixel-fashion3/1600/900';" />
+            <div class="adverts-text">
+                <div class="adverts-logo"> <span class="logo-text">PI</span><span class="logo-x">X</span><span
+                        class="logo-text">EL</span> </div> Where Style Meets Innovation
+            </div>
+        </div> 
+        
+        <!-- Slide 4 -->
+
+        <div class="adverts-slide" onclick="window.open('https://pixel-store-6fb82487a320.herokuapp.com/', '_blank')"> <img
+                src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=1600&q=80"
+                alt="Editorial fashion"
+                onerror="this.onerror=null;this.src='https://picsum.photos/seed/pixel-fashion4/1600/900';" />
+            <div class="adverts-text">
+                <div class="adverts-logo"> <span class="logo-text">PI</span><span class="logo-x">X</span><span
+                        class="logo-text">EL</span> </div> Fashion that Defines You
+            </div>
+        </div> 
+        
+        <!-- Slide 5 -->
+
+        <div class="adverts-slide" onclick="window.open('https://pixel-store-6fb82487a320.herokuapp.com/', '_blank')"> <img
+                src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80"
+                alt="Accessories close-up"
+                onerror="this.onerror=null;this.src='https://picsum.photos/seed/pixel-fashion5/1600/900';" />
+            <div class="adverts-text">
+                <div class="adverts-logo"> <span class="logo-text">PI</span><span class="logo-x">X</span><span
+                        class="logo-text">EL</span> </div> Redefining Modern Elegance
+            </div>
+        </div>
+        
+        <!-- Clone of first slide -->
+        <div class="adverts-slide"> <img
+                src="https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?auto=format&fit=crop&w=1600&q=80"
+                alt="Runway fashion (clone)"
+                onerror="this.onerror=null;this.src='https://picsum.photos/seed/pixel-fashion1c/1600/900';" /> </div>
+    </div>
+</div>

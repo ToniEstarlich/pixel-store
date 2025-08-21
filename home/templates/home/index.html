@@ -2,24 +2,75 @@
 {% load static %}
 
 {% block extra_css %}
-  <link rel="stylesheet" href="{% static 'home/css/logo.css' %}">
+<link rel="stylesheet" href="{% static 'home/css/logo.css' %}">
+<link rel="stylesheet" href="{% static 'home/css/slide.css' %}">
 {% endblock %}
 
 {% block content %}
-<main class="intro-section text-center">
 
-    <a href="{% url 'home' %}" class="logo-container" >
-        <span class="logo-text">PI</span>
-        <span class="pixel-logo">X</span>
-        <span class="logo-text">EL</span>
-    </a>
-    <h1 class="welcome-title mt-4">Welcome</h1>
-    <p class="description mb-4">
-        A <b class="text-gradient">modern and stylish clothing store</b> crafted with creativity and code.<br>
-        Discover the <b  class="text-gradient">future of fashion</b>, one pixel at a time.
-    </p>
-    <a href="{% url 'products_list' %}" class="cta-button">Start Shopping</a>
-</main>
-{% endblock %}
+<!-- Slide header -->
 
+    <div class="horizontal-slider">
+    
+        <div class="slider-track" id="sliderTrack">
+        
+            <div class="slide"
 
+                style="background-image: url('https://images.pexels.com/photos/7940624/pexels-photo-7940624.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=1260');"
+                onclick="window.open('#women', '_blank')">
+                <h1 class="slide-text">
+                
+                    <a href="{% url 'home' %}" class="logo-container inline-logo">
+                        <span class="logo-text">PI</span>
+                        <span class="pixel-logo">X</span>
+                        <span class="logo-text">EL</span>
+                    </a>
+                
+                    <!-- message flash-->
+                    {% if messages %}
+                    <div class="message-container text-center" style="">
+                        {% for message in messages %}
+                        <div class=" text-white {{ message.tags }}">
+                            <b class="text-gradient">{{ message }}</b><br>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                
+                    Discover the latest trends and styles
+                    <a href="{% url 'products_list' %}" class="cta-button">Start Shopping</a>
+                </h1>
+        
+            </div>
+    
+            <div class="slide"
+                style="background-image: url('https://images.pexels.com/photos/7679728/pexels-photo-7679728.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=1260');"
+                onclick="window.open('#men', '_blank')">
+                <h1 class="slide-text"> <b class="text-gradient">Men’s Collection</b> <br>Streetwear, casual & <b class="text-gradient">premium looks</b></h1>
+            </div>
+    
+            <div class="slide"
+                style="background-image: url('https://images.pexels.com/photos/6311586/pexels-photo-6311586.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=1260');"
+                onclick="window.open('#accessories', '_blank')">
+                <h1 class="slide-text"> Accessories & More <br><b class="text-gradient">Level up </b>your outfit with the latest must-haves</h1>
+            </div>
+    
+            <div class="slide"
+                style="background-image: url('https://images.pexels.com/photos/9775760/pexels-photo-9775760.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=1260');"
+                onclick="window.open('#offers', '_blank')">
+                <h1 class="slide-text"> Special Offers <br>Grab your favorites at <b class="text-gradient">the best prices!</b></h1>
+            </div>
+    
+            <!-- Clone first slide -->
+            <div class="slide"
+                style="background-image: url('https://images.pexels.com/photos/7940624/pexels-photo-7940624.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=1260');">
+            </div>
+    
+        </div>
+    </div>
+    
+    {% block extra_js %}
+    <script src="{% static 'home/js/slide.js' %}"></script>
+    {% endblock %}
+    
+    {% endblock %}

@@ -23,6 +23,7 @@
      
     <!-- css style-->
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    
   {% endblock %}
 
   {% block extra_css %}
@@ -42,6 +43,7 @@
   <script src="https://js.stripe.com/v3/"></script>
   <script src="{% static 'js/quantity-buttons.js' %}"></script>
   <script src="{% static 'js/add_to_bag.js' %}"></script>
+  
   {% endblock %}
 </head>
 
@@ -66,14 +68,6 @@
     </nav>
   </header>
 
-  <!-- message flash-->
-  {% if messages %}
-  <div class="message-container text-center" style="margin-top: 10%; color: greenyellow;">
-    {% for message in messages %}
-    <div class=" text-white {{ message.tags }}"><h5>{{ message }}</h5></div>
-    {% endfor %}
-  </div>
-  {% endif %}
 
   <main class="flex-fill">
     {% block page_header %}{% endblock %}

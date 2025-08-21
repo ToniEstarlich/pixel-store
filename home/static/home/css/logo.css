@@ -5,10 +5,15 @@
     text-decoration: none;
     font-family: 'Poppins', 'Roboto', sans-serif;
     font-weight: 700;
-    font-size: 8rem; /* Bigger logo size */
-    color: #ffffff; /* white by default */
+    font-size: clamp(2.5rem, 6vw, 8rem); /* responsive: min 2rem, max 8rem */
+    color: #ffffff;
     letter-spacing: 2px;
     transition: transform 0.2s ease;
+    text-align: center;
+
+    display: inline-flex; 
+    vertical-align: middle; 
+    margin-right: 10px;
 }
 
 /* Hover effect */
@@ -18,84 +23,78 @@
 
 /* Main text style */
 .logo-text {
-    color: #ffffff; /* white */
+    color: #ffffff;
 }
 
 /* The 'X' pixel-logo special style */
 .pixel-logo {
-    color: #ffcc00; /* gold/yellow for contrast */
-    font-size: 11.80rem; /* a bit bigger */
+    color: #ffe600;
+    font-size: clamp(2.5rem, 8vw, 11.8rem); /* responsive size */
     margin: 0 4px;
     transform: rotate(-10deg);
     display: inline-block;
+    line-height: 1;
 }
 
-
-/* efect hover in the X */
+/* Hover effect on X */
 .pixel-logo:hover {
-  color: #ffffff;
-  transition: all 0.3s ease;
+    color: #ffffff;
+    transition: all 0.3s ease;
 }
 
-/* introduction */
-
-/* center text */
+/* introduction section */
 .intro-section {
-  text-align: center;
-  padding: 100px 20px;
-  color: #fff;
-  min-height: calc(100vh - 120px);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+    text-align: center;
+    padding: 80px 20px;
+    color: #fff;
+    min-height: calc(100vh - 120px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
-
 
 .welcome-title {
-  font-size: 3rem;
-  font-weight: 700;
-  color: #ffffff;
-  margin-bottom: 20px;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 20px;
 }
 
 .highlight {
-  color: #ff0055;
-  text-shadow: 0 0 10px #ff0055;
+    color: #ff0055;
+    text-shadow: 0 0 10px #ff0055;
 }
 
 .description {
-  font-size: 1.2rem;
-  color: #cccccc;
-  max-width: 600px;
-  line-height: 1.6;
-  margin-bottom: 30px;
+    font-size: clamp(0.9rem, 2vw, 1.2rem);
+    color: #cccccc;
+    max-width: 600px;
+    line-height: 1.6;
+    margin-bottom: 30px;
 }
 
 .cta-button {
-  display: inline-block;
-  background-color: #f3f3f3;
-  color: #000;
-  padding: 12px 28px;
-  border-radius: 30px;
-  font-size: 1rem;
-  font-weight: 600;
-  text-decoration: none;
+    display: inline-block;
+    background-color: #f3f3f3;
+    color: #000;
+    padding: 12px 28px;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
 }
 
 .cta-button:hover {
-  background-color:#ff97c9 ;
-  color: #ffffff
+    background-color:#ff97c9;
+    color: #ffffff;
 }
 
-/* changes in logo-container */
-
-
+/* Accessibility & cleanup */
 .logo-container:hover,
 .logo-container:focus,
 .logo-container:active {
-  text-decoration: none !important;
-  color: inherit !important;
-  outline: none;
+    text-decoration: none !important;
+    color: inherit !important;
+    outline: none;
 }
-

@@ -14,7 +14,7 @@
     </a>
     <div class="dropdown-menu dropdown-menu-right  border-0">
       {% if request.user.is_authenticated %}
-      <h1>Hola, {% if request.user.is_authenticated %}{{ request.user.username }}{% else %} invitado {% endif %}</h1>
+      <h1>Hi, {% if request.user.is_authenticated %}{{ request.user.username }}{% else %} invitado {% endif %}</h1>
         <a class="dropdown-item text-white" href="{% url 'profile' %}">My Profile</a>
         <a class="dropdown-item text-white" href="{% url 'account_logout' %}">Logout</a>
       {% else %}

@@ -1,0 +1,107 @@
+
+.slider-container {
+  margin-top: 4%;
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  border-radius: 12px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.slider-track {
+  display: flex;
+  transition: transform 1s ease-in-out;
+}
+
+.slide {
+  min-width: 100%;
+  position: relative;
+}
+
+.slide img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+/* Text overlay */
+.adverts-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: clamp(1.2rem, 2.5vw, 2.5rem); /* responsive font size */
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+  color: #fff;
+  padding: clamp(8px, 2vw, 15px) clamp(15px, 4vw, 30px);
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(255,0,150,0.6), rgba(0,200,255,0.6));
+  backdrop-filter: blur(8px);
+  letter-spacing: clamp(1px, 0.3vw, 3px);
+  text-shadow: 0 0 15px rgba(255,255,255,0.8), 0 0 25px rgba(255,0,150,0.7);
+  opacity: 0;
+  animation: fadeInUp 1s forwards;
+  animation-delay: 0.5s;
+}
+
+/* Logo PIXEL */
+.adverts-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(2rem, 3vw, 3.2rem);
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.adverts-logo .logo-text {
+  color: #fff;
+  letter-spacing: clamp(1px, 0.3vw, 2px);
+}
+
+.adverts-logo .logo-x {
+  color: #5c165c;
+  font-size: clamp(3rem, 4vw, 4.5rem);
+  margin: 0 1px;
+  transform: rotate(-10deg);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from { transform: translate(-50%, -60%); opacity: 0; }
+  to   { transform: translate(-50%, -50%); opacity: 1; }
+}
+
+@keyframes zoomIn {
+  from { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
+  to   { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+}
+
+@keyframes fadeInLeft {
+  from { transform: translate(-60%, -50%); opacity: 0; }
+  to   { transform: translate(-50%, -50%); opacity: 1; }
+}
+
+@keyframes fadeInRight {
+  from { transform: translate(-40%, -50%); opacity: 0; }
+  to   { transform: translate(-50%, -50%); opacity: 1; }
+}
+
+/* --------------------------
+   Responsive image height
+-------------------------- */
+@media (max-width: 1024px) {
+  .slide img { height: 250px; }
+}
+
+@media (max-width: 768px) {
+  .slide img { height: 220px; }
+}
+
+@media (max-width: 480px) {
+  .slide img { height: 180px; }
+}

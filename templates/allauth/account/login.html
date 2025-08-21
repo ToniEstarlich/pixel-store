@@ -8,9 +8,14 @@
 
 {% block extra_css %}
   <link rel="stylesheet" href="{% static 'css/login.css' %}">
+  <link rel="stylesheet" href="{% static 'css/slide-AD-2.css' %}?v=2">
 {% endblock %}
 
 {% block content %}
+
+<!-- Slide AD -->
+{% include 'includes/slide-AD-2.html' %}
+
 <div class="login-container">
   <div class="login-card glass-card">
     <h1>{% trans "Sign In" %}</h1>
