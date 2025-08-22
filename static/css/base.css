@@ -118,33 +118,6 @@ main.flex-fill {
   z-index: +2;
 }
 
-/* text gradient */
-
-.text-gradient {
-  font-size: 2rem;
-
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
-  font-weight: bold;
-  text-transform: uppercase;
-  text-align: center;
-
-  
-  color: #fff;
-  padding: 15px 30px;
-  border-radius: 12px;
-  background: linear-gradient(135deg, rgba(255,0,150,0.6), rgba(0,200,255,0.6));
-  backdrop-filter: blur(8px);
- 
-
-
-  opacity: 0;
-  animation: fadeInUp 1s forwards;
-  animation-delay: 0.5s;     
-}
-
 footer {
 background: rgba(255, 255, 255, 0.27);
 box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);

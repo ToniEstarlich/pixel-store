@@ -51,6 +51,41 @@
       background: rgba(0,0,0,0.3);
       border-radius: 10px;
     }
+   
+    
+/* text gradient*/
+.text-gradient {
+  font-size: clamp(1rem, 4vw, 2.5rem); 
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+  color: #fff;
+  padding: clamp(8px, 2vw, 15px) clamp(15px, 4vw, 30px);
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(255,0,150,0.6), rgba(0,200,255,0.6));
+  backdrop-filter: blur(8px);
+  opacity: 0;
+  animation: fadeInUp 1s forwards;
+  animation-delay: 0.5s;
+}
+
+@media (max-width: 768px) {
+  .text-gradient {
+    font-size: 1.5rem;   
+    padding: 10px 20px;  
+  }
+}
+
+@media (max-width: 480px) {
+  .text-gradient {
+    font-size: 1.2rem;   
+    padding: 8px 15px;   
+  }
+}
+
 
     @keyframes fadeInUp {
       0% { opacity: 0; transform: translateY(20px); }
