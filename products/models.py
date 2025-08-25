@@ -12,6 +12,7 @@ class Category(models.Model):
 class Product(models.Model):
 
     name = models.CharField(max_length=200)
+    sku = models.CharField(max_length=50, unique=True, null=True, blank=True)
     description = models.TextField()
     price = models.DecimalField(max_digits=6, decimal_places=2)
     stock = models.IntegerField(default=0)
