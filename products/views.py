@@ -3,6 +3,7 @@ from django.utils.timezone import now
 from .models import Product
 from .models import Product, Category
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, get_object_or_404
 
 @login_required
 def product_list(request):
@@ -29,3 +30,10 @@ def search(request):
     'results': results, 
     'query': query,
     })
+
+def product_detail(request, product_id):
+    product = get_object_or_404(Product, pk=product_id)
+    context = {
+        'product': product
+    }
+    return render(request, 'products/product_detail.html', context)

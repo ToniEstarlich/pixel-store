@@ -41,8 +41,6 @@
     crossorigin="anonymous"></script>
   <!-- Stripe -->
   <script src="https://js.stripe.com/v3/"></script>
-  <script src="{% static 'js/quantity-buttons.js' %}"></script>
-  <script src="{% static 'js/add_to_bag.js' %}"></script>
   
   {% endblock %}
 </head>
@@ -68,7 +66,6 @@
     </nav>
   </header>
 
-
   <main class="flex-fill">
     {% block page_header %}{% endblock %}
     {% block content %}{% endblock %}
@@ -76,5 +73,10 @@
   
   {% include 'includes/footer.html' %}
   {% block postloadjs %}{% endblock %}
+
+  <script src="{% static 'js/toast.js' %}"></script>
+  <script src="{% static 'js/quantity-buttons.js' %}"></script>
+  <script src="{% static 'js/add_to_bag.js' %}"></script>
+  {% block scripts %}{% endblock %}
 </body>
 </html>

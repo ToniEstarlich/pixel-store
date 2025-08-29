@@ -82,6 +82,8 @@ def add_to_bag(request, item_id):
 
     return JsonResponse({
         'message': 'Product added to bag',
+        'product_name': product.name,
+        'image_url': product.image.url if product.image else '/static/images/no-image.png',
         'grand_total': f'{grand_total:.2f}'
     })
 

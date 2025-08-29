@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'products/css/product_detail.css' %}?v=2">
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid mt-5 pt-5">
+    <div class="row justify-content-center">
+        <div class="col-12 px-lg-5">
+
+            <!-- Article-style Product Detail -->
+            <article class="fashion-article glass-card p-4 d-flex flex-wrap align-items-start">
+
+                <!-- Product Image -->
+                <div class="col-md-5 mb-3 mb-md-0">
+                    {% if product.image %}
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-hero-img">
+                    {% else %}
+                    <img src="{% static 'images/no-image.png' %}" alt="No image" class="product-hero-img">
+                    {% endif %}
+                </div>
+
+                <!-- Product Info -->
+                <div class="col-md-7 pl-md-4">
+                    <!-- Product Header -->
+                    <header class="mb-3">
+                        <h1 class="display-4">{{ product.name }}</h1>
+                        <p class="text-">Category: {{ product.category.name }}</p>
+                    </header>
+
+                    <!-- Product Price -->
+                    <p class="price  font-weight-bold h4">€{{ product.price }}</p>
+
+                    <!-- Product Description -->
+                    <section class="product-description my-3">
+                        <p>{{ product.description }}</p>
+                    </section>
+
+                    <!-- Extra Information -->
+                    {% if product.extra_information %}
+                    <section class="extra-info my-3">
+                        <h5>Details</h5>
+                        <p>{{ product.extra_information }}</p>
+                    </section>
+                    {% endif %}
+
+                    <!-- Size and Color -->
+                    <section class="product-attributes my-3">
+                        {% if product.size %}
+                        <p><strong>Available Sizes:</strong> {{ product.size }}</p>
+                        {% endif %}
+                        <p><strong>Color:</strong> {{ product.color }}</p>
+                    </section>
+                    <!-- Add to Bag Form -->
+                    <section class="add-to-bag my-4">
+                        <form method="post" action="{% url 'add_to_bag' product.id %}" class="add-to-bag-form">
+                            {% csrf_token %}
+                            <div class="form-group">
+
+                                <!-- SIZE SELECTOR -->
+                                <div class="form-group">
+                                    <label for="size--{{ product.id }}">Choose size:</label>
+                                    <select class="form-control" name="size" id="size--{{ product.id }}" required>
+                                        <option value="" disabled selected>Select size</option>
+                                        <option value="S">Small</option>
+                                        <option value="M">Medium</option>
+                                        <option value="L">Large</option>
+                                        <option value="XL">Extra Large</option>
+                                    </select>
+                                </div>
+
+                                <!-- QUANTITY SELECTOR -->
+                                <div class="form-group">
+                                    <label for="quantity--{{ product.id }}">Qty:</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <button type="button" class="btn btn-outline-secondary"
+                                                onclick="decreaseQty(this)">−</button>
+                                        </div>
+                                        <input type="number" name="quantity" id="quantity--{{ product.id }}" value="1"
+                                            min="1" class="form-control text-center">
+                                        <div class="input-group-append">
+                                            <button type="button" class="btn btn-outline-secondary"
+                                                onclick="increaseQty(this)">+</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <button type="submit" class="btn btn-primary mt-2">Add to Bag</button>
+                        </form>
+                    </section>
+                </div>
+
+            </article>
+        </div>
+    </div>
+</div>
+{% endblock %}

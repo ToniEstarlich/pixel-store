@@ -5,7 +5,7 @@ from products.models import Product
 class BagItem(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='bag_items')
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    size = models.CharField(max_length=50, null=True, blank=True)  # Compatible con tu Product.size
+    size = models.CharField(max_length=50, null=True, blank=True) 
     quantity = models.PositiveIntegerField(default=1)
 
     class Meta:
