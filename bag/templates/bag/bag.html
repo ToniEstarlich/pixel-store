@@ -3,6 +3,7 @@
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'bag/css/bag.css' %}?v=2">
+<link rel="stylesheet" href="{% static 'products/css/products_list.css' %}?v=2">
 <link rel="stylesheet" href="{% static 'css/slide-AD.css' %}?v=2">
 {% endblock %}
 
@@ -20,6 +21,7 @@
 <ul class="list-group">
   {% for item in bag_items %}
   <li class="list-group-item d-flex align-items-center">
+
     {% if item.product.image %}
     <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" width="60" height="60" class="mr-3">
     {% else %}
@@ -30,6 +32,10 @@
       <strong>{{ item.product.name }}</strong> ({{ item.size }}) x{{ item.quantity }}
     </div>
 
+    <a class="more-details" href="{% url 'product_detail' item.product.id %}">
+  <h3>More Details</h3>
+</a>
+    
     <span class="mr-3">£{{ item.subtotal|floatformat:2 }}</span>
 
     <form action="{% url 'remove_from_bag' item.item_id %}" method="POST">

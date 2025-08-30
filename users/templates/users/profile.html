@@ -3,6 +3,7 @@
 
 {% block extra_css %}
   <link rel="stylesheet" href="{% static 'users/css/profile.css' %}">
+  <link rel="stylesheet" href="{% static 'users/css/my_orders.css' %}">
   <script src="{% static 'js/slide-AD-2.js' %}?v=2"></script>
 {% endblock %}
 
@@ -19,7 +20,13 @@
     <p><strong>Username:</strong> {{ user.username }}</p>
     <p><strong>First Name:</strong> {{ user.first_name }}</p>
     <p><strong>Last Name:</strong> {{ user.last_name }}</p>
+
+      <h2>Thank you!</h2>
+      <a href="{% url 'my_orders' %}" class="checkout-button continue-btn mb-2">View My Orders</a><br>
+      <a href="{% url 'products_list' %}" class="checkout-button continue-btn ">Continue shopping</a>
+
   </div>
 </div>
+
 {% endblock %}
 
