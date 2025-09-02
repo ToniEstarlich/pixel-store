@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import UserProfile
-from .forms import UserProfileForm
+from .forms import UserProfileForm, UserForm
 from .forms import CustomRegisterForm
 from django.contrib.auth import login
 from checkout.models import Order
@@ -24,14 +24,21 @@ def profile_view(request):
     profile, created = UserProfile.objects.get_or_create(user=request.user)
 
     if request.method == 'POST':
-        form = UserProfileForm(request.POST, instance=profile)
-        if form.is_valid():
-            form.save()
+        user_form = UserForm(request.POST, instance=request.user)
+        profile_form = UserProfileForm(request.POST, instance=profile)
+
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
             return redirect('profile')
     else:
-        form = UserProfileForm(instance=profile)
+        user_form = UserForm(instance=request.user)
+        profile_form = UserProfileForm(instance=profile)
 
-    return render(request, 'users/profile.html', {'form': form})
+    return render(request, 'users/profile.html', {
+        'user_form': user_form,
+         'profile_form': profile_form,
+     })
 
 @login_required
 def my_orders(request):

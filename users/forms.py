@@ -1,4 +1,5 @@
 from allauth.account.forms import SignupForm
+from django.contrib.auth.models import User
 from django import forms
 from .models import UserProfile
 
@@ -12,6 +13,11 @@ class CustomRegisterForm(SignupForm):
         user.last_name = self.cleaned_data['last_name']
         user.save()
         return user
+    
+class UserForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'email']
     
 class UserProfileForm(forms.ModelForm):
     class Meta:

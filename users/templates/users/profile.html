@@ -12,21 +12,43 @@
 <!-- Slide AD -->
 {% include 'includes/slide-AD-2.html' %}
 
-<div class="profile-container">
-  <div class="profile-card glass-card">
-    <h2 class="profile-title">Account Details</h2>
+<div class="container mt-4">
+  <div class="row">
 
-    <p><strong>E-mail:</strong> {{ user.email }}</p>
-    <p><strong>Username:</strong> {{ user.username }}</p>
-    <p><strong>First Name:</strong> {{ user.first_name }}</p>
-    <p><strong>Last Name:</strong> {{ user.last_name }}</p>
+    <!-- Account Details -->
+    <div class="col-md-6 mb-3">
+      <div class="profile-card glass-card p-3">
+        <h2 class="profile-title">Account Details</h2>
+        <p><strong>E-mail:</strong> {{ user.email }}</p>
+        <p><strong>Username:</strong> {{ user.username }}</p>
+        <p><strong>First Name:</strong> {{ user.first_name }}</p>
+        <p><strong>Last Name:</strong> {{ user.last_name }}</p>
 
-      <h2>Thank you!</h2>
-      <a href="{% url 'my_orders' %}" class="checkout-button continue-btn mb-2">View My Orders</a><br>
-      <a href="{% url 'products_list' %}" class="checkout-button continue-btn ">Continue shopping</a>
+        <h2>Thank you!</h2>
+        <a href="{% url 'my_orders' %}" class="btn btn-primary mb-2">View My Orders</a><br>
+        <a href="{% url 'products_list' %}" class="btn btn-secondary">Continue shopping</a>
+      </div>
+    </div>
+
+    <!-- Edit Profile Form -->
+    <div class="col-md-6 mb-3">
+      <div class="profile-card glass-card p-3">
+        <h2 class="profile-title">Edit your Profile</h2>
+        <form method="POST" action="{% url 'edit_profile' %}">
+          {% csrf_token %}
+          <h3>Account Info</h3>
+          {{ user_form.as_p }}
+
+          <h3>Address Info</h3>
+          {{ profile_form.as_p }}
+          <button type="submit" class="btn btn-success mt-2">Save Changes</button>
+        </form>
+      </div>
+    </div>
 
   </div>
 </div>
+
 
 {% endblock %}
 
