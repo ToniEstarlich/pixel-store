@@ -32,3 +32,12 @@ class UserProfileForm(forms.ModelForm):
             'default_county',
         ]
 
+        labels = {
+            'default_phone_number': 'Phone number',
+            'default_street_address1': 'Street address 1',
+            'default_street_address2': 'Street address 2',
+            'default_town_or_city': 'Town / City',
+            'default_postcode': 'Postcode',
+            'default_country': 'Country',
+            'default_county': 'County',
+        }
