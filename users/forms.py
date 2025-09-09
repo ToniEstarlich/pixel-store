@@ -29,7 +29,6 @@ class UserProfileForm(forms.ModelForm):
             'default_town_or_city',
             'default_postcode',
             'default_country',
-            'default_county',
         ]
 
         labels = {
@@ -39,5 +38,4 @@ class UserProfileForm(forms.ModelForm):
             'default_town_or_city': 'Town / City',
             'default_postcode': 'Postcode',
             'default_country': 'Country',
-            'default_county': 'County',
         }
