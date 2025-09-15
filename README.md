@@ -9,6 +9,28 @@ With features such as user authentication, product management, a shopping bag sy
 
 The project focuses on combining aesthetic design with functional usability, aiming to reflect the values of a brand that is both bold and innovative. It supports various screen sizes and provides a seamless experience across desktop, tablet, and mobile devices.
 
+## - User Stories
+
+As a user:
+
+-  **browse products by category** so that I can easily find the items I’m interested in.
+-  **view product details** so that I can check price, description.
+-  **register an account and log in** so that I can manage my profile and view my orders.
+-  **add and remove items from the shopping bag** so that I can control what I purchase.
+-  **checkout securely** so that I can pay with confidence and receive confirmation of my order.
+-  the website to be **responsive** so that I can shop smoothly on desktop, tablet, or mobile.
+
+## Repository and Live Project  
+
+You can find the source code for **Pixel Store** in the GitHub repository below:  
+
+- **Repository:** [https://github.com/ToniEstarlich/pixel-store](https://github.com/ToniEstarlich/pixel-store)  
+
+The live version of the project is accessible here:  
+
+- **Live Project:** [https://pixel-store-6fb82487a320.herokuapp.com/](https://pixel-store-6fb82487a320.herokuapp.com/)  
+
+
 ## Table of Contents
 1. [Tech Stack](#tech-stack)
 2. [Wireframes](#wireframes)
@@ -63,6 +85,19 @@ The goal of Pixel Store is to create an interactive online shop where customers 
 
 ##  Wireframes
 # 🧩
+
+## - Design Iteration
+
+The Pixel Store project went through several design phases:
+
+- Initial **wireframes** outlined the structure of Home, Shop, Bag, and About pages.
+- The first version focused on **basic functionality**, ensuring that products could be displayed and added to the bag.
+- Based on feedback, the design was refined to improve **navigation, responsiveness, and accessibility**.
+- A **vibrant gradient color palette** and a **custom logo** were introduced to reflect the bold and creative identity of the brand.
+- Iterations improved the **UI/UX**, including button placement, form validation, and clear error messages during checkout.
+- Images and product cards were later optimized for better performance and visual appeal.
+
+---
 
 ### Home
 | Desktop | Tablet | Mobile |
@@ -165,6 +200,13 @@ pip install -r requirements.txt
 python manage.py migrate
 python manage.py runserver
 ```
+
+## - Git & Version Control  
+
+- Version control was managed using **Git** and hosted on **GitHub**.  
+- The project was mainly developed on the **main branch**, with **frequent commits** documenting progress.  
+- Clear commit messages (e.g., *added checkout logic*, *fixed product model bug*) were used to track changes.  
+- GitHub was also used for deployment to **Heroku**, ensuring smooth version tracking and project backup.  
 
 [Comeback Index](#pixel-store)
 ---
