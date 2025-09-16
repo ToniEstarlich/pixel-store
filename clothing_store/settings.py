@@ -113,7 +113,7 @@ WSGI_APPLICATION = 'clothing_store.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config(
-        default='postgres://postgres:Toni2207@localhost:5432/clothingdb',
+        default=os.environ.get('DATABASE_URL'),
         conn_max_age=600
     )
 }
