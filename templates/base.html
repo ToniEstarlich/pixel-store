@@ -23,6 +23,7 @@
      
     <!-- css style-->
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/logo_nav.css' %}">
     
   {% endblock %}
 
@@ -49,7 +50,13 @@
   <header>
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top px-navbar">
       <div class="container">
-        <a class="navbar-brand logo-font text-white" href="{% url 'home' %}">piXel</a>
+       
+        <a href="{% url 'home' %}" class="logo-nav">
+          <span class="PI-EL-text">PI</span>
+          <span class="X-logo">X</span>
+          <span class="PI-EL-text">EL</span>
+        </a><br>
+
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav"
           aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
