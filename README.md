@@ -202,11 +202,14 @@ python manage.py runserver
 ```
 
 ## - Git & Version Control  
+![Website Preview](./wireframes/pixel_diagram.jpg)
 
 - Version control was managed using **Git** and hosted on **GitHub**.  
 - The project was mainly developed on the **main branch**, with **frequent commits** documenting progress.  
 - Clear commit messages (e.g., *added checkout logic*, *fixed product model bug*) were used to track changes.  
 - GitHub was also used for deployment to **Heroku**, ensuring smooth version tracking and project backup.  
+- The project was initially started using **Django Allauth**, inspired by the e-commerce tutorial video from the course, providing a foundation for user authentication and registration.  
+- Custom **context_processors.py** were added to Pixel Store apps to manage shared data across templates, improving code reusability and ensuring dynamic content (e.g., shopping bag contents, product categories) was consistently available.
 
 [Comeback Index](#pixel-store)
 ---
