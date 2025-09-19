@@ -37,7 +37,7 @@
 }
 
 .X-logo:hover {
-  color:darkkhaki;
+  color: #ffe600;
   transform: rotate(-15deg);
   font-weight: 700;
   letter-spacing: 1px;

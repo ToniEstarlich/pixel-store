@@ -20,6 +20,10 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 import os
+
+from django.shortcuts import render
+def test_404(request):
+    return render(request, "404.html", status=404)
  
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,6 +33,7 @@ urlpatterns = [
     path('bag/', include('bag.urls')),
     path("users/", include("users.urls")),
     path('checkout/', include('checkout.urls')),
+    path("test-404/", test_404, name="test_404"),
 ]
 
 if settings.DEBUG:
