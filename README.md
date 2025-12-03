@@ -42,7 +42,8 @@ The live version of the project is accessible here:
 8. [Backend and Testing](#backend-and-testing)
 9. [Problems & Solutions](#problems--solutions)
 10. [Code Example](#code-example)
-11. [Deployment](#deployment)
+11. [functions and testing](#the-functions-and-their-testing-on-the-pixel-store-app)
+12. [Deployment](#deployment)
 
 ---
 
