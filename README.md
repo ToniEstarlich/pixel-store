@@ -41,7 +41,8 @@ The live version of the project is accessible here:
 7. [Database](#database)
 8. [Backend and Testing](#backend-and-testing)
 9. [Problems & Solutions](#problems--solutions)
-10. [Example of Algorithm / Code](#example-of-algorithm--code)
+10. [Code Example](#code-example)
+11. [Deployment](#deployment)
 
 ---
 
@@ -256,7 +257,7 @@ class Product(models.Model):
 
 ---
 
-##  Example of Algorithm / Code
+##  Code Example
 # 🧠
 
 ### Add product to bag logic
@@ -277,6 +278,67 @@ def add_to_bag(request, item_id):
 ```
 
 [Comeback Index](#pixel-store)
+---
+### What is it and what is it for?
+This documentation summarizes the main files in each Pixel Store app:  
+- **views.py** → handles the business logic and response to HTTP requests (renders templates, processes forms, manages sessions, etc.)  
+- **context_processors.py** → injects common variables into templates (like timestamps, shopping bag contents, categories)  
+- **signals.py** → automatically executes functions in response to model events (like creating UserProfiles or loading BagItems on login)  
+
+
+# The functions and their testing on the Pixel Store app
+Use the links below to explore each file’s purpose and its corresponding tests.
+
+## home
+- ### [views.py](/docs/apps%20README/home/views_README.md)🟢
+  >``home/views.py`` renders the main pages: ``index`` with timestamp, ``faqs``, and ``about``.
+- ### [context_processors.py](/docs/apps%20README/home/context_processors_README.md)🟢
+  >``home/context_processors.py`` provides a ``timestamp`` context processor, making the current timestamp available in all templates.
+  - ### [test](/docs/test%20README/home_README.md)🛑
+    >``home/tests/`` verifies views and context processors: pages return 200, correct templates are used, and ``timestamp`` is present and an integer in all templates.
+
+## products
+- ### [views.py](/docs/apps%20README/products/views_README.md)🟢
+  >``products`` app defines ``Category`` and ``Product`` models, and provides views for listing products (with optional category filter), searching by name, and displaying individual product details, all rendered with Jinja templates.
+- ### [context_processors.py](/docs/apps%20README/products/context_processors_README.md)🟢
+  >``products/context_processors.py`` provides ``get_categories``, making all product categories available in templates for navigation or filtering.
+  - ### [test](/docs/test%20README/products_README.md)🛑
+    >``products/tests/`` verifies the ``Category`` model and ``get_categories`` context processor: the model’s ``__str__`` returns the category name, and the context processor provides a list of categories in templates.
+
+## users
+- ### [views.py](/docs/apps%20README/users/views_README.md)🟢
+  >``users`` app manages user accounts: ``register`` handles signup and creates a ``UserProfile``, ``profile_view`` displays and edits account and profile info, and ``my_orders`` lists the user’s orders.
+- ### [signals.py](/docs/apps%20README/users/signals_README.md)🟢
+  >``users/signals.py`` listens to ``User`` model changes and automatically creates or updates a ``UserProfile`` whenever a user is created or saved.
+  - ### [test](/docs/test%20README/users_README.md)🛑
+    >``users/tests/`` verifies user-related functionality: profile page access and template rendering, ``UserProfile`` string representation, and that ``UserProfileForm`` includes all expected fields.
+
+## bag
+- ### [views.py](/docs/apps%20README/bag/views_README.md)🟢
+  >``bag`` app manages the shopping bag: ``view_bag`` displays items with totals, ``add_to_bag`` adds or updates items via POST/AJAX, ``remove_from_bag`` deletes items, and ``clear_bag`` empties the bag for the user.
+- ### [context_processors.py](/docs/apps%20README/bag/context_processors_README.md)🟢
+  >``bag/context_processors.py`` provides ``bag_contents`` and ``calculate_bag_total``, making the current shopping bag items, counts, and totals available in all templates.
+- ### [signals.py](/docs/apps%20README/bag/signals_README.md)🟢
+  >``bag/apps.py`` activates signals on app ready, and ``bag/signals.py`` automatically loads a logged-in user’s ``BagItems`` into the session, reconstructing the shopping bag.
+  - ### [test](/docs/test%20README/bag_README.md)🛑
+    >``bag/tests/`` verifies shopping bag functionality: pages return 200 and use correct templates, add/remove/clear actions update session and redirect properly, URLs resolve correctly, and context processors calculate totals, counts, and bag items accurately.
+
+## checkout
+- ### [views.py](/docs/apps%20README/checkout/views_README.md)🟢
+  >``checkout/`` handles order processing: displays checkout form if the bag isn’t empty, validates and saves orders and line items, creates a Stripe checkout session, empties the bag, and shows a success page with order details.
+  - ### [test](/docs/test%20README/checkout_README.md)🛑
+    >checkout/tests/ verifies the checkout flow: redirects when the bag is empty, ensures checkout success page loads correctly, confirms order numbers are auto-generated, and validates the OrderForm with correct data.
+
+# 📱 User Experience (UX) — Pixel Store
+After creating an account, the user can:
+
+- Browse products and filter by category
+- Search products by name
+- View product details
+- Add, update, or remove items in the shopping bag
+- Proceed to checkout and complete orders
+- View order history in their profile
+- Edit account and shipping information
 ---
 ##  Problems & Solutions
 # ❗
@@ -323,7 +385,25 @@ The CSS was validated using the W3C CSS Validator.
 
 [Comeback Index](#pixel-store)
 ---
+## Deployment
+
+Pixel Store was deployed to **Heroku** using a **Heroku PostgreSQL** database.  
+Below is the exact process I followed to deploy the project:
+
+1. I created a new Heroku app from the Heroku dashboard.
+2. In the **Resources** tab, I added the **Heroku PostgreSQL** add-on so the project could use Postgres in production.
+3. In the **Settings → Config Vars**, I added all required environment variables:
+   - `DATABASE_URL` (created automatically by Heroku Postgres)
+   - `SECRET_KEY`
+   ...
+4. I connected my GitHub repository to Heroku in the **Deploy** tab and selected the main branch.
+5. I clicked **Deploy Branch**, and Heroku built the Django project.
+6. After the build completed, I ran the database migrations directly on Heroku:
+   ```bash
+   heroku run python manage.py migrate
+   ```
 
 ## 📫 Contact
 
 Project by [Toni Estarlich](https://github.com/ToniEstarlich)
+[Comeback Index](#pixel-store)
