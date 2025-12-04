@@ -190,19 +190,6 @@ Cards, footer, and navbar were designed to be clean and semi-transparent so the 
 [Comeback Index](#pixel-store)
 ---
 
-## Installation
-# 🛠️ 
-
-Clone the repository and install dependencies:
-
-```bash
-git clone https://github.com/ToniEstarlich/pixel-store.git
-cd pixel-store
-pip install -r requirements.txt
-python manage.py migrate
-python manage.py runserver
-```
-
 ## - Git & Version Control  
 ![Website Preview](./wireframes/pixel_diagram.jpg)
 
@@ -212,71 +199,6 @@ python manage.py runserver
 - GitHub was also used for deployment to **Heroku**, ensuring smooth version tracking and project backup.  
 - The project was initially started using **Django Allauth**, inspired by the e-commerce tutorial video from the course, providing a foundation for user authentication and registration.  
 - Custom **context_processors.py** were added to Pixel Store apps to manage shared data across templates, improving code reusability and ensuring dynamic content (e.g., shopping bag contents, product categories) was consistently available.
-
-[Comeback Index](#pixel-store)
----
-
-##  Database
-# 🗄️
-
-Example Django models:
-
-```python
-class Category(models.Model):
-    name = models.CharField(max_length=100, unique=True)
-
-    class Meta:
-        verbose_name_plural = "Categories"
-
-    def __str__(self):
-        return self.name
-
-class Product(models.Model):
-    name = models.CharField(max_length=200)
-    description = models.TextField()
-    price = models.DecimalField(max_digits=6, decimal_places=2)
-    stock = models.IntegerField(default=0)
-    size = models.CharField(max_length=50, null=True, blank=True)
-    color = models.CharField(max_length=50)
-    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
-    image = models.ImageField(upload_to='product_images/', null=True, blank=True)
-
-    def __str__(self):
-        return self.name
-```
-
-[Comeback Index](#pixel-store)
----
-
-##  Backend and Testing
-# 🧪
-
-- `/products/` – Display all products from the database.
-- `/bag/` – Manage shopping bag (add/remove items).
-- `/checkout/` – Checkout form and order confirmation.
-- `/accounts/` – User authentication via Django Allauth.
-
----
-
-##  Code Example
-# 🧠
-
-### Add product to bag logic
-
-```python
-def add_to_bag(request, item_id):
-    quantity = int(request.POST.get('quantity'))
-    redirect_url = request.POST.get('redirect_url')
-    bag = request.session.get('bag', {})
-
-    if item_id in bag:
-        bag[item_id] += quantity
-    else:
-        bag[item_id] = quantity
-
-    request.session['bag'] = bag
-    return redirect(redirect_url)
-```
 
 [Comeback Index](#pixel-store)
 ---
@@ -405,6 +327,15 @@ Below is the exact process I followed to deploy the project:
    ```
 
 ## 📫 Contact
+## Installation
+# 🛠️ 
 
-Project by [Toni Estarlich](https://github.com/ToniEstarlich)
-[Comeback Index](#pixel-store)
+Clone the repository and install dependencies:
+
+```bash
+git clone https://github.com/ToniEstarlich/pixel-store.git
+cd pixel-store
+pip install -r requirements.txt
+python manage.py migrate
+python manage.py runserver
+```
