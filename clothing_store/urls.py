@@ -22,22 +22,26 @@ from django.conf.urls.static import static
 import os
 
 from django.shortcuts import render
+
+
 def test_404(request):
     return render(request, "404.html", status=404)
- 
+
+
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('accounts/', include('allauth.urls')), # routes of login/signup
-    path('', include('home.urls')),
-    path('products/', include('products.urls')),
-    path('bag/', include('bag.urls')),
+    path("admin/", admin.site.urls),
+    path("accounts/", include("allauth.urls")),  # routes of login/signup
+    path("", include("home.urls")),
+    path("products/", include("products.urls")),
+    path("bag/", include("bag.urls")),
     path("users/", include("users.urls")),
-    path('checkout/', include('checkout.urls')),
+    path("checkout/", include("checkout.urls")),
     path("test-404/", test_404, name="test_404"),
 ]
 
 if settings.DEBUG:
-   # urlpatterns += static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS[0])
-    urlpatterns += static(settings.STATIC_URL, document_root=os.path.join(settings.BASE_DIR, 'static'))
+    # urlpatterns += static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS[0])
+    urlpatterns += static(
+        settings.STATIC_URL, document_root=os.path.join(settings.BASE_DIR, "static")
+    )
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-

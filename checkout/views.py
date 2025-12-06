@@ -17,18 +17,19 @@ from django.conf import settings
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
+
 class CheckoutView(View):
     def get(self, request):
-        bag = request.session.get('bag', {})
+        bag = request.session.get("bag", {})
         if not bag:
             messages.error(request, "Your bag is empty.")
-            return redirect('products_list')
-        
+            return redirect("products_list")
+
         form = OrderForm()
-        return render(request, 'checkout/checkout.html', {'form': form})
-    
+        return render(request, "checkout/checkout.html", {"form": form})
+
     def post(self, request):
-        bag = request.session.get('bag', {})
+        bag = request.session.get("bag", {})
         form = OrderForm(request.POST)
 
         if form.is_valid():
@@ -43,75 +44,82 @@ class CheckoutView(View):
 
             line_items = []
             for item_id, quantity in bag.items():
-                product_id = int(item_id.split('_')[0])
+                product_id = int(item_id.split("_")[0])
                 product = get_object_or_404(Product, pk=product_id)
 
-                OrderLineItem.objects.create(order=order, product=product, quantity=quantity)
+                OrderLineItem.objects.create(
+                    order=order, product=product, quantity=quantity
+                )
 
-                line_items.append({ 
-                    'price_data': {
-                        'currency': 'gbp',
-                        'product_data': {
-                            'name': product.name,
+                line_items.append(
+                    {
+                        "price_data": {
+                            "currency": "gbp",
+                            "product_data": {
+                                "name": product.name,
+                            },
+                            "unit_amount": int(product.price * 100),
                         },
-                        'unit_amount': int(product.price * 100),
-                        },
-                    'quantity': quantity,
-                })
+                        "quantity": quantity,
+                    }
+                )
 
             order.update_total()
 
             # calculate subtotal to bag
             total = sum(
-                item['product'].price * item['quantity']
-                for item in bag_contents(request)['bag_items']
+                item["product"].price * item["quantity"]
+                for item in bag_contents(request)["bag_items"]
             )
-            delivery_cost = 500 if total < 50 else 0 
+            delivery_cost = 500 if total < 50 else 0
             grand_total = int(total * 100) + delivery_cost
 
             if delivery_cost > 0:
-                 line_items.append({
-                     'price_data': {
-                         'currency': 'gbp',
-                         'product_data': {
-                             'name': 'Delivery Cost',
+                line_items.append(
+                    {
+                        "price_data": {
+                            "currency": "gbp",
+                            "product_data": {
+                                "name": "Delivery Cost",
+                            },
+                            "unit_amount": delivery_cost,
                         },
-                      'unit_amount': delivery_cost,
-                     },
-                     'quantity': 1,
-                })
-
-
+                        "quantity": 1,
+                    }
+                )
 
             # Create Stripe Checkout:
             session = stripe.checkout.Session.create(
-                payment_method_types=['card'],
+                payment_method_types=["card"],
                 line_items=line_items,
-                mode='payment',
+                mode="payment",
                 success_url=request.build_absolute_uri(
-                    reverse('checkout_success', args=[order.order_number])
-                ) + '?session_id={CHECKOUT_SESSION_ID}',
-                cancel_url=request.build_absolute_uri(
-                    reverse('checkout')
-                ),
+                    reverse("checkout_success", args=[order.order_number])
+                )
+                + "?session_id={CHECKOUT_SESSION_ID}",
+                cancel_url=request.build_absolute_uri(reverse("checkout")),
             )
 
-            request.session['bag'] = {} #this leave empty the bag
+            request.session["bag"] = {}  # this leave empty the bag
             return redirect(session.url, code=303)
-        
-        return render(request, 'checkout/checkout.html', {'form' : form})
-    
+
+        return render(request, "checkout/checkout.html", {"form": form})
+
+
 def checkout_success(request, order_number):
     order = get_object_or_404(Order, order_number=order_number)
 
     # Empty the bag after successful checkout
-    if 'bag' in request.session:
-        del request.session['bag']
+    if "bag" in request.session:
+        del request.session["bag"]
         request.session.modified = True
 
     # clean the BagItems of basedate users
     BagItem.objects.filter(user=request.user).delete()
 
-    messages.success(request, f'Order successfully processed! Your order number is {order_number}. A confirmation email will be sent to you.')
+    messages.success(
+        request,
+        f"Order successfully processed! Your order number is {order_number}. A confirmation email will be sent to you.",
+    )
 
-    return render(request, 'checkout/checkout_success.html', {'order': order})
+    return render(request, "checkout/checkout_success.html", {"order": order})

@@ -43,6 +43,8 @@ The live version of the project is accessible here:
 9. [Problems & Solutions](#problems--solutions)
 10. [Code Example](#code-example)
 11. [functions and testing](#the-functions-and-their-testing-on-the-pixel-store-app)
+10. [Pytest](#testing)
+10. [pep8 & black](#code-quality-pep8--linters)
 12. [Deployment](#deployment)
 
 ---
@@ -262,7 +264,77 @@ After creating an account, the user can:
 - Proceed to checkout and complete orders
 - View order history in their profile
 - Edit account and shipping information
+
+[Comeback Index](#pixel-store)
 ---
+## CRUD Features – Pixel Store
+
+### 1. User Registration
+- Users can create an account through the registration form.
+<img src="./screenshots/CRUDs/1-sigin.jpeg" alt="Website Preview" width="300">
+
+### 2. Login & Redirect
+- After registering or logging in, the user is automatically redirected to the Home page.
+<img src="./screenshots/CRUDs/2-inside.jpeg" alt="Website Preview" width="300">
+
+### 3. Account Management
+- Users can:
+  - Log out
+  - View account details
+  - View their orders
+  - Edit their profile
+  
+  <img src="./screenshots/CRUDs/3-account.jpeg" alt="Website Preview" width="300">
+
+### 4. Information Pages
+- Users can explore the About page.
+<img src="./screenshots/CRUDs/4-about.jpeg" alt="Website Preview" width="300">
+- The Footer includes useful links such as FAQs.
+<img src="./screenshots/CRUDs/4-FAQs.jpeg" alt="Website Preview" width="300">
+
+### 5. Shop Page
+- The main store is located in the Shop section.
+- Each product card allows users to:
+  - Select a size
+  - Choose a quantity
+  - Add items to their bag
+  
+  <img src="./screenshots/CRUDs/5-shop.jpeg" alt="Website Preview" width="300">
+  
+  - View detailed product information
+  <img src="./screenshots/CRUDs/5-more-details.jpeg" alt="Website Preview" width="300">
+
+### 6. Navbar
+- Products: Browse different clothing categories.
+- Search: Find items quickly by name or keyword.
+
+### 7. Shopping Bag
+- Users can:
+  - Review their selected items
+  - Remove items
+  - View the subtotal
+  - See delivery costs
+  
+  <img src="./screenshots/CRUDs/6-bag.jpeg" alt="Website Preview" width="300">
+
+### 8. Checkout
+- Users enter their delivery details during the checkout process.
+<img src="./screenshots/CRUDs/7-checkout.jpeg" alt="Website Preview" width="300">
+
+### 9. Payment
+- After checkout, users are redirected to the Payment Details page.
+<img src="./screenshots/CRUDs/8-pay.jpeg" alt="Website Preview" width="300">
+
+### 10. Order Confirmation
+- A confirmation message is shown:
+  “Thank you! Your order number is 00000000.”
+  <img src="./screenshots/CRUDs/9-order-number.jpeg" alt="Website Preview" width="300">
+- Users can choose to:
+  - Continue shopping
+  - View their orders
+ 
+  <img src="./screenshots/CRUDs/9-my-orders.png" alt="Website Preview" width="300">
+
 ##  Problems & Solutions
 # ❗
 
@@ -305,6 +377,64 @@ The CSS was validated using the W3C CSS Validator.
 
 ### Solution:
 - Added `verbose_name_plural = "Categories"` inside Meta class.
+## Testing
+# 🧪 
+
+Tests were run using **pytest** in a Django environment.
+
+<img src="./screenshots/CRUDs/pytest.png" alt="Website Preview" width="500">
+
+### Summary
+
+- ✅ 22 tests passed
+- ❌ 2 tests failed
+- ⏭ 1 test skipped
+- ⚠️ 9 warnings
+
+### Example failed tests
+
+1. `bag/tests/test_views.py::BagViewsTestCase::test_add_to_bag`
+   - Error: UnboundLocalError — variable `product` not defined.
+
+2. `users/tests/test_forms.py::UserFormsTests::test_userprofile_form_fields`
+   - Error: AssertionError — form fields do not match expected list.
+
+[Comeback Index](#pixel-store)
+---
+## Code Quality: PEP8 & Linters
+# 🧹
+
+To keep the **Pixel Store** project clean, consistent, and professional, PEP8 style guidelines were applied together with Python linters.
+
+### ⭐ Why this was done
+- To maintain a consistent coding style across the project.
+- To reduce common mistakes before running the application.
+- To improve readability and long-term maintainability.
+- To follow industry best practices used in real software projects.
+
+### 🛠️ How it was done
+1. Installation of the linters:
+   ```bash
+   pip install flake8 black
+2. Running Flake8 to detect style issues and warnings:
+   ```bash
+     flake8 .
+   ````
+3. Formatting the entire codebase automatically with Black:
+   ```bash
+      black .
+   ```
+4. ✅ Results
+
+- Removed unused imports and variables.
+
+- Fixed indentation, spacing, and long line issues.
+
+- Codebase became cleaner, more readable, and more consistent.
+
+- Reduced the risk of future bugs.
+
+- Improved maintainability and overall project quality.
 
 [Comeback Index](#pixel-store)
 ---
@@ -323,10 +453,9 @@ Below is the exact process I followed to deploy the project:
 5. I clicked **Deploy Branch**, and Heroku built the Django project.
 6. After the build completed, I ran the database migrations directly on Heroku:
    ```bash
-   heroku run python manage.py migrate
+   heroku run
+   python manage.py migrate
    ```
-
-## 📫 Contact
 ## Installation
 # 🛠️ 
 
@@ -339,3 +468,5 @@ pip install -r requirements.txt
 python manage.py migrate
 python manage.py runserver
 ```
+[Comeback Index](#pixel-store)
+---
