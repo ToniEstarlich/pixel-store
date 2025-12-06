@@ -43,9 +43,10 @@ The live version of the project is accessible here:
 9. [Problems & Solutions](#problems--solutions)
 10. [Code Example](#code-example)
 11. [functions and testing](#the-functions-and-their-testing-on-the-pixel-store-app)
-10. [Pytest](#testing)
-10. [pep8 & black](#code-quality-pep8--linters)
-12. [Deployment](#deployment)
+12. [Pytest](#testing)
+13. [pep8 & black](#code-quality-pep8--linters)
+14. [Environment Variables ``(.env)``](#environment-variables-env)
+15. [Deployment](#deployment)
 
 ---
 
@@ -435,6 +436,30 @@ To keep the **Pixel Store** project clean, consistent, and professional, PEP8 st
 - Reduced the risk of future bugs.
 
 - Improved maintainability and overall project quality.
+
+[Comeback Index](#pixel-store)
+---
+## Environment Variables (.env)
+# 🔐
+
+This project uses a ``.env`` file to store sensitive configuration values.
+The ``.env`` file is listed in ``.gitignore`` to prevent these secrets from being committed to the repository.
+```blash
+Example .env
+STRIPE_PUBLIC_KEY=your_stripe_public_key
+STRIPE_SECRET_KEY=your_stripe_secret_key
+DATABASE_URL=postgres://user:password@localhost:5432/databasename
+```
+
+**Purpose of Each Variable**
+
+- STRIPE_PUBLIC_KEY – Used on the client side to initialize Stripe.
+
+- STRIPE_SECRET_KEY – Used on the server side to process secure Stripe payments.
+
+- DATABASE_URL – Defines the connection string for the PostgreSQL database.
+
+These environment variables are required for the project to run correctly and securely.
 
 [Comeback Index](#pixel-store)
 ---
