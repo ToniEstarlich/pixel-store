@@ -38,7 +38,7 @@ The live version of the project is accessible here:
 4. [Colors](#colors)
 5. [UI/UX Screenshots](#uiux-screenshots)
 6. [Installation](#installation)
-7. [Database](#database)
+7. [Data Model](#1-data-model)
 8. [Backend and Testing](#backend-and-testing)
 9. [Problems & Solutions](#problems--solutions)
 10. [Code Example](#code-example)
@@ -203,6 +203,137 @@ Cards, footer, and navbar were designed to be clean and semi-transparent so the 
 - The project was initially started using **Django Allauth**, inspired by the e-commerce tutorial video from the course, providing a foundation for user authentication and registration.  
 - Custom **context_processors.py** were added to Pixel Store apps to manage shared data across templates, improving code reusability and ensuring dynamic content (e.g., shopping bag contents, product categories) was consistently available.
 
+[Comeback Index](#pixel-store)
+---
+# 1. Data Model 
+# 🗄
+Describes the data model used in the Pixel Store application, including all entities and relationships between them.
+
+## 🧩 1. Category
+
+Represents product categories (e.g., t-shirts, hoodies, accessories).
+
+**Key fields:**
+
+- name — unique category name.
+
+**Relationships:**
+
+-**One-to-Many:** One category can contain many products.
+```mathematica
+Category 1 ───▶ * Product
+```
+## 🛍️ 2. Product
+
+Represents items available for sale in the store.
+
+**Key fields:**
+
+- ``name``, ``sku``, ``description``, ``extra_information``,
+
+- ``price``, ``stock``, ``size``, ``color``, ``image``
+
+- ``category`` — ForeignKey to ``Category``
+
+**Relationships:**
+
+- Many products belong to one category.
+
+- A product can appear in multiple order line items.
+
+- A product can appear multiple times in BagItem (shopping cart).
+```markdown
+Category 1 ───▶ * Product ───▶ * OrderLineItem
+                         └──▶ * BagItem
+```
+## 👤 3. UserProfile
+
+Extends Django’s built-in ``User`` model with additional customer information.
+
+**Key fields:**
+
+- One-to-One with User
+
+- Phone number, address fields, city, postcode, country
+
+**Relationships:**
+
+- **One-to-Many:** One user profile may have multiple orders.
+```sql
+User 1 ───▶ 1 UserProfile ───▶ * Order
+```
+## 👜 4. BagItem (Shopping Cart Item)
+
+Represents individual items a user has added to their shopping bag.
+
+**Key fields:**
+
+- ``user`` — FK to User
+
+- ``product`` — FK to Product
+
+- ``size``, ``quantity``
+
+**Constraint:**
+
+- ``unique_together = (user, product, size)``
+Prevents the same product/size combination from appearing multiple times.
+
+Relationships:
+```sql
+User 1 ───▶ * BagItem ◀── * Product
+```
+## 📦 5. Order
+
+Represents a completed purchase after checkout.
+
+**Key fields:**
+
+- Customer details (name, email, phone)
+
+- Shipping address
+
+- Totals: ``order_total``, ``delivery_cost``, ``grand_total``
+
+- ``user_profile`` — optional FK (guest checkouts allowed)
+
+- Auto-generated ``order_number``
+
+**Logic:**
+
+- ``_generate_order_number()`` creates a unique ID.
+
+- ``update_total()`` recalculates order totals and delivery cost.
+
+**Relationships:**
+```sql
+Order 1 ───▶ * OrderLineItem
+```
+## 🧾 6. OrderLineItem
+
+Represents each individual product line inside an order.
+
+**Key fields:**
+
+- ``order`` — FK to Order
+
+- ``product`` — FK to Product
+
+- ``quantity``
+
+- ``lineitem_total``
+
+**Logic:**
+
+Automatically calculates ``lineitem_total`` (price × quantity) when saving.
+
+## 📊 Data Model Relationship Diagram 
+```sql
+User ───1──▶ UserProfile ───1──▶* Order ───1──▶* OrderLineItem
+  │                               ▲
+  │                               │
+  └──▶* BagItem ◀─────1──── Product ───▶ Category
+```
 [Comeback Index](#pixel-store)
 ---
 ### What is it and what is it for?
