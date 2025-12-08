@@ -403,6 +403,7 @@ After creating an account, the user can:
 
 ### 1. User Registration
 - Users can create an account through the registration form.
+
 <img src="./screenshots/CRUDs/1-sigin.jpeg" alt="Website Preview" width="300">
 
 ### 2. Login & Redirect
@@ -420,8 +421,11 @@ After creating an account, the user can:
 
 ### 4. Information Pages
 - Users can explore the About page.
+
 <img src="./screenshots/CRUDs/4-about.jpeg" alt="Website Preview" width="300">
+
 - The Footer includes useful links such as FAQs.
+
 <img src="./screenshots/CRUDs/4-FAQs.jpeg" alt="Website Preview" width="300">
 
 ### 5. Shop Page
@@ -434,6 +438,7 @@ After creating an account, the user can:
   <img src="./screenshots/CRUDs/5-shop.jpeg" alt="Website Preview" width="300">
   
   - View detailed product information
+
   <img src="./screenshots/CRUDs/5-more-details.jpeg" alt="Website Preview" width="300">
 
 ### 6. Navbar
@@ -451,10 +456,12 @@ After creating an account, the user can:
 
 ### 8. Checkout
 - Users enter their delivery details during the checkout process.
+
 <img src="./screenshots/CRUDs/7-checkout.jpeg" alt="Website Preview" width="300">
 
 ### 9. Payment
 - After checkout, users are redirected to the Payment Details page.
+
 <img src="./screenshots/CRUDs/8-pay.jpeg" alt="Website Preview" width="300">
 
 ### 10. Order Confirmation
