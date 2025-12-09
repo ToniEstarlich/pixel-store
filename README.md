@@ -33,20 +33,22 @@ The live version of the project is accessible here:
 
 ## Table of Contents
 1. [Tech Stack](#tech-stack)
-2. [Wireframes](#wireframes)
-3. [The Logo](#the-logo)
-4. [Colors](#colors)
-5. [UI/UX Screenshots](#uiux-screenshots)
-6. [Installation](#installation)
-7. [Data Model](#1-data-model)
-8. [Backend and Testing](#backend-and-testing)
-9. [Problems & Solutions](#problems--solutions)
-10. [Code Example](#code-example)
-11. [functions and testing](#the-functions-and-their-testing-on-the-pixel-store-app)
-12. [Pytest](#testing)
-13. [pep8 & black](#code-quality-pep8--linters)
-14. [Environment Variables ``(.env)``](#environment-variables-env)
-15. [Deployment](#deployment)
+2. [Project Structure](#project-structure)
+3. [Wireframes](#wireframes)
+4. [The Logo](#the-logo)
+5. [Colors](#colors)
+6. [UI/UX accessibility and Screenshots](#ux--accessibility)
+7. [Installation](#installation)
+8. [Data Model](#1-data-model)
+9. [Backend and Testing](#backend-and-testing)
+10. [Problems & Solutions](#problems--solutions)
+11. [Code Example](#code-example)
+12. [functions and testing](#the-functions-and-their-testing-on-the-pixel-store-app)
+13. [Value for Users and CRUD](#value-for-users)
+14. [Pytest](#testing)
+15. [pep8 & black](#code-quality-pep8--linters)
+16. [Environment Variables ``(.env)``](#environment-variables-env)
+17. [Deployment](#deployment)
 
 ---
 
@@ -87,7 +89,47 @@ The goal of Pixel Store is to create an interactive online shop where customers 
 
 [Comeback Index](#pixel-store)
 ---
+# Project Structure
+# 📁
+```graphql
+pixel-store/
+│
+├── bag/                 # Shopping bag functionality (views, templates, tests)
+│
+├── checkout/            # Checkout and order processing (views, forms, tests, templates)
+│
+├── clothing_store/      # Internal app (possibly settings or shared logic)
+│
+├── home/                # Home page views and templates
+│
+├── media/               # Uploaded product images
+│   └── product_images/
+│
+├── products/            # Product models, views, templates, and tests
+│
+├── screenshots/         # Screenshots for README and design reference
+│
+├── static/              # Static files (CSS, JS, images)
+│   ├── css/
+│   ├── js/
+│   └── images/
+│
+├── templates/           # Global templates
+│   ├── includes/        # Shared components like sliders, navigation, footer
+│   └── base.html, 404.html, etc.
+│
+├── users/               # User authentication, profiles, templates, and tests
+│
+├── wireframes/          # UI design drafts and wireframes
+│
+├── manage.py
+├── requirements.txt
+├── README.md
+├── .gitignore
+├── Procfile             # Deployment configuration (e.g., Heroku)
+└── …                     # Other files such as database dumps or examples
 
+```
 ##  Wireframes
 # 🧩
 
@@ -167,6 +209,9 @@ Cards, footer, and navbar were designed to be clean and semi-transparent so the 
 
 [Comeback Index](#pixel-store)
 ---
+## UX + Accessibility
+
+The Pixel Store was designed with a strong focus on usability and accessibility. Navigation is simple and consistent across all pages, with clear visual hierarchy and intuitive button placement. Interactive elements, such as buttons and promotional slides (``slide-AD.html`` and ``slide-AD-2.html``), include hover states and clear feedback to improve user confidence. Text colors and backgrounds follow accessible contrast ratios to ensure readability. Forms provide clear validation messages, preventing user frustration. The layout is fully responsive, ensuring a smooth experience on mobile, tablet, and desktop. Alt text is included for all images, and non-essential animations were minimized to reduce cognitive load. These design choices make the site intuitive, engaging, and accessible for a wide range of users.
 
 ##  UI/UX Screenshots
 
@@ -189,6 +234,10 @@ Cards, footer, and navbar were designed to be clean and semi-transparent so the 
 | Desktop | Tablet | Mobile |
 |--------|--------|--------|
 | ![](/screenshots/about-pc.jpeg) | ![](/screenshots/about-tablet.jpeg) | ![](/screenshots/about-phone.jpeg) |
+
+## Custom 404 Page
+
+A custom 404 page was added to improve user experience when users navigate to a non-existent page. The page provides a clear message ("Oops! Page not found") and a direct link back to the homepage. It is fully responsive, visually consistent with the site’s design, and includes clear visual hierarchy and accessible button styling. This ensures users are guided smoothly back to the main site and reduces frustration when encountering broken links.
 
 [Comeback Index](#pixel-store)
 ---
@@ -399,6 +448,10 @@ After creating an account, the user can:
 
 [Comeback Index](#pixel-store)
 ---
+## Value for Users
+
+Pixel Store offers a fast, responsive, and easy shopping experience where users can browse clothing products, manage a dynamic shopping bag, and complete purchases securely using Stripe. The platform provides clear product information, intuitive navigation, and real-time feedback during checkout, making online shopping simple and enjoyable for all users.
+
 ## CRUD Features – Pixel Store
 
 ### 1. User Registration
@@ -523,6 +576,25 @@ Tests were run using **pytest** in a Django environment.
 
 <img src="./screenshots/CRUDs/pytest.png" alt="Website Preview" width="500">
 
+### How to Run the Tests
+
+- From the project root, run:
+
+```bash
+pytest
+```
+- you can also run tests using Django’s test runner:
+```bash
+python manage.py test
+```
+- To run a specific test file:
+```bash
+pytest pixel-store/bag/tests/test_views.py
+```
+- To run a single test function:
+```bash
+pytest pixel-store/bag/tests/test_views.py::TestClass::test_remove_from_bag
+```
 ### Summary
 
 - ✅ 22 tests passed
@@ -530,13 +602,27 @@ Tests were run using **pytest** in a Django environment.
 - ⏭ 1 test skipped
 - ⚠️ 9 warnings
 
-### Example failed tests
+📌 *Click any of the “test” links below to see the full documentation for each test suite, including all 22 test cases with code, validations, and results.*
 
-1. `bag/tests/test_views.py::BagViewsTestCase::test_add_to_bag`
-   - Error: UnboundLocalError — variable `product` not defined.
+- **Home**
+  - ### [test](/docs/test%20README/home_README.md)🛑
+    >``home/tests/`` verifies views and context processors: pages return 200, correct templates are used, and ``timestamp`` is present and an integer in all templates.
 
-2. `users/tests/test_forms.py::UserFormsTests::test_userprofile_form_fields`
-   - Error: AssertionError — form fields do not match expected list.
+- **Products**
+  - ### [test](/docs/test%20README/products_README.md)🛑
+    >``products/tests/`` verifies the ``Category`` model and ``get_categories`` context processor: the model’s ``__str__`` returns the category name, and the context processor provides a list of categories in templates.
+
+- **User**
+  - ### [test](/docs/test%20README/users_README.md)🛑
+    >``users/tests/`` verifies user-related functionality: profile page access and template rendering, ``UserProfile`` string representation, and that ``UserProfileForm`` includes all expected fields.
+
+- **Bag**
+  - ### [test](/docs/test%20README/bag_README.md)🛑
+    >``bag/tests/`` verifies shopping bag functionality: pages return 200 and use correct templates, add/remove/clear actions update session and redirect properly, URLs resolve correctly, and context processors calculate totals, counts, and bag items accurately.
+
+- **Checkout**
+  - ### [test](/docs/test%20README/checkout_README.md)🛑
+    >checkout/tests/ verifies the checkout flow: redirects when the bag is empty, ensures checkout success page loads correctly, confirms order numbers are auto-generated, and validates the OrderForm with correct data.
 
 [Comeback Index](#pixel-store)
 ---
@@ -633,3 +719,8 @@ python manage.py runserver
 ```
 [Comeback Index](#pixel-store)
 ---
+## Conclusion
+
+Pixel Store is a fully functional e-commerce platform for a fictional clothing brand.  
+It combines a responsive, user-friendly design with secure and efficient functionality, including user authentication, shopping bag management, product browsing, and Stripe payment integration.  
+The project demonstrates both front-end and back-end capabilities, testing practices, and attention to accessibility, providing a complete full-stack web application example.
