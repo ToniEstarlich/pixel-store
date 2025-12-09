@@ -520,6 +520,7 @@ Pixel Store offers a fast, responsive, and easy shopping experience where users 
 ### 10. Order Confirmation
 - A confirmation message is shown:
   “Thank you! Your order number is 00000000.”
+  
   <img src="./screenshots/CRUDs/9-order-number.jpeg" alt="Website Preview" width="300">
 - Users can choose to:
   - Continue shopping
