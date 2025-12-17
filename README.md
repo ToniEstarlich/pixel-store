@@ -87,7 +87,7 @@ The goal of Pixel Store is to create an interactive online shop where customers 
 - **Git** – Code tracking.
 - **GitHub** – Hosting and collaboration.
 
-[Comeback Index](#pixel-store)
+[Back to Table of Contents](#table-of-contents)
 ---
 # Project Structure
 # 📁
@@ -207,7 +207,7 @@ body {
 
 Cards, footer, and navbar were designed to be clean and semi-transparent so the focus stays on the products.
 
-[Comeback Index](#pixel-store)
+[Back to Table of Contents](#table-of-contents)
 ---
 ## UX + Accessibility
 
@@ -234,12 +234,36 @@ The Pixel Store was designed with a strong focus on usability and accessibility.
 | Desktop | Tablet | Mobile |
 |--------|--------|--------|
 | ![](/screenshots/about-pc.jpeg) | ![](/screenshots/about-tablet.jpeg) | ![](/screenshots/about-phone.jpeg) |
+### Reusable UI Components
+
+To enhance the visual appeal and marketing feel of the site, two reusable slide
+components were created:
+
+- `slide-AD.html`
+- `slide-AD-2.html`
+
+```html
+pixel-store
+   |_/static
+     |_ /js
+       |_ /slide-AD.js 🟨
+       |_ /slide-AD-2.js 🟨
+   |_ /templates
+     |_ /includes
+       |_slide-AD.html 🟧
+       |_slide-AD-2.html 🟧
+```
+
+These components are stored inside `templates/includes/` and are included where
+needed using Django template inheritance.  
+This approach keeps templates clean, avoids duplication, and allows the slides to
+be reused or repositioned easily across different pages.
 
 ## Custom 404 Page
 
 A custom 404 page was added to improve user experience when users navigate to a non-existent page. The page provides a clear message ("Oops! Page not found") and a direct link back to the homepage. It is fully responsive, visually consistent with the site’s design, and includes clear visual hierarchy and accessible button styling. This ensures users are guided smoothly back to the main site and reduces frustration when encountering broken links.
 
-[Comeback Index](#pixel-store)
+[Back to Table of Contents](#table-of-contents)
 ---
 
 ## - Git & Version Control  
@@ -252,11 +276,14 @@ A custom 404 page was added to improve user experience when users navigate to a 
 - The project was initially started using **Django Allauth**, inspired by the e-commerce tutorial video from the course, providing a foundation for user authentication and registration.  
 - Custom **context_processors.py** were added to Pixel Store apps to manage shared data across templates, improving code reusability and ensuring dynamic content (e.g., shopping bag contents, product categories) was consistently available.
 
-[Comeback Index](#pixel-store)
+[Back to Table of Contents](#table-of-contents)
 ---
 # 1. Data Model 
 # 🗄
 Describes the data model used in the Pixel Store application, including all entities and relationships between them.
+
+Database migrations were created and applied using Django’s built-in migration system
+(`makemigrations` and `migrate`) to keep the PostgreSQL database schema aligned with the models.
 
 ## 🧩 1. Category
 
@@ -383,7 +410,27 @@ User ───1──▶ UserProfile ───1──▶* Order ───1──
   │                               │
   └──▶* BagItem ◀─────1──── Product ───▶ Category
 ```
-[Comeback Index](#pixel-store)
+## Forms & User Input Handling
+
+The project uses Django Forms and ModelForms to handle user input in a clean and secure way.
+
+### User Registration and Profiles
+
+- A custom registration form extends Django Allauth’s `SignupForm` to collect additional user information such as first and last name during signup.
+- `UserForm` allows users to update basic account details (name and email).
+- `UserProfileForm` is linked to the `UserProfile` model and is used to manage delivery and contact information.
+
+Using ModelForms ensures automatic validation and keeps form logic consistent with the database models.
+
+### Checkout
+
+- `OrderForm` is a ModelForm connected to the `Order` model.
+- It collects delivery and contact information during checkout.
+- Validation is handled automatically by Django before an order is saved.
+
+This approach improves security, reduces duplicated code, and keeps form handling aligned with Django best practices.
+
+[Back to Table of Contents](#table-of-contents)
 ---
 ### What is it and what is it for?
 This documentation summarizes the main files in each Pixel Store app:  
@@ -446,7 +493,7 @@ After creating an account, the user can:
 - View order history in their profile
 - Edit account and shipping information
 
-[Comeback Index](#pixel-store)
+[Back to Table of Contents](#table-of-contents)
 ---
 ## Value for Users
 
@@ -528,6 +575,7 @@ Pixel Store offers a fast, responsive, and easy shopping experience where users 
  
   <img src="./screenshots/CRUDs/9-my-orders.png" alt="Website Preview" width="300">
 
+## [Back to Table of Contents](#table-of-contents)
 ##  Problems & Solutions
 # ❗
 
@@ -598,6 +646,11 @@ pytest pixel-store/bag/tests/test_views.py::TestClass::test_remove_from_bag
 ```
 ### Summary
 
+Although a strict TDD workflow was not followed from the very beginning, tests were written
+alongside feature development to validate views, forms, models, and business logic.
+Git commits reflect the iterative process of building functionality and validating it through testing.
+
+
 - ✅ 22 tests passed
 - ❌ 2 tests failed
 - ⏭ 1 test skipped
@@ -625,7 +678,7 @@ pytest pixel-store/bag/tests/test_views.py::TestClass::test_remove_from_bag
   - ### [test](/docs/test%20README/checkout_README.md)🛑
     >checkout/tests/ verifies the checkout flow: redirects when the bag is empty, ensures checkout success page loads correctly, confirms order numbers are auto-generated, and validates the OrderForm with correct data.
 
-[Comeback Index](#pixel-store)
+[Back to Table of Contents](#table-of-contents)
 ---
 ## Code Quality: PEP8 & Linters
 # 🧹
@@ -662,7 +715,7 @@ To keep the **Pixel Store** project clean, consistent, and professional, PEP8 st
 
 - Improved maintainability and overall project quality.
 
-[Comeback Index](#pixel-store)
+[Back to Table of Contents](#table-of-contents)
 ---
 ## Environment Variables (.env)
 # 🔐
@@ -686,7 +739,7 @@ DATABASE_URL=postgres://user:password@localhost:5432/databasename
 
 These environment variables are required for the project to run correctly and securely.
 
-[Comeback Index](#pixel-store)
+[Back to Table of Contents](#table-of-contents)
 ---
 ## Deployment
 
@@ -718,7 +771,7 @@ pip install -r requirements.txt
 python manage.py migrate
 python manage.py runserver
 ```
-[Comeback Index](#pixel-store)
+[Back to Table of Contents](#table-of-contents)
 ---
 ## Conclusion
 
