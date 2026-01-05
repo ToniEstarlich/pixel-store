@@ -60,6 +60,8 @@ def add_to_bag(request, item_id):
     size = request.POST.get("size")
     quantity = int(request.POST.get("quantity"))
 
+    product = Product.objects.get(pk=item_id)  # Ensure product exists
+
     bag = request.session.get("bag", {})
     key = f"{item_id}_{size}"
 

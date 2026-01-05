@@ -14,6 +14,5 @@ class UserFormsTests(TestCase):
             "default_town_or_city",
             "default_postcode",
             "default_country",
-            "default_county",
         ]
         self.assertEqual(list(form.fields.keys()), expected_fields)

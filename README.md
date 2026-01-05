@@ -650,11 +650,18 @@ Although a strict TDD workflow was not followed from the very beginning, tests w
 alongside feature development to validate views, forms, models, and business logic.
 Git commits reflect the iterative process of building functionality and validating it through testing.
 
+### conftest.py explanation
+The conftest.py file is used to configure and initialize Django for pytest, ensuring that settings and applications are loaded before running tests.
 
 - ✅ 22 tests passed
 - ❌ 2 tests failed
 - ⏭ 1 test skipped
 - ⚠️ 9 warnings
+
+Two test failures were caused by an uninitialized ``product`` variable in the ``add_to_bag`` view for anonymous users, and by an over-strict form test expecting a non-essential ``default_county`` field.
+Both issues were resolved by correctly initializing the variable and aligning the tests with the actual application requirements, resulting in a fully passing test suite.
+
+<img src="./screenshots/CRUDs/testing-ok.png" alt="Website Preview" width="500">
 
 📌 *Click any of the “test” links below to see the full documentation for each test suite, including all 22 test cases with code, validations, and results.*
 
