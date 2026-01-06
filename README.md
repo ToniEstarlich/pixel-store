@@ -154,7 +154,7 @@ The Pixel Store project went through several design phases:
 ### Shop
 | Desktop | Tablet | Mobile |
 |--------|--------|--------|
-| ![](/wireframes/home_phone.jpg) | ![](/wireframes/shop_tablet.jpg) | ![](/wireframes/shop_phone.jpg) |
+| ![](/wireframes/shop_pc.jpg) | ![](/wireframes/shop_tablet.jpg) | ![](/wireframes/shop_phone.jpg) |
 ### Bag
 | Desktop | Tablet | Mobile |
 |--------|--------|--------|
