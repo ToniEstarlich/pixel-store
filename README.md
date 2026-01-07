@@ -563,11 +563,7 @@ Pixel Store offers a fast, responsive, and easy shopping experience where users 
 
 <img src="./screenshots/CRUDs/1-sigin.jpeg" alt="Website Preview" width="300">
 
-**models**
-    [(🔵)models.py](#pixel-storeusersmodelspy)
 
-  **functions:**
-    [(🟢)views.py → (🟢)urls.py → (🟢)signals.py](#users)
 
 ### 2. Login & Redirect
 - After registering or logging in, the user is automatically redirected to the Home page.
@@ -583,6 +579,13 @@ Pixel Store offers a fast, responsive, and easy shopping experience where users 
   
   <img src="./screenshots/CRUDs/3-account.jpeg" alt="Website Preview" width="300">
 
+  >**1, 2 & 3:**
+
+    **models**
+      [(🔵)models.py](#pixel-storeusersmodelspy)
+ 
+    **functions:**
+     [(🟢)views.py → (🟢)urls.py → (🟢)signals.py](#users)
 ### 4. Information Pages
 - Users can explore the About page.
 
@@ -591,6 +594,8 @@ Pixel Store offers a fast, responsive, and easy shopping experience where users 
 - The Footer includes useful links such as FAQs.
 
 <img src="./screenshots/CRUDs/4-FAQs.jpeg" alt="Website Preview" width="300">
+
+>**4:**
 
 **functions:**
 [(🟢)views.py → (🟢)urls.py](#home-2)
@@ -608,6 +613,8 @@ Pixel Store offers a fast, responsive, and easy shopping experience where users 
 
   <img src="./screenshots/CRUDs/5-more-details.jpeg" alt="Website Preview" width="300">
     
+    >**5 :**
+
     **models**
     [(🔵)models.py](#pixel-storeproductsmodelspy)
     
@@ -626,6 +633,8 @@ Pixel Store offers a fast, responsive, and easy shopping experience where users 
   - See delivery costs
   
   <img src="./screenshots/CRUDs/6-bag.jpeg" alt="Website Preview" width="300">
+
+  >**6 & 7 :**
 
   **models**
     [(🔵)models.py](#pixel-storebagmodelspy)
@@ -652,6 +661,8 @@ Pixel Store offers a fast, responsive, and easy shopping experience where users 
   - View their orders
  
   <img src="./screenshots/CRUDs/9-my-orders.png" alt="Website Preview" width="300">
+  
+  >**8, 9 & 10:**
 
   **models**
     [(🔵)models.py](#pixel-storecheckoutmodelspy)
