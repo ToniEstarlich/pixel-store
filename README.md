@@ -643,7 +643,7 @@ Pixel Store offers a fast, responsive, and easy shopping experience where users 
   
   <img src="./screenshots/CRUDs/6-bag.jpeg" alt="Website Preview" width="300">
 
-  >**6 & 7 :**
+  >**7 :**
 
   **models**
     [(🔵)models.py](#pixel-storebagmodelspy)
