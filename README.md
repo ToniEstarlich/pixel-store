@@ -475,6 +475,8 @@ The project uses Django Forms and ModelForms to handle user input in a clean and
 
 Using ModelForms ensures automatic validation and keeps form logic consistent with the database models.
 
+### [(🔵)forms.py](/docs/apps%20README/users/views_README.md)
+
 ### Checkout
 
 - `OrderForm` is a ModelForm connected to the `Order` model.
@@ -482,6 +484,8 @@ Using ModelForms ensures automatic validation and keeps form logic consistent wi
 - Validation is handled automatically by Django before an order is saved.
 
 This approach improves security, reduces duplicated code, and keeps form handling aligned with Django best practices.
+
+### [(🔵)forms.py](/docs/apps%20README/checkout/views_README.md)
 
 [Back to Table of Contents](#table-of-contents)
 ---
@@ -517,6 +521,8 @@ Use the links below to explore each file’s purpose and its corresponding tests
 ## users
 - ### [models.py](#pixel-storeusersmodelspy)🔵
   >The UserProfile model extends Django’s built-in User model with additional customer details and is linked to multiple orders created by the same user.
+- ### [forms.py🔵](#user-registration-and-profiles)
+  >User and profile forms with Django, secure and model-driven.
 - ### [views.py](/docs/apps%20README/users/views_README.md)🟢
   >``users`` app manages user accounts: ``register`` handles signup and creates a ``UserProfile``, ``profile_view`` displays and edits account and profile info, and ``my_orders`` lists the user’s orders.
 - ### [signals.py](/docs/apps%20README/users/signals_README.md)🟢
@@ -541,6 +547,8 @@ Use the links below to explore each file’s purpose and its corresponding tests
 ## checkout
 - ### [models.py](#pixel-storecheckoutmodelspy)🔵
   >The ``checkout`` app manages completed purchases through the ``Order`` and ``OrderLineItem`` models, separating order-level data from individual product lines for clarity and scalability.
+- ### [forms.py🔵](#checkout)
+  >Checkout form for orders, secure and validated via Django ModelForms
 - ### [views.py](/docs/apps%20README/checkout/views_README.md)🟢
   >``checkout/`` handles order processing: displays checkout form if the bag isn’t empty, validates and saves orders and line items, creates a Stripe checkout session, empties the bag, and shows a success page with order details.
   - ### [test](/docs/test%20README/checkout_README.md)🔴
@@ -591,6 +599,9 @@ Pixel Store offers a fast, responsive, and easy shopping experience where users 
 
     **models**
       [(🔵)models.py](#pixel-storeusersmodelspy)
+
+    **form**
+      [(🔵)forms.py](#user-registration-and-profiles)
  
     **functions:**
      [(🟢)views.py → (🟢)urls.py → (🟢)signals.py](#users)
@@ -676,8 +687,11 @@ Pixel Store offers a fast, responsive, and easy shopping experience where users 
   **models**
     [(🔵)models.py](#pixel-storecheckoutmodelspy)
 
+  **form**
+    [(🔵)forms.py](#checkout)
+
   **Checkout functions:**
-  [(🟢)views.py → (🟢)urls.py](#checkout-1)
+    [(🟢)views.py → (🟢)urls.py](#checkout-1)
 
 ## [Back to Table of Contents](#table-of-contents)
 ##  Problems & Solutions
