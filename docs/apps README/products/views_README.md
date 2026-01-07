@@ -105,6 +105,7 @@ urlpatterns = [
 ]
 ```
 **html** 🟧 **Jinja** ⬜
+
 Search form (navbar):  
 `pixel-store/templates/includes/mobile-top-header.html`
 ```html
