@@ -82,7 +82,8 @@ def calculate_bag_total(bag):
         total += product.price * quantity
     return total
 ```
-**html** 🟧 **Jinja** ⬜
+**html** 🟧 **Jinja** ⬜ ``pixel-store/bag/templates/bag
+/bag.html``
 ```html
 <p><strong>Total:</strong> £{{ grand_total|floatformat:2 }}</p>
 ```

@@ -62,7 +62,7 @@ urlpatterns = [
     path('', views.product_list, name='products_list'),
 ]
 ```
-**html** 🟧 **Jinja** ⬜
+**html** 🟧 **Jinja** ⬜ ``pixel-store/products/templates/products/products_list.html``
 ```html
 {% for product in products %}
         <div class="col-md-4 mb-4">
@@ -105,12 +105,31 @@ urlpatterns = [
 ]
 ```
 **html** 🟧 **Jinja** ⬜
+Search form (navbar):  
+`pixel-store/templates/includes/mobile-top-header.html`
 ```html
 <form method="GET" action="/products/search/" class="form-inline my-2">
       <input class="form-control mr-2 w-75" type="search" placeholder="Search" name="q">
       <button class="btn_search" type="submit"><i class="fas fa-search" aria-hidden="true"></i></button>
 </form>
 ```
+Search results template:  
+`pixel-store/products/templates/products/search_results.html`
+```html
+<h2>Search results for "{{ query }}"</h2>
+
+{% if results %}
+  <ul>
+    {% for product in results %}
+      <li>{{ product.name }}</li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>No products found.</p>
+{% endif %}
+
+```
+
 ``search(request):``
 
 - Gets the ``q`` query string.
@@ -134,7 +153,7 @@ urlpatterns = [
     path('<int:product_id>/', views.product_detail, name='product_detail'),
 ]
 ```
-**html** 🟧 **Jinja** ⬜
+**html** 🟧 **Jinja** ⬜ ``pixel-store/products/templates/products/product_detail.html``
 ```html
 <!-- Example product detail template -->
 <h1>{{ product.name }}</h1>

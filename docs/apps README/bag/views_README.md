@@ -49,7 +49,8 @@ urlpatterns = [
     path('', views.view_bag, name='view_bag'),
 ]
 ```
-**html** 🟧 **Jinja** ⬜
+**html** 🟧 **Jinja** ⬜ ``pixel-store/bag/templates/bag
+/bag.html``
 ```html
 {% for item in bag_items %}
   <li class="list-group-item d-flex align-items-center">
@@ -102,7 +103,8 @@ document.addEventListener('DOMContentLoaded', () => {
   ...
   const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
 ```
-**html** 🟧 **Jinja** ⬜
+**html** 🟧 **Jinja** ⬜ This function is added to products/ app: ``pixel-store/products/templates/products
+/products_list.html``
 ```html
 <form method="post" action="{% url 'add_to_bag' product.id %}" class="add-to-bag-form">
       {% csrf_token %}
@@ -135,7 +137,8 @@ urlpatterns = [
     path('bag/remove/<item_id>', views.remove_from_bag, name='remove_from_bag'),
 ]
 ```
-**html** 🟧 **Jinja** ⬜
+**html** 🟧 **Jinja** ⬜ ``pixel-store/bag/templates/bag
+/bag.html``
 ```html
 <form action="{% url 'remove_from_bag' item.item_id %}" method="POST">
       {% csrf_token %}
@@ -164,7 +167,8 @@ urlpatterns = [
     path('clear/', views.clear_bag, name='clear_bag'),
 ]
 ```
-**html** 🟧 **Jinja** ⬜
+**html** 🟧 **Jinja** ⬜ ``pixel-store/bag/templates/bag
+/bag.html``
 ```html
 <form action="{% url 'clear_bag' %}" method="post">
     {% csrf_token %}
