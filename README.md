@@ -563,6 +563,12 @@ Pixel Store offers a fast, responsive, and easy shopping experience where users 
 
 <img src="./screenshots/CRUDs/1-sigin.jpeg" alt="Website Preview" width="300">
 
+**models**
+    [(🔵)models.py](#pixel-storeusersmodelspy)
+
+  **functions:**
+    [(🟢)views.py → (🟢)urls.py → (🟢)signals.py](#users)
+
 ### 2. Login & Redirect
 - After registering or logging in, the user is automatically redirected to the Home page.
 
@@ -586,6 +592,9 @@ Pixel Store offers a fast, responsive, and easy shopping experience where users 
 
 <img src="./screenshots/CRUDs/4-FAQs.jpeg" alt="Website Preview" width="300">
 
+**functions:**
+[(🟢)views.py → (🟢)urls.py](#home-2)
+
 ### 5. Shop Page
 - The main store is located in the Shop section.
 - Each product card allows users to:
@@ -598,6 +607,12 @@ Pixel Store offers a fast, responsive, and easy shopping experience where users 
   - View detailed product information
 
   <img src="./screenshots/CRUDs/5-more-details.jpeg" alt="Website Preview" width="300">
+    
+    **models**
+    [(🔵)models.py](#pixel-storeproductsmodelspy)
+    
+    **Functions:**
+     [(🟢)views.py → (🟢)urls.py → (🟢)context_processors.py](#products)
 
 ### 6. Navbar
 - Products: Browse different clothing categories.
@@ -611,6 +626,11 @@ Pixel Store offers a fast, responsive, and easy shopping experience where users 
   - See delivery costs
   
   <img src="./screenshots/CRUDs/6-bag.jpeg" alt="Website Preview" width="300">
+
+  **models**
+    [(🔵)models.py](#pixel-storebagmodelspy)
+
+  **functions:** [(🟢)views.py → (🟢)urls.py → (🟢)context_processors.py → (🟢)signals.py](#bag-2)
 
 ### 8. Checkout
 - Users enter their delivery details during the checkout process.
@@ -632,6 +652,12 @@ Pixel Store offers a fast, responsive, and easy shopping experience where users 
   - View their orders
  
   <img src="./screenshots/CRUDs/9-my-orders.png" alt="Website Preview" width="300">
+
+  **models**
+    [(🔵)models.py](#pixel-storecheckoutmodelspy)
+
+  **Checkout functions:**
+  [(🟢)views.py → (🟢)urls.py](#checkout)
 
 ## [Back to Table of Contents](#table-of-contents)
 ##  Problems & Solutions
