@@ -39,16 +39,24 @@ The live version of the project is accessible here:
 5. [Colors](#colors)
 6. [UI/UX accessibility and Screenshots](#ux--accessibility)
 7. [Installation](#installation)
-8. [Data Model](#1-data-model)
-9. [Backend and Testing](#backend-and-testing)
-10. [Problems & Solutions](#problems--solutions)
-11. [Code Example](#code-example)
-12. [functions and testing](#the-functions-and-their-testing-on-the-pixel-store-app)
-13. [Value for Users and CRUD](#value-for-users)
-14. [Pytest](#testing)
-15. [pep8 & black](#code-quality-pep8--linters)
-16. [Environment Variables ``(.env)``](#environment-variables-env)
-17. [Deployment](#deployment)
+8. [Data Models](#data-models)
+9. [Problems & Solutions](#problems--solutions)
+10. [Code Example](#code-example)
+11. [functions and testing](#the-functions-and-their-testing-on-the-pixel-store-app)
+12. [Value for Users and CRUD](#value-for-users)
+13. [Pytest](#testing)
+14. [pep8 & black](#code-quality-pep8--linters)
+15. [Environment Variables ``(.env)``](#environment-variables-env)
+16. [Deployment](#deployment)
+
+Legend:
+
+- 🔵 Database layer (models)
+- 🟢 Backend logic (views, urls, context processors)
+- 🟠 Frontend layer (templates)
+- 🔴 Testing (pytest)
+
+“Emojis act as a visual map of the app layers, showing how models, backend logic, templates, and tests are connected in a coherent workflow.”
 
 ---
 
@@ -278,12 +286,26 @@ A custom 404 page was added to improve user experience when users navigate to a 
 
 [Back to Table of Contents](#table-of-contents)
 ---
-# 1. Data Model 
+# Data Models 
 # 🗄
 Describes the data model used in the Pixel Store application, including all entities and relationships between them.
 
 Database migrations were created and applied using Django’s built-in migration system
 (`makemigrations` and `migrate`) to keep the PostgreSQL database schema aligned with the models.
+
+## Model Overview
+- Products (`products/models.py`)
+- Users (`users/models.py`)
+- Bag (`bag/models.py`)
+- Checkout (`checkout/models.py`)
+
+**Legend:**
+- 🔵 Database layer (models)
+- 🟢 Backend logic (views, urls, context processors)
+- 🟠 Frontend layer (templates)
+- 🔴 Testing (pytest)
+
+# pixel-store/products/models.py
 
 ## 🧩 1. Category
 
@@ -322,6 +344,12 @@ Represents items available for sale in the store.
 Category 1 ───▶ * Product ───▶ * OrderLineItem
                          └──▶ * BagItem
 ```
+### Request Flow
+- (🔵)models.py → (🟢)views.py → (🟢)urls.py → (🟢)context_processors.py → (🟠)
+templates/
+### Functions:
+- [(🟢)views.py → (🟢)urls.py → (🟢)context_processors.py](#products)
+# pixel-store/users/models.py
 ## 👤 3. UserProfile
 
 Extends Django’s built-in ``User`` model with additional customer information.
@@ -338,6 +366,12 @@ Extends Django’s built-in ``User`` model with additional customer information.
 ```sql
 User 1 ───▶ 1 UserProfile ───▶ * Order
 ```
+### Request Flow
+- (🔵)models.py → (🟢)views.py → (🟢)urls.py → (🟢)signals.py → (🟠)
+templates/
+### Functions:
+- [(🟢)views.py → (🟢)urls.py → (🟢)signals.py](#users)
+# pixel-store/bag/models.py
 ## 👜 4. BagItem (Shopping Cart Item)
 
 Represents individual items a user has added to their shopping bag.
@@ -359,6 +393,12 @@ Relationships:
 ```sql
 User 1 ───▶ * BagItem ◀── * Product
 ```
+### Request Flow
+- (🔵)models.py → (🟢)views.py → (🟢)urls.py → (🟢)context_processors.py → (🟢)signals.py → (🟠)
+templates/
+### Functions:
+- [(🟢)views.py → (🟢)urls.py → (🟢)context_processors.py → (🟢)signals.py](#bag)
+# pixel-store/checkout/models.py
 ## 📦 5. Order
 
 Represents a completed purchase after checkout.
@@ -410,6 +450,11 @@ User ───1──▶ UserProfile ───1──▶* Order ───1──
   │                               │
   └──▶* BagItem ◀─────1──── Product ───▶ Category
 ```
+### Request Flow
+- (🔵)models.py → (🟢)views.py → (🟢)urls.py →  (🟠)
+templates/
+### Functions:
+- [(🟢)views.py → (🟢)urls.py](#checkout)
 ## Forms & User Input Handling
 
 The project uses Django Forms and ModelForms to handle user input in a clean and secure way.
@@ -438,7 +483,6 @@ This documentation summarizes the main files in each Pixel Store app:
 - **context_processors.py** → injects common variables into templates (like timestamps, shopping bag contents, categories)  
 - **signals.py** → automatically executes functions in response to model events (like creating UserProfiles or loading BagItems on login)  
 
-
 # The functions and their testing on the Pixel Store app
 Use the links below to explore each file’s purpose and its corresponding tests.
 
@@ -447,41 +491,54 @@ Use the links below to explore each file’s purpose and its corresponding tests
   >``home/views.py`` renders the main pages: ``index`` with timestamp, ``faqs``, and ``about``.
 - ### [context_processors.py](/docs/apps%20README/home/context_processors_README.md)🟢
   >``home/context_processors.py`` provides a ``timestamp`` context processor, making the current timestamp available in all templates.
-  - ### [test](/docs/test%20README/home_README.md)🛑
+  - ### [test](/docs/test%20README/home_README.md)🔴
     >``home/tests/`` verifies views and context processors: pages return 200, correct templates are used, and ``timestamp`` is present and an integer in all templates.
-
+- ### [Templates/](#4-information-pages)🟠
+  >The ``home`` app provides static informational pages such as the About page and manages global site elements, including the footer with useful links like FAQs.
 ## products
+- ### [models.py](#pixel-storeproductsmodelspy)🔵
+  >The Product model represents items available for sale, each belonging to a single Category, and can be referenced multiple times in both order line items and shopping bag entries
 - ### [views.py](/docs/apps%20README/products/views_README.md)🟢
   >``products`` app defines ``Category`` and ``Product`` models, and provides views for listing products (with optional category filter), searching by name, and displaying individual product details, all rendered with Jinja templates.
 - ### [context_processors.py](/docs/apps%20README/products/context_processors_README.md)🟢
   >``products/context_processors.py`` provides ``get_categories``, making all product categories available in templates for navigation or filtering.
-  - ### [test](/docs/test%20README/products_README.md)🛑
+  - ### [test](/docs/test%20README/products_README.md)🔴
     >``products/tests/`` verifies the ``Category`` model and ``get_categories`` context processor: the model’s ``__str__`` returns the category name, and the context processor provides a list of categories in templates.
-
+- ### [Templates/](#5-shop-page)🟠
+  >The ``products`` app powers the Shop section, allowing users to browse products, view detailed information, select size and quantity, and add items to their shopping bag.
 ## users
+- ### [models.py](#pixel-storeusersmodelspy)🔵
+  >The UserProfile model extends Django’s built-in User model with additional customer details and is linked to multiple orders created by the same user.
 - ### [views.py](/docs/apps%20README/users/views_README.md)🟢
   >``users`` app manages user accounts: ``register`` handles signup and creates a ``UserProfile``, ``profile_view`` displays and edits account and profile info, and ``my_orders`` lists the user’s orders.
 - ### [signals.py](/docs/apps%20README/users/signals_README.md)🟢
   >``users/signals.py`` listens to ``User`` model changes and automatically creates or updates a ``UserProfile`` whenever a user is created or saved.
-  - ### [test](/docs/test%20README/users_README.md)🛑
+  - ### [test](/docs/test%20README/users_README.md)🔴
     >``users/tests/`` verifies user-related functionality: profile page access and template rendering, ``UserProfile`` string representation, and that ``UserProfileForm`` includes all expected fields.
-
+- ### [Templates/](#1-user-registration)🟠
+  >The ``users`` app handles user accounts, including registration, login, logout, profile management, and viewing past orders
 ## bag
+- ### [models.py](#pixel-storebagmodelspy)🔵
+  >The BagItem model represents individual products added to a user’s shopping bag, linking users and products while ensuring each product–size combination is stored only once.
 - ### [views.py](/docs/apps%20README/bag/views_README.md)🟢
   >``bag`` app manages the shopping bag: ``view_bag`` displays items with totals, ``add_to_bag`` adds or updates items via POST/AJAX, ``remove_from_bag`` deletes items, and ``clear_bag`` empties the bag for the user.
 - ### [context_processors.py](/docs/apps%20README/bag/context_processors_README.md)🟢
   >``bag/context_processors.py`` provides ``bag_contents`` and ``calculate_bag_total``, making the current shopping bag items, counts, and totals available in all templates.
 - ### [signals.py](/docs/apps%20README/bag/signals_README.md)🟢
   >``bag/apps.py`` activates signals on app ready, and ``bag/signals.py`` automatically loads a logged-in user’s ``BagItems`` into the session, reconstructing the shopping bag.
-  - ### [test](/docs/test%20README/bag_README.md)🛑
+  - ### [test](/docs/test%20README/bag_README.md)🔴
     >``bag/tests/`` verifies shopping bag functionality: pages return 200 and use correct templates, add/remove/clear actions update session and redirect properly, URLs resolve correctly, and context processors calculate totals, counts, and bag items accurately.
-
+- ### [Templates/](#7-shopping-bag)🟠
+  >The ``bag`` app manages the shopping bag functionality, allowing users to review selected items, remove products, and view subtotals and delivery costs before checkout.
 ## checkout
+- ### [models.py](#pixel-storecheckoutmodelspy)🔵
+  >The ``checkout`` app manages completed purchases through the ``Order`` and ``OrderLineItem`` models, separating order-level data from individual product lines for clarity and scalability.
 - ### [views.py](/docs/apps%20README/checkout/views_README.md)🟢
   >``checkout/`` handles order processing: displays checkout form if the bag isn’t empty, validates and saves orders and line items, creates a Stripe checkout session, empties the bag, and shows a success page with order details.
-  - ### [test](/docs/test%20README/checkout_README.md)🛑
+  - ### [test](/docs/test%20README/checkout_README.md)🔴
     >checkout/tests/ verifies the checkout flow: redirects when the bag is empty, ensures checkout success page loads correctly, confirms order numbers are auto-generated, and validates the OrderForm with correct data.
-
+- ### [Templates/](#8-checkout)🟠
+  >The checkout app manages the purchase process, including delivery details, payment, order confirmation, and post-purchase options.
 # 📱 User Experience (UX) — Pixel Store
 After creating an account, the user can:
 
@@ -508,6 +565,7 @@ Pixel Store offers a fast, responsive, and easy shopping experience where users 
 
 ### 2. Login & Redirect
 - After registering or logging in, the user is automatically redirected to the Home page.
+
 <img src="./screenshots/CRUDs/2-inside.jpeg" alt="Website Preview" width="300">
 
 ### 3. Account Management
