@@ -51,10 +51,10 @@ The live version of the project is accessible here:
 
 Legend:
 
-- 🔵 Database layer (models)
-- 🟢 Backend logic (views, urls, context processors)
-- 🟠 Frontend layer (templates)
-- 🔴 Testing (pytest)
+- 🔵 [Database layer](#data-models) (models)
+- 🟢 [Backend logic](#the-functions-and-their-testing-on-the-pixel-store-app) (views, urls, context processors)
+- 🟠 [Frontend layer](#crud-features) (templates)
+- 🔴 [Testing](#testing) (pytest)
 
 “Emojis act as a visual map of the app layers, showing how models, backend logic, templates, and tests are connected in a coherent workflow.”
 
@@ -556,7 +556,7 @@ After creating an account, the user can:
 
 Pixel Store offers a fast, responsive, and easy shopping experience where users can browse clothing products, manage a dynamic shopping bag, and complete purchases securely using Stripe. The platform provides clear product information, intuitive navigation, and real-time feedback during checkout, making online shopping simple and enjoyable for all users.
 
-## CRUD Features – Pixel Store
+## CRUD Features
 
 ### 1. User Registration
 - Users can create an account through the registration form.
