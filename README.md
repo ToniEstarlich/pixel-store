@@ -349,6 +349,8 @@ Category 1 ───▶ * Product ───▶ * OrderLineItem
 templates/
 ### Functions:
 - [(🟢)views.py → (🟢)urls.py → (🟢)context_processors.py](#products)
+### CRUD:
+- [(🟠)Templates/](#5-shop-page)
 # pixel-store/users/models.py
 ## 👤 3. UserProfile
 
@@ -371,6 +373,8 @@ User 1 ───▶ 1 UserProfile ───▶ * Order
 templates/
 ### Functions:
 - [(🟢)views.py → (🟢)urls.py → (🟢)signals.py](#users)
+### CRUD:
+- [(🟠)Templates/](#1-user-registration)
 # pixel-store/bag/models.py
 ## 👜 4. BagItem (Shopping Cart Item)
 
@@ -398,6 +402,8 @@ User 1 ───▶ * BagItem ◀── * Product
 templates/
 ### Functions:
 - [(🟢)views.py → (🟢)urls.py → (🟢)context_processors.py → (🟢)signals.py](#bag-2)
+### CRUD:
+- [(🟠)Templates/](#7-shopping-bag)
 # pixel-store/checkout/models.py
 ## 📦 5. Order
 
@@ -455,6 +461,8 @@ User ───1──▶ UserProfile ───1──▶* Order ───1──
 templates/
 ### Functions:
 - [(🟢)views.py → (🟢)urls.py](#checkout-1)
+### CRUD:
+- [(🟠)Templates/](#8-checkout)
 ## Forms & User Input Handling
 
 The project uses Django Forms and ModelForms to handle user input in a clean and secure way.
@@ -613,17 +621,18 @@ Pixel Store offers a fast, responsive, and easy shopping experience where users 
 
   <img src="./screenshots/CRUDs/5-more-details.jpeg" alt="Website Preview" width="300">
     
-    >**5 :**
-
-    **models**
-    [(🔵)models.py](#pixel-storeproductsmodelspy)
-    
-    **Functions:**
-     [(🟢)views.py → (🟢)urls.py → (🟢)context_processors.py](#products)
-
 ### 6. Navbar
 - Products: Browse different clothing categories.
 - Search: Find items quickly by name or keyword.
+
+ >**5 & 6 :**
+
+  **models**
+    [(🔵)models.py](#pixel-storeproductsmodelspy)
+    
+  **Functions:**
+     [(🟢)views.py → (🟢)urls.py → (🟢)context_processors.py](#products)
+
 
 ### 7. Shopping Bag
 - Users can:
