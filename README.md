@@ -369,8 +369,10 @@ Extends Django’s built-in ``User`` model with additional customer information.
 User 1 ───▶ 1 UserProfile ───▶ * Order
 ```
 ### Request Flow
-- (🔵)models.py → (🟢)views.py → (🟢)urls.py → (🟢)signals.py → (🟠)
+- (🔵)models.py → (🔵)forms.py → (🟢)views.py → (🟢)urls.py → (🟢)signals.py → (🟠)
 templates/
+### Form:
+- [(🔵)forms.py](#user-registration-and-profiles)
 ### Functions:
 - [(🟢)views.py → (🟢)urls.py → (🟢)signals.py](#users)
 ### CRUD:
@@ -457,8 +459,10 @@ User ───1──▶ UserProfile ───1──▶* Order ───1──
   └──▶* BagItem ◀─────1──── Product ───▶ Category
 ```
 ### Request Flow
-- (🔵)models.py → (🟢)views.py → (🟢)urls.py →  (🟠)
+- (🔵)models.py → (🔵)forms.py → (🟢)views.py → (🟢)urls.py →  (🟠)
 templates/
+### Form:
+- [(🔵)forms.py](#checkout)
 ### Functions:
 - [(🟢)views.py → (🟢)urls.py](#checkout-1)
 ### CRUD:
