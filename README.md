@@ -454,7 +454,7 @@ User ───1──▶ UserProfile ───1──▶* Order ───1──
 - (🔵)models.py → (🟢)views.py → (🟢)urls.py →  (🟠)
 templates/
 ### Functions:
-- [(🟢)views.py → (🟢)urls.py](#checkout)
+- [(🟢)views.py → (🟢)urls.py](#checkout-1)
 ## Forms & User Input Handling
 
 The project uses Django Forms and ModelForms to handle user input in a clean and secure way.
