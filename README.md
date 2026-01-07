@@ -397,7 +397,7 @@ User 1 ───▶ * BagItem ◀── * Product
 - (🔵)models.py → (🟢)views.py → (🟢)urls.py → (🟢)context_processors.py → (🟢)signals.py → (🟠)
 templates/
 ### Functions:
-- [(🟢)views.py → (🟢)urls.py → (🟢)context_processors.py → (🟢)signals.py](#bag)
+- [(🟢)views.py → (🟢)urls.py → (🟢)context_processors.py → (🟢)signals.py](#bag-2)
 # pixel-store/checkout/models.py
 ## 📦 5. Order
 
