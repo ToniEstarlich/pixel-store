@@ -677,7 +677,7 @@ Pixel Store offers a fast, responsive, and easy shopping experience where users 
     [(🔵)models.py](#pixel-storecheckoutmodelspy)
 
   **Checkout functions:**
-  [(🟢)views.py → (🟢)urls.py](#checkout)
+  [(🟢)views.py → (🟢)urls.py](#checkout-1)
 
 ## [Back to Table of Contents](#table-of-contents)
 ##  Problems & Solutions
