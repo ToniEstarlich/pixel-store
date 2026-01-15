@@ -49,7 +49,7 @@ The live version of the project is accessible here:
 15. [Environment Variables ``(.env)``](#environment-variables-env)
 16. [Deployment](#deployment)
 
-Legend:
+## **Legend:**
 
 - 🔵 [Database layer](#data-models) (models)
 - 🟢 [Backend logic](#the-functions-and-their-testing-on-the-pixel-store-app) (views, urls, context processors)
@@ -58,6 +58,22 @@ Legend:
 
 “Emojis act as a visual map of the app layers, showing how models, backend logic, templates, and tests are connected in a coherent workflow.”
 
+## Pixel Store – Design & Evaluation Rationale
+
+This section reflects on the key design decisions behind Pixel Store, explaining the rationale for the chosen technologies, evaluating database and testing choices, highlighting UX and security considerations, and outlining trade-offs and future improvement opportunities.
+
+### Table of Contents
+- 1️⃣ [Framework Choice – Django](#framework-choice-django)  
+- 2️⃣ [Database Choice – PostgreSQL](#database-choice-postgresql) 
+- 3️⃣ [Libraries and Tools](#libraries-and-tools)
+- 4️⃣ [Application Architecture & Organization](#application-architecture--organization)    
+- 5️⃣ [UX / UI Decisions](#ux--ui-decisions)  
+- 6️⃣ [Key Functionalities](#key-functionalities) 
+- 7️⃣ [HTML/CSS Validation](#htmlcss-validation)
+- 8️⃣ [Testing Strategy](#testing-strategy)   
+- 9️⃣ [Security Practices](#security-practices)  
+- 🔟 [Trade-offs & Conscious Decisions](#trade-offs--conscious-decisions)
+
 ---
 
 ## 🎯 Objective
@@ -65,6 +81,12 @@ Legend:
 The goal of Pixel Store is to create an interactive online shop where customers can browse, explore, and purchase textile products in a seamless full-stack web application.
 
 ---
+
+###  Framework Choice: Django
+<details style="background-color:#007bff; padding:10px; border-radius:5px;">
+  <summary><h3>1️⃣ Design Rationale</h3></summary>
+  <p>Django was chosen because it was a project requirement and, additionally, it is one of the most complete and robust frameworks for web applications. It simplifies authentication, security, and database management, allowing the implementation of critical e-commerce functionalities (registration, login, product management, and cart) without reinventing the wheel. I chose this project motivated by the Level 5 E-commerce tutorial, and Pixel Store seemed the best option to apply these concepts in a practical way.</p>
+</details>
 
 ##  Tech Stack
 # 💻
@@ -286,12 +308,20 @@ A custom 404 page was added to improve user experience when users navigate to a 
 
 [Back to Table of Contents](#table-of-contents)
 ---
+
 # Data Models 
 # 🗄
 Describes the data model used in the Pixel Store application, including all entities and relationships between them.
 
 Database migrations were created and applied using Django’s built-in migration system
 (`makemigrations` and `migrate`) to keep the PostgreSQL database schema aligned with the models.
+
+### Database Choice: PostgreSQL
+<details style="background-color:#007bff; padding:10px; border-radius:5px;">
+<summary><h3>2️⃣ Design Rationale</h3></summary>
+  <p>PostgreSQL was selected for its scalability, referential integrity, and efficient handling of concurrent transactions, and also because it is familiar to me from my experience at Amazon Career and projects in C#/.NET. This choice allows managing multiple users and complex relationships between models robustly, something SQLite does not handle optimally in production environments.</p>
+</details>
+
 
 ## Model Overview
 - Products (`products/models.py`)
@@ -471,8 +501,18 @@ templates/
 
 The project uses Django Forms and ModelForms to handle user input in a clean and secure way.
 
-### User Registration and Profiles
+### Libraries and Tools
+<details style="background-color:#007bff; padding:10px; border-radius:5px;">
+  <summary><h3>3️⃣ Design Rationale</h3></summary>
+  <ul>
+    <li><strong>Django Allauth:</strong> secure and tested authentication, allowing focus on e-commerce logic without reinventing critical features.</li>
+    <li><strong>Bootstrap 4:</strong> provides a flexible grid, reusable components, and visual consistency, accelerating development and reducing design errors.</li>
+    <li><strong>django-crispy-forms:</strong> renders forms cleanly and consistently with Bootstrap, avoiding repetitive HTML.</li>
+  </ul>
+  <p>These choices improve productivity, security, and user experience, providing clear and consistent interfaces.</p>
+</details>
 
+### User Registration and Profiles
 - A custom registration form extends Django Allauth’s `SignupForm` to collect additional user information such as first and last name during signup.
 - `UserForm` allows users to update basic account details (name and email).
 - `UserProfileForm` is linked to the `UserProfile` model and is used to manage delivery and contact information.
@@ -500,6 +540,20 @@ This documentation summarizes the main files in each Pixel Store app:
 - **signals.py** → automatically executes functions in response to model events (like creating UserProfiles or loading BagItems on login)  
 
 # The functions and their testing on the Pixel Store app
+### Application Architecture and Organization
+<details style="background-color:#007bff; padding:10px; border-radius:5px;">
+  <summary><h3>4️⃣ Design Rationale</h3></summary>
+  <p>The application is organized into the following apps: <strong>home</strong>, <strong>products</strong>, <strong>users</strong>, <strong>bag</strong>, and <strong>checkout</strong>:</p>
+  <ul>
+    <li><strong>home:</strong> entry point of the project, contains initial presentation and navigation.</li>
+    <li><strong>products:</strong> manages and stores the store’s products.</li>
+    <li><strong>users:</strong> handles registration, login, and profile management.</li>
+    <li><strong>bag:</strong> independent shopping cart, synchronized with session and database.</li>
+    <li><strong>checkout:</strong> handles payment flow and order confirmation.</li>
+  </ul>
+  <p>This separation facilitates maintainability, scalability, and readability, avoiding mixing logic from different areas. The organization was inspired by tutorials, course material, and reference repositories.</p>
+</details>
+
 Use the links below to explore each file’s purpose and its corresponding tests.
 
 ## home
@@ -577,6 +631,15 @@ After creating an account, the user can:
 Pixel Store offers a fast, responsive, and easy shopping experience where users can browse clothing products, manage a dynamic shopping bag, and complete purchases securely using Stripe. The platform provides clear product information, intuitive navigation, and real-time feedback during checkout, making online shopping simple and enjoyable for all users.
 
 ## CRUD Features
+### UX / UI
+<details style="background-color:#007bff; padding:10px; border-radius:5px;"  >
+  <summary><h3>5️⃣ Design Rationale</h3></summary>
+  <ul>
+    <li>Clear and predictable layout, prioritizing quick access to products, cart, and user profile.</li>
+    <li>Forms with visible validations, semantic labels, and clear error messages, ensuring a consistent and accessible user experience.</li>
+    <li>Basic accessibility principles: clear labels, visible feedback, and coherent visual structure for maximum usability.</li>
+  </ul>
+</details>
 
 ### 1. User Registration
 - Users can create an account through the registration form.
@@ -697,9 +760,34 @@ Pixel Store offers a fast, responsive, and easy shopping experience where users 
   **Checkout functions:**
     [(🟢)views.py → (🟢)urls.py](#checkout-1)
 
+### Key Functionalities
+<details style="background-color:#007bff; padding:10px; border-radius:8px;" >
+ <summary><h3> 6️⃣ Design Rationale</h3></summary>
+  <ul>
+    <li><strong>Cart (bag):</strong> independent, synchronized between session and database. Allows adding products even without being logged in, ensuring persistence upon login.</li>
+    <li><strong>Order and OrderLineItem:</strong> reflect real purchases; separate the order from products, facilitating calculations and future expansions.</li>
+    <li><strong>OneToMany relationships:</strong> used when an element clearly belongs to another, allowing specific information (quantity, price) per order line.</li>
+    <li><strong>Separate categories:</strong> for normalization, filtering, and data reuse.</li>
+    <li><strong>Context processors & AJAX:</strong> improve UX and avoid duplicated code.</li>
+    <li><strong>Signals:</strong> automate critical tasks, such as creating user profiles or synchronizing the cart upon login.</li>
+  </ul>
+  <p>The approach prioritized clarity, reusability, and user flow, inspired by real e-commerce platforms and tutorials.</p>
+</details>
+
+
 ## [Back to Table of Contents](#table-of-contents)
 ##  Problems & Solutions
 # ❗
+### HTML/CSS Validation
+
+<details style="background-color:#007bff; padding:10px; border-radius:8px;">
+  <summary><h3>7️⃣ Design Rationale</h3></summary>
+  <ul>
+    <li>Minor warnings detected from external libraries (Bootstrap, Font Awesome), which do not affect functionality or UX.</li>
+    <li>A model pluralization issue in the database was corrected via <code>verbose_name_plural</code>.</li>
+    <li>Stability and maintainability were prioritized over 100% W3C validation of external resources.</li>
+  </ul>
+</details>
 
 ## HTML Validation
 The HTML code was validated using the W3C Markup Validation Service.  
@@ -742,6 +830,17 @@ The CSS was validated using the W3C CSS Validator.
 - Added `verbose_name_plural = "Categories"` inside Meta class.
 ## Testing
 # 🧪 
+### Testing Strategy
+<details style="background-color:#007bff; padding:10px; border-radius:8px;" >
+  <summary><h3>8️⃣ Design Rationale</h3></summary>
+  <ul>
+    <li><strong>Main tool:</strong> pytest, for clear syntax, readable tests, and good organization.</li>
+    <li><strong>Priority areas:</strong> models with logic, critical views, forms, context processors, cart, and checkout.</li>
+    <li>End-to-end tests were not implemented due to project scope; focus was on functional and unit testing, ensuring key flows.</li>
+    <li><strong>Testing criteria:</strong> logic-heavy features, persistent data, critical flows, or areas prone to break with future changes.</li>
+  </ul>
+  <p>Tests cover status codes, templates, context processors, model methods, forms, session handling, AJAX, and URLs.</p>
+</details>
 
 Tests were run using **pytest** in a Django environment.
 
@@ -848,6 +947,18 @@ To keep the **Pixel Store** project clean, consistent, and professional, PEP8 st
 ---
 ## Environment Variables (.env)
 # 🔐
+### Security
+<details style="background-color:#007bff; padding:10px; border-radius:8px;">
+  <summary><h3>9️⃣ Design Rationale</h3></summary>
+  <ul>
+    <li>Use of environment variables for credentials and Stripe keys.</li>
+    <li>DEBUG disabled in production.</li>
+    <li>CSRF protection in forms.</li>
+    <li>Secure session management and authentication through Django Allauth.</li>
+    <li>ALLOWED_HOSTS configured and secret keys separated from the code.</li>
+    <li>MFA or additional encryption was not implemented due to project scope, but could be added in future phases.</li>
+  </ul>
+</details>
 
 This project uses a ``.env`` file to store sensitive configuration values.
 The ``.env`` file is listed in ``.gitignore`` to prevent these secrets from being committed to the repository.
@@ -907,3 +1018,17 @@ python manage.py runserver
 Pixel Store is a fully functional e-commerce platform for a fictional clothing brand.  
 It combines a responsive, user-friendly design with secure and efficient functionality, including user authentication, shopping bag management, product browsing, and Stripe payment integration.  
 The project demonstrates both front-end and back-end capabilities, testing practices, and attention to accessibility, providing a complete full-stack web application example.
+
+### Trade-offs and Conscious Decisions
+<details style="background-color:#007bff; padding:10px; border-radius:8px;">
+  <summary><h3>🔟 Design Rationale</h3></summary>
+  <ul>
+    <li><strong>Sacrifices:</strong> visual design and marketing in favor of a solid and functional backend.</li>
+    <li><strong>Omitted features:</strong> coupons, wishlist, reviews, advanced admin panel, and full E2E tests.</li>
+    <li><strong>Maintainability decisions:</strong> clear app separation, use of context processors and signals, models with defined responsibilities, and clean template code.</li>
+    <li><strong>Visual impact:</strong> consistent styles and promotional slides were used to compensate for the technical focus.</li>
+  </ul>
+  <p>The project reflects a priority on understanding, structure, and technical robustness over speed or aesthetics.</p>
+</details>
+
+### [Back to Table of Contents](#table-of-contents)
