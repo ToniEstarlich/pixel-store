@@ -83,7 +83,7 @@ The goal of Pixel Store is to create an interactive online shop where customers 
 ---
 
 ###  Framework Choice: Django
-<details style="background-color:#007bff; padding:10px; border-radius:5px;">
+<details style="color:#007bff;  padding:10px; border-radius:5px;">
   <summary><h3>1️⃣ Design Rationale</h3></summary>
   <p>Django was chosen because it was a project requirement and, additionally, it is one of the most complete and robust frameworks for web applications. It simplifies authentication, security, and database management, allowing the implementation of critical e-commerce functionalities (registration, login, product management, and cart) without reinventing the wheel. I chose this project motivated by the Level 5 E-commerce tutorial, and Pixel Store seemed the best option to apply these concepts in a practical way.</p>
 </details>
@@ -317,7 +317,7 @@ Database migrations were created and applied using Django’s built-in migration
 (`makemigrations` and `migrate`) to keep the PostgreSQL database schema aligned with the models.
 
 ### Database Choice: PostgreSQL
-<details style="background-color:#007bff; padding:10px; border-radius:5px;">
+<details style="color:#007bff; padding:10px; border-radius:5px;">
 <summary><h3>2️⃣ Design Rationale</h3></summary>
   <p>PostgreSQL was selected for its scalability, referential integrity, and efficient handling of concurrent transactions, and also because it is familiar to me from my experience at Amazon Career and projects in C#/.NET. This choice allows managing multiple users and complex relationships between models robustly, something SQLite does not handle optimally in production environments.</p>
 </details>
@@ -502,7 +502,7 @@ templates/
 The project uses Django Forms and ModelForms to handle user input in a clean and secure way.
 
 ### Libraries and Tools
-<details style="background-color:#007bff; padding:10px; border-radius:5px;">
+<details style="color:#007bff; padding:10px; border-radius:5px;">
   <summary><h3>3️⃣ Design Rationale</h3></summary>
   <ul>
     <li><strong>Django Allauth:</strong> secure and tested authentication, allowing focus on e-commerce logic without reinventing critical features.</li>
@@ -541,7 +541,7 @@ This documentation summarizes the main files in each Pixel Store app:
 
 # The functions and their testing on the Pixel Store app
 ### Application Architecture and Organization
-<details style="background-color:#007bff; padding:10px; border-radius:5px;">
+<details style="color:#007bff; padding:10px; border-radius:5px;">
   <summary><h3>4️⃣ Design Rationale</h3></summary>
   <p>The application is organized into the following apps: <strong>home</strong>, <strong>products</strong>, <strong>users</strong>, <strong>bag</strong>, and <strong>checkout</strong>:</p>
   <ul>
@@ -632,7 +632,7 @@ Pixel Store offers a fast, responsive, and easy shopping experience where users 
 
 ## CRUD Features
 ### UX / UI
-<details style="background-color:#007bff; padding:10px; border-radius:5px;"  >
+<details style="color:#007bff; padding:10px; border-radius:5px;"  >
   <summary><h3>5️⃣ Design Rationale</h3></summary>
   <ul>
     <li>Clear and predictable layout, prioritizing quick access to products, cart, and user profile.</li>
@@ -761,7 +761,7 @@ Pixel Store offers a fast, responsive, and easy shopping experience where users 
     [(🟢)views.py → (🟢)urls.py](#checkout-1)
 
 ### Key Functionalities
-<details style="background-color:#007bff; padding:10px; border-radius:8px;" >
+<details style="color:#007bff; padding:10px; border-radius:8px;" >
  <summary><h3> 6️⃣ Design Rationale</h3></summary>
   <ul>
     <li><strong>Cart (bag):</strong> independent, synchronized between session and database. Allows adding products even without being logged in, ensuring persistence upon login.</li>
@@ -780,7 +780,7 @@ Pixel Store offers a fast, responsive, and easy shopping experience where users 
 # ❗
 ### HTML/CSS Validation
 
-<details style="background-color:#007bff; padding:10px; border-radius:8px;">
+<details style="color:#007bff; padding:10px; border-radius:8px;">
   <summary><h3>7️⃣ Design Rationale</h3></summary>
   <ul>
     <li>Minor warnings detected from external libraries (Bootstrap, Font Awesome), which do not affect functionality or UX.</li>
@@ -831,7 +831,7 @@ The CSS was validated using the W3C CSS Validator.
 ## Testing
 # 🧪 
 ### Testing Strategy
-<details style="background-color:#007bff; padding:10px; border-radius:8px;" >
+<details style="color:#007bff; padding:10px; border-radius:8px;" >
   <summary><h3>8️⃣ Design Rationale</h3></summary>
   <ul>
     <li><strong>Main tool:</strong> pytest, for clear syntax, readable tests, and good organization.</li>
@@ -948,7 +948,7 @@ To keep the **Pixel Store** project clean, consistent, and professional, PEP8 st
 ## Environment Variables (.env)
 # 🔐
 ### Security
-<details style="background-color:#007bff; padding:10px; border-radius:8px;">
+<details style="color:#007bff; padding:10px; border-radius:8px;">
   <summary><h3>9️⃣ Design Rationale</h3></summary>
   <ul>
     <li>Use of environment variables for credentials and Stripe keys.</li>
@@ -1020,7 +1020,7 @@ It combines a responsive, user-friendly design with secure and efficient functio
 The project demonstrates both front-end and back-end capabilities, testing practices, and attention to accessibility, providing a complete full-stack web application example.
 
 ### Trade-offs and Conscious Decisions
-<details style="background-color:#007bff; padding:10px; border-radius:8px;">
+<details style="color:#007bff; padding:10px; border-radius:8px;">
   <summary><h3>🔟 Design Rationale</h3></summary>
   <ul>
     <li><strong>Sacrifices:</strong> visual design and marketing in favor of a solid and functional backend.</li>
