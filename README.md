@@ -75,18 +75,385 @@ This section reflects on the key design decisions behind Pixel Store, explaining
 - 🔟 [Trade-offs & Conscious Decisions](#trade-offs-and-conscious-decisions)
 
 ---
+# Why Pixel Store?
 
-## 🎯 Objective
-
-The goal of Pixel Store is to create an interactive online shop where customers can browse, explore, and purchase textile products in a seamless full-stack web application.
-
----
+Pixel Store is an online store, but more importantly, it is a complete full-stack architecture exercise focused on separation of responsibilities, basic security, and a real e-commerce flow, prioritizing structure and maintainability over advanced features.
 
 ###  Framework Choice: Django
 <details>
   <summary><h3 style="color:#007bff;">1️⃣ Design Rationale</h3></summary>
   <p style="color:#007bff;">Django was chosen because it was a project requirement and, additionally, it is one of the most complete and robust frameworks for web applications. It simplifies authentication, security, and database management, allowing the implementation of critical e-commerce functionalities (registration, login, product management, and cart) without reinventing the wheel. I chose this project motivated by the Level 5 E-commerce tutorial, and Pixel Store seemed the best option to apply these concepts in a practical way.</p>
 </details>
+## Code & Architecture Decisions
+
+<details>
+<summary><h3>🚀 Why Django?</h3></summary>
+
+<ul>
+  <li>Clear MVC / MTV architecture</li>
+  <li>Built-in ORM → fewer SQL errors</li>
+  <li>Proven authentication and security system</li>
+  <li>Ideal for applications with complex models (orders, cart, users)</li>
+</ul>
+<details>
+<summary><h3>⚙ How to install</h3></summary>
+
+📦 Installation
+
+```bash
+pip install django
+```
+🧠 Usage
+
+- Django is installed at the project level
+
+- Used across multiple apps following Django’s recommended architecture
+
+- Provides the foundation for models, views, forms, and templates
+
+</details> 
+</details>
+
+> “Django is a robust full-stack framework that already includes authentication, security, and an ORM, allowing me to focus on the business logic of an e-commerce application instead of reinventing critical functionality.”
+
+<details>
+<summary><h3>🧩 Why split the project into apps?</h3></summary>
+
+<ul>
+  <li><strong>products</strong> → product catalog (independent from users)</li>
+  <li><strong>users</strong> → authentication and user profiles</li>
+  <li><strong>bag</strong> → decoupled shopping cart (session + database)</li>
+  <li><strong>checkout</strong> → critical order and payment logic</li>
+  <li><strong>home</strong> → informational pages</li>
+</ul>
+<details>
+<summary><h3>⚙ Example: creating and installing an app</h3></summary>
+
+📦 Create a new app
+
+```bash
+python manage.py startapp products
+```
+🔧 Register the app
+
+```python
+# settings.py
+INSTALLED_APPS = [
+    ...
+    'products',
+]
+```
+🧠 Architectural note
+
+- Each app owns its own models, views, templates, and URLs
+
+- Business logic is isolated per app
+
+- Apps communicate only when necessary
+
+</details>
+</details>
+
+> “The project is divided into independent apps to keep the codebase clean, scalable, and easy to maintain.”
+
+<details>
+<summary><h3>🔁 Typical Pixel Store Request Flow</h3></summary>
+
+<ul>
+  <li>The user enters the store</li>
+  <li>Django queries products from PostgreSQL</li>
+  <li>The view processes the data</li>
+  <li>The template renders the HTML</li>
+</ul>
+<details>
+<summary><h3>⚙ Example: product list request</h3></summary>
+
+(🔵)Models
+
+```python
+# products/models.py
+class Product(models.Model):
+    name = models.CharField(max_length=255)
+    price = models.DecimalField(max_digits=8, decimal_places=2)
+```
+(🟢) View
+
+```python
+# products/views.py
+def product_list(request):
+    products = Product.objects.all()
+    return render(request, 'products/products.html', {'products': products})
+```
+(🟢)URL
+
+```python
+# products/urls.py
+path('', product_list, name='product_list')
+```
+(🟠) Template
+
+```html
+{% for product in products %}
+  <p>{{ product.name }} - {{ product.price }}</p>
+{% endfor %}
+```
+</details> 
+</details>
+
+> “The request flow always follows the same pattern:  
+> (🔵) models → (🔵) forms → (🟢) views → (🟢) urls → (🟢) context processors → (🟠) templates”
+
+## Library Decisions
+
+<details>
+<summary><h3>🔐 Django Allauth</h3></summary>
+
+<ul>
+  <li>Manages sessions, passwords, and CSRF protection</li>
+  <li>Less custom code = fewer bugs</li>
+  <li>Industry-standard authentication solution</li>
+</ul>
+
+<details>
+<summary><h3>⚙ How to install</h3></summary>
+
+📦 Installation
+
+```bash
+pip install django-allauth
+```
+🔧 Configuration
+
+```python
+# settings.py
+INSTALLED_APPS = [
+    ...
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+]
+
+SITE_ID = 1
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+```
+🧠 Usage
+
+- Centralized authentication
+
+- Forms and views managed by Allauth
+
+- Integrated mainly in the users app
+</details>
+</details>
+
+> “Allauth is a secure and well-tested authentication solution. I avoided implementing custom login logic to prevent common security mistakes.”
+
+<details> 
+<summary><h3>🎨 Bootstrap + Crispy Forms</h3></summary> 
+<ul> 
+<li>Focus on usability</li> 
+<li>Use of professional tooling</li> 
+<li>No time wasted reinventing styles</li> 
+</ul> 
+<details> 
+<summary><h3>⚙ How to install</h3></summary>
+
+📦 Installation
+
+```python
+pip install django-crispy-forms crispy-bootstrap4
+```
+🔧 Configuration
+
+```python
+# settings.py
+INSTALLED_APPS = [
+    ...
+    'crispy_forms',
+    'crispy_bootstrap4',
+]
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
+CRISPY_TEMPLATE_PACK = "bootstrap4"
+```
+🧠 Usage
+
+```html
+{% load crispy_forms_tags %}
+{{ form|crispy }}
+```
+</details>
+</details>
+
+> “Bootstrap allows me to guarantee responsive design quickly, while Crispy Forms helps render clean and accessible forms without repeating HTML.”
+
+<details> 
+<summary><h3>💳 Stripe</h3></summary> 
+<ul> 
+<li>No credit card data is stored</li> 
+<li>Stripe complies with industry regulations</li> 
+<li>Widely adopted industry standard</li>
+</ul> 
+<details> <summary><h3>⚙ How to install</h3></summary>
+
+📦 Installation
+
+```python
+pip install stripe
+```
+
+🔧 Configuration
+```python
+# settings.py
+STRIPE_SECRET_KEY = os.getenv("STRIPE_SECRET_KEY")
+```
+
+🧠 Usage
+```python
+# checkout/views.py
+import stripe
+stripe.api_key = settings.STRIPE_SECRET_KEY
+```
+</details>
+</details>
+
+>“Stripe is used to simulate real payments securely without handling sensitive user data. Payment logic is isolated in the checkout app.”
+
+## Security Decisions
+
+<details>
+<summary><h3>🔐 Environment Variables (.env)</h3></summary>
+<ul>
+<strong>Examples:</strong>
+<li>SECRET_KEY</li>
+<li>STRIPE keys</li>
+<li>DATABASE_URL</li>
+</ul>
+<details>
+<summary><h3>⚙ Example usage</h3></summary>
+
+📦 Define environment variables
+
+```python
+# .env
+SECRET_KEY=secret-key
+STRIPE_SECRET_KEY=sk_test_xxx
+DATABASE_URL=postgres://user:password@localhost:0000/pixel_store
+```
+🔧 Load variables in Django settings
+
+``` python
+# settings.py
+import os
+
+SECRET_KEY = os.getenv("SECRET_KEY")
+DATABASES = {
+    'default': dj_database_url.parse(os.getenv("DATABASE_URL"))
+}
+```
+🧠 Security note
+
+- Sensitive data is never committed to version control
+
+- .env files are excluded via .gitignore
+
+- Different environments use different values
+</details> 
+</details>
+
+> “Sensitive keys are stored using environment variables to prevent accidental exposure on GitHub.”
+
+<details>
+<summary><h3>🛡️ Django Security</summary>
+<ul>
+<li>DEBUG disabled in production</li> 
+<li>ALLOWED_HOSTS properly configured</li>
+ <li>Forms validated using Django Forms</li>
+</ul>
+<details>
+<summary><h3>⚙ Example configuration</h3></summary>
+
+🔧 Production settings
+
+```python
+# settings.py
+DEBUG = False
+
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    'pixelstore.example.com',
+]
+```
+🧠 Form validation
+
+```python
+# checkout/forms.py
+class OrderForm(forms.Form):
+    full_name = forms.CharField(max_length=100)
+    email = forms.EmailField()
+```
+🛡️ **Security note**
+
+- CSRF protection enabled by default
+
+- Secure password hashing handled by Django
+
+- Session management managed by the framework
+
+</details> 
+</details>
+
+> “Django automatically handles CSRF protection, secure sessions, and password hashing.”
+
+<details>
+<summary><h3>🧪 Testing</h3></summary>
+<ul>
+<li>Not everything is tested → only critical paths</li>
+ <li>Realistic prioritization</li> 
+ <li>Early bug detection before production</li>
+</ul>
+<details>
+<summary><h3>⚙ Example: critical business logic test</h3></summary>
+🔬 Test focus
+
+- Models with business logic
+- Shopping cart behavior
+- Checkout and payment flow
+- Form validation
+
+🧪 Example test
+
+```python
+# bag/tests/test_bag.py
+def test_add_product_to_bag(client, product):
+    response = client.post('/bag/add/', {'product_id': product.id})
+    assert response.status_code == 200
+```
+✅ Testing approach
+
+- Pytest is used for clarity and simplicity
+
+- Tests focus on behavior, not implementation details
+
+- Critical paths are covered before deployment
+
+</details> 
+</details>
+
+> “Tests were implemented using pytest for critical components: models with business logic, cart behavior, checkout flow, and forms.”
+
+
+## 🎯 Objective
+
+The goal of Pixel Store is to create an interactive online shop where customers can browse, explore, and purchase textile products in a seamless full-stack web application.
+
+---
 
 ##  Tech Stack
 # 💻
