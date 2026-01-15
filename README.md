@@ -66,13 +66,13 @@ This section reflects on the key design decisions behind Pixel Store, explaining
 - 1️⃣ [Framework Choice – Django](#framework-choice-django)  
 - 2️⃣ [Database Choice – PostgreSQL](#database-choice-postgresql) 
 - 3️⃣ [Libraries and Tools](#libraries-and-tools)
-- 4️⃣ [Application Architecture & Organization](#application-architecture--organization)    
+- 4️⃣ [Application Architecture & Organization](#application-architecture-and-organization)    
 - 5️⃣ [UX / UI Decisions](#ux--ui-decisions)  
 - 6️⃣ [Key Functionalities](#key-functionalities) 
 - 7️⃣ [HTML/CSS Validation](#htmlcss-validation)
 - 8️⃣ [Testing Strategy](#testing-strategy)   
 - 9️⃣ [Security Practices](#security-practices)  
-- 🔟 [Trade-offs & Conscious Decisions](#trade-offs--conscious-decisions)
+- 🔟 [Trade-offs & Conscious Decisions](#trade-offs-and-conscious-decisions)
 
 ---
 
@@ -83,9 +83,9 @@ The goal of Pixel Store is to create an interactive online shop where customers 
 ---
 
 ###  Framework Choice: Django
-<details style="color:#007bff;  padding:10px; border-radius:5px;">
-  <summary><h3>1️⃣ Design Rationale</h3></summary>
-  <p>Django was chosen because it was a project requirement and, additionally, it is one of the most complete and robust frameworks for web applications. It simplifies authentication, security, and database management, allowing the implementation of critical e-commerce functionalities (registration, login, product management, and cart) without reinventing the wheel. I chose this project motivated by the Level 5 E-commerce tutorial, and Pixel Store seemed the best option to apply these concepts in a practical way.</p>
+<details>
+  <summary><h3 style="color:#007bff;">1️⃣ Design Rationale</h3></summary>
+  <p style="color:#007bff;">Django was chosen because it was a project requirement and, additionally, it is one of the most complete and robust frameworks for web applications. It simplifies authentication, security, and database management, allowing the implementation of critical e-commerce functionalities (registration, login, product management, and cart) without reinventing the wheel. I chose this project motivated by the Level 5 E-commerce tutorial, and Pixel Store seemed the best option to apply these concepts in a practical way.</p>
 </details>
 
 ##  Tech Stack
@@ -631,7 +631,7 @@ After creating an account, the user can:
 Pixel Store offers a fast, responsive, and easy shopping experience where users can browse clothing products, manage a dynamic shopping bag, and complete purchases securely using Stripe. The platform provides clear product information, intuitive navigation, and real-time feedback during checkout, making online shopping simple and enjoyable for all users.
 
 ## CRUD Features
-### UX / UI
+### UX / UI Decisions
 <details style="color:#007bff; padding:10px; border-radius:5px;"  >
   <summary><h3>5️⃣ Design Rationale</h3></summary>
   <ul>
@@ -947,7 +947,7 @@ To keep the **Pixel Store** project clean, consistent, and professional, PEP8 st
 ---
 ## Environment Variables (.env)
 # 🔐
-### Security
+### Security Practices
 <details style="color:#007bff; padding:10px; border-radius:8px;">
   <summary><h3>9️⃣ Design Rationale</h3></summary>
   <ul>
