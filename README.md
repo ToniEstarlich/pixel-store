@@ -1256,36 +1256,30 @@ Failures were caused by an uninitialized product variable in the add_to_bag view
 
     - **What was tested:** Views and context processors  
     - **Results:** ✅3 passed, 🟨 2 warnings  
-    - **Commit:** `Tests: home app - verify views and context processors` 
 
 - **Products**
   - ### [test](/docs/test%20README/products_README.md)🛑
     >``products/tests/`` verifies the ``Category`` model and ``get_categories`` context processor: the model’s ``__str__`` returns the category name, and the context processor provides a list of categories in templates.
     -  **What was tested:** Models, views, and context processors  
-    -  **Results:** ✅4 passed  
-    -  **Commit:** `Tests: products app - verify models, views, and context processors`  
+    -  **Results:** ✅4 passed    
 
 - **User**
   - ### [test](/docs/test%20README/users_README.md)🛑
     >``users/tests/`` verifies user-related functionality: profile page access and template rendering, ``UserProfile`` string representation, and that ``UserProfileForm`` includes all expected fields.
     -  **What was tested:** Models, views, and forms  
     -  **Results:** ✅3 passed, 🟫1 skipped,🟨1 warning  
-    -  **Commit:** `Tests: users app - verify models, views, and forms`  
 
 - **Bag**
   - ### [test](/docs/test%20README/bag_README.md)🛑
     >``bag/tests/`` verifies shopping bag functionality: pages return 200 and use correct templates, add/remove/clear actions update session and redirect properly, URLs resolve correctly, and context processors calculate totals, counts, and bag items accurately.
     -  **What was tested:** Views, context processors, and URLs  
-    -  **Results:** ✅10 passed, 🟨4 warnings  
-    -  **Commit:** `Tests: bag app - verify views, context processors, and URLs`  
-
+    -  **Results:** ✅10 passed, 🟨4 warnings   
 
 - **Checkout**
   - ### [test](/docs/test%20README/checkout_README.md)🛑
     >checkout/tests/ verifies the checkout flow: redirects when the bag is empty, ensures checkout success page loads correctly, confirms order numbers are auto-generated, and validates the OrderForm with correct data.
     -  **What was tested:** Forms, models, and views  
-    -  **Results:** ✅4 passed, 🟨2 warnings  
-    -  **Commit:** `Tests: checkout app - verify forms, models, and views`  
+    -  **Results:** ✅4 passed, 🟨2 warnings   
 
 
 > 📌 **Note:** Each commit reflects the tests executed and verified for traceability and good TDD practices, even if a strict TDD workflow wasn’t followed from the start.
