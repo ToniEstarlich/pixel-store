@@ -1282,7 +1282,7 @@ Failures were caused by an uninitialized product variable in the add_to_bag view
     -  **Results:** ✅4 passed, 🟨2 warnings   
 
 
-> 📌 **Note:** Each commit reflects the tests executed and verified for traceability and good TDD practices, even if a strict TDD workflow wasn’t followed from the start.
+> 📌 **Note:** “Tests were added alongside feature development to validate functionality, even though a strict TDD workflow was not followed.”
 
 [Back to Table of Contents](#table-of-contents)
 ---
@@ -1291,11 +1291,6 @@ Failures were caused by an uninitialized product variable in the add_to_bag view
 
 To keep the **Pixel Store** project clean, consistent, and professional, PEP8 style guidelines were applied together with Python linters.
 
-### ⭐ 
-- To maintain a consistent coding style across the project.
-- To reduce common mistakes before running the application.
-- To improve readability and long-term maintainability.
-- To follow industry best practices used in real software projects.
 
 ### 🛠️ How it was done
 1. Installation of the linters:
