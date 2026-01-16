@@ -1213,6 +1213,8 @@ Tests were run using **pytest** in a Django environment.
 
 <img src="./screenshots/CRUDs/pytest.png" alt="Website Preview" width="500">
 
+>📌 **Note:** “During testing, two initial bugs were found: an uninitialized variable in the bag app and a form validation mismatch in checkout. Both were corrected and verified. Remaining warnings were assessed but deemed non-critical.”
+
 ### How to Run the Tests
 
 - From the project root, run:
@@ -1233,10 +1235,7 @@ pytest pixel-store/bag/tests/test_views.py
 pytest pixel-store/bag/tests/test_views.py::TestClass::test_remove_from_bag
 ```
 ### Summary
-
-Although a strict TDD workflow was not followed from the very beginning, tests were written
-alongside feature development to validate views, forms, models, and business logic.
-Git commits reflect the iterative process of building functionality and validating it through testing.
+Although a strict TDD workflow was not followed from the beginning, tests were added alongside feature development and organized per app. Git commits reflect the iterative process of building functionality and validating it through tests.
 
 ### conftest.py explanation
 The conftest.py file is used to configure and initialize Django for pytest, ensuring that settings and applications are loaded before running tests.
@@ -1246,32 +1245,50 @@ The conftest.py file is used to configure and initialize Django for pytest, ensu
 - ⏭ 1 test skipped
 - ⚠️ 9 warnings
 
-Two test failures were caused by an uninitialized ``product`` variable in the ``add_to_bag`` view for anonymous users, and by an over-strict form test expecting a non-essential ``default_county`` field.
-Both issues were resolved by correctly initializing the variable and aligning the tests with the actual application requirements, resulting in a fully passing test suite.
+Failures were caused by an uninitialized product variable in the add_to_bag view for anonymous users, and by an over-strict form test expecting a non-essential default_county field. Both issues were resolved, resulting in a fully passing test suite.
 
 <img src="./screenshots/CRUDs/testing-ok.png" alt="Website Preview" width="500">
 
-📌 *Click any of the “test” links below to see the full documentation for each test suite, including all 22 test cases with code, validations, and results.*
 
 - **Home**
   - ### [test](/docs/test%20README/home_README.md)🛑
     >``home/tests/`` verifies views and context processors: pages return 200, correct templates are used, and ``timestamp`` is present and an integer in all templates.
 
+    - **What was tested:** Views and context processors  
+    - **Results:** ✅3 passed, 🟨 2 warnings  
+    - **Commit:** `Tests: home app - verify views and context processors` 
+
 - **Products**
   - ### [test](/docs/test%20README/products_README.md)🛑
     >``products/tests/`` verifies the ``Category`` model and ``get_categories`` context processor: the model’s ``__str__`` returns the category name, and the context processor provides a list of categories in templates.
+    -  **What was tested:** Models, views, and context processors  
+    -  **Results:** ✅4 passed  
+    -  **Commit:** `Tests: products app - verify models, views, and context processors`  
 
 - **User**
   - ### [test](/docs/test%20README/users_README.md)🛑
     >``users/tests/`` verifies user-related functionality: profile page access and template rendering, ``UserProfile`` string representation, and that ``UserProfileForm`` includes all expected fields.
+    -  **What was tested:** Models, views, and forms  
+    -  **Results:** ✅3 passed, 🟫1 skipped,🟨1 warning  
+    -  **Commit:** `Tests: users app - verify models, views, and forms`  
 
 - **Bag**
   - ### [test](/docs/test%20README/bag_README.md)🛑
     >``bag/tests/`` verifies shopping bag functionality: pages return 200 and use correct templates, add/remove/clear actions update session and redirect properly, URLs resolve correctly, and context processors calculate totals, counts, and bag items accurately.
+    -  **What was tested:** Views, context processors, and URLs  
+    -  **Results:** ✅10 passed, 🟨4 warnings  
+    -  **Commit:** `Tests: bag app - verify views, context processors, and URLs`  
+
 
 - **Checkout**
   - ### [test](/docs/test%20README/checkout_README.md)🛑
     >checkout/tests/ verifies the checkout flow: redirects when the bag is empty, ensures checkout success page loads correctly, confirms order numbers are auto-generated, and validates the OrderForm with correct data.
+    -  **What was tested:** Forms, models, and views  
+    -  **Results:** ✅4 passed, 🟨2 warnings  
+    -  **Commit:** `Tests: checkout app - verify forms, models, and views`  
+
+
+> 📌 **Note:** Each commit reflects the tests executed and verified for traceability and good TDD practices, even if a strict TDD workflow wasn’t followed from the start.
 
 [Back to Table of Contents](#table-of-contents)
 ---
@@ -1280,7 +1297,7 @@ Both issues were resolved by correctly initializing the variable and aligning th
 
 To keep the **Pixel Store** project clean, consistent, and professional, PEP8 style guidelines were applied together with Python linters.
 
-### ⭐ Why this was done
+### ⭐ 
 - To maintain a consistent coding style across the project.
 - To reduce common mistakes before running the application.
 - To improve readability and long-term maintainability.
