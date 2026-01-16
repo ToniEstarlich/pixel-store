@@ -61,6 +61,7 @@ The live version of the project is accessible here:
 ## Pixel Store – Design & Evaluation Rationale
 
 This section reflects on the key design decisions behind Pixel Store, explaining the rationale for the chosen technologies, evaluating database and testing choices, highlighting UX and security considerations, and outlining trade-offs and future improvement opportunities.
+> ℹ️ Click on the ▼ icons in each section to view the full content. Sections are collapsible to make navigation easier.
 
 ### Table of Contents
 - 1️⃣ [Framework Choice – Django](#framework-choice-django)  
@@ -78,6 +79,8 @@ This section reflects on the key design decisions behind Pixel Store, explaining
 # Why Pixel Store?
 
 Pixel Store is an online store, but more importantly, it is a complete full-stack architecture exercise focused on separation of responsibilities, basic security, and a real e-commerce flow, prioritizing structure and maintainability over advanced features.
+
+>⚠️ **Note for Assessors:** Click on the headings (▼) to expand and see the full details of each section, including design rationale, code examples, and testing strategies.
 
 ###  Framework Choice: Django
 <details>
