@@ -80,7 +80,7 @@ This section reflects on the key design decisions behind Pixel Store, explaining
 
 Pixel Store is an online store, but more importantly, it is a complete full-stack architecture exercise focused on separation of responsibilities, basic security, and a real e-commerce flow, prioritizing structure and maintainability over advanced features.
 
->⚠️ **Note for Assessors:** Click on the headings (▼) to expand and see the full details of each section, including design rationale, code examples, and testing strategies.
+>⚠️ **Note :** Click on the headings (▼) to expand and see the full details of each section, including design rationale, code examples, and testing strategies.
 
 ###  Framework Choice: Django
 <details>
@@ -1146,8 +1146,53 @@ Pixel Store offers a fast, responsive, and easy shopping experience where users 
 
 
 ## [Back to Table of Contents](#table-of-contents)
-##  Problems & Solutions
+
+## Problems & Solutions
 # ❗
+
+### Development Bug
+
+###  Database migration issue
+- **Problem:** `makemigrations` failed due to wrong plural naming in the Category model.
+- **Solution:** Added `verbose_name_plural = "Categories"` inside Meta class.
+  ```python
+  class Category(models.Model):
+    name = models.CharField(max_length=100)
+    ...
+    class Meta:
+        verbose_name_plural = "Categories"  # bug solution
+  ```
+- **Outcome:** Migrations now run successfully and database schema is correct.
+
+### Order date issues (My Orders)
+- **Problem:** Some orders displayed incorrect or missing dates in the “My Orders” page.
+- **Solution:** Ensured the `Order` model assigns a valid timestamp when creating an order (`auto_now_add=True`) and confirmed the template references this field correctly.
+
+``checkout/models.py``
+
+```python
+class Order(models.Model):
+    ...
+    date = models.DateTimeField(auto_now_add=True) # the date
+```
+``users/views.py``
+
+```python
+orders = Order.objects.filter(user_profile=user_profile).order_by("-date")
+```
+
+``users/templates/users/my_orders.html``
+```html
+{{ order.date|localtime|date:"SHORT_DATETIME_FORMAT" }}
+```
+- **Outcome:** All orders now display correct dates in “My Orders” and timestamps are consistent.
+
+### Incorrect shopping bag total
+- **Problem:** The total amount displayed in the shopping bag did not match the total sent to Stripe during checkout.
+- **Solution:** Adjusted the calculation logic in `checkout/views.py` to ensure that all item quantities, prices, and delivery costs are correctly summed and sent to Stripe.
+- **Outcome:** Shopping bag total now matches the Stripe payment total in all scenarios, ensuring correct payment processing.
+
+
 ### HTML/CSS Validation
 
 <details style="color:#007bff; padding:10px; border-radius:8px;">
@@ -1162,6 +1207,7 @@ Pixel Store offers a fast, responsive, and easy shopping experience where users 
 ## HTML Validation
 The HTML code was validated using the W3C Markup Validation Service.  
 [https://validator.w3.org/](https://validator.w3.org/)
+
 
 ### Problem:
 - The validator showed some warnings and minor errors.
@@ -1193,11 +1239,6 @@ The CSS was validated using the W3C CSS Validator.
   - Modifying CDN files is not recommended.
   - The website displays correctly with the current styles.
 
-### Problem:
-- Database `makemigrations` failed due to wrong plural naming.
-
-### Solution:
-- Added `verbose_name_plural = "Categories"` inside Meta class.
 ## Testing
 # 🧪 
 ### Testing Strategy
