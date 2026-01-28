@@ -1152,9 +1152,10 @@ Pixel Store offers a fast, responsive, and easy shopping experience where users 
 
 ### Development Bug
 
-###  Database migration issue
+### Database migration issue
 - **Problem:** `makemigrations` failed due to wrong plural naming in the Category model.
 - **Solution:** Added `verbose_name_plural = "Categories"` inside Meta class.
+ 
   ```python
   class Category(models.Model):
     name = models.CharField(max_length=100)
@@ -1168,8 +1169,8 @@ Pixel Store offers a fast, responsive, and easy shopping experience where users 
 - **Problem:** Some orders displayed incorrect or missing dates in the “My Orders” page.
 - **Solution:** Ensured the `Order` model assigns a valid timestamp when creating an order (`auto_now_add=True`) and confirmed the template references this field correctly.
 
-``checkout/models.py``
-
+ ``checkout/models.py``
+ 
 ```python
 class Order(models.Model):
     ...
@@ -1190,8 +1191,47 @@ orders = Order.objects.filter(user_profile=user_profile).order_by("-date")
 ### Incorrect shopping bag total
 - **Problem:** The total amount displayed in the shopping bag did not match the total sent to Stripe during checkout.
 - **Solution:** Adjusted the calculation logic in `checkout/views.py` to ensure that all item quantities, prices, and delivery costs are correctly summed and sent to Stripe.
+```python
+# calculate subtotal for Stripe
+line_items = []
+for item_id, quantity in bag.items():
+  ...
+    product = get_object_or_404(Product, pk=int(item_id.split("_")[0]))
+
+  ...
+    line_items.append({
+        "price_data": {
+            "currency": "gbp",
+            "product_data": {"name": product.name},
+            "unit_amount": int(product.price * 100),
+        },
+        "quantity": quantity,
+    })
+...
+# Add delivery cost if applicable
+if delivery_cost > 0:
+                line_items.append(
+                    {
+                        "price_data": {
+                            "currency": "gbp",
+                            "product_data": {
+                                "name": "Delivery Cost",
+                            },
+                            "unit_amount": delivery_cost,
+                        },
+                        "quantity": 1,
+                    }
+                )
+```
 - **Outcome:** Shopping bag total now matches the Stripe payment total in all scenarios, ensuring correct payment processing.
 
+### Image storage limitation in Admin
+
+- **Problem:** When adding products via Django Admin, uploaded images were not saved on Heroku deployment because Heroku’s filesystem is ephemeral. This prevented product images from persisting.
+
+- **Solution:** Decided to keep the project as-is for deployment simplicity. Using external storage (e.g., AWS S3) would solve the issue, but it requires a paid service, so it was deferred.
+
+- **Outcome:** Project functions correctly with placeholder images, and the limitation is documented. Images work locally, and the Admin remains fully functional.
 
 ### HTML/CSS Validation
 
